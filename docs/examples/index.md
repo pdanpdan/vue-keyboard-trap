@@ -47,11 +47,15 @@ The last focusable element of each `.roving` trap group is remembered and refocu
 <div tabindex="0">Before</div>
 
 <div v-kbd.trap.roving>
-  <div v-for="i in 20" :key="i" tabindex="0">Focusable group 1 / {{ i + 1 }}</div>
+  <div v-for="i in 20" :key="i" tabindex="0">
+    Focusable group 1 / {{ i + 1 }}
+  </div>
 </div>
 
 <div v-kbd.trap.roving>
-  <div v-for="i in 20" :key="i" tabindex="0">Focusable group 2 / {{ i + 1 }}</div>
+  <div v-for="i in 20" :key="i" tabindex="0">
+    Focusable group 2 / {{ i + 1 }}
+  </div>
 </div>
 
 <div tabindex="0">After</div>
