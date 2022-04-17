@@ -12,7 +12,7 @@ import { extractNumber, focus } from './helpers';
 //   rovingSkipSelector: CSS selector for elements that should not respond to roving key navigation (input, textarea, ...)
 //   gridSkipSelector: CSS selector that will be applied in .roving.grid mode to exclude elements - must be a series of :not() selectors
 //   autofocusSelector: CSS selector for the elements that should be autofocused
-//   trapTabIndex: tabIndex value to be used when trap element has a tabIndex of -1 (default -9999)
+//   trapTabIndex: tabIndex value to be used when trap element has a tabIndex of -1 and has no `tabindex` attribute (default -9999)
 //
 //
 // value: false to disable
