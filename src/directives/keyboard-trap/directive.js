@@ -123,10 +123,8 @@ export default function directiveFactory(options, markRawFn) {
 
           if (
             oldFocusedElement === null
-            || (
-              el.contains(oldFocusedElement) === false
-              && oldFocusedElement.dataset[config.datasetNamePreventRefocus] === undefined
-            )
+            || oldFocusedElement.dataset[config.datasetNamePreventRefocus] === undefined
+            || el.contains(oldFocusedElement) === false
           ) {
             requestAnimationFrame(() => {
               ctx.refocus(ctx.modifiers.roving !== true);
@@ -164,8 +162,6 @@ export default function directiveFactory(options, markRawFn) {
 
         const { code, shiftKey } = ev;
         const { activeElement } = document;
-        const dirEl = (activeElement && activeElement !== el ? activeElement.parentElement || el : el).closest('[dir="rtl"],[dir="ltr"]');
-        const rtlReverseSign = dirEl && dirEl.matches('[dir="rtl"]') ? -1 : 1;
 
         if (code === 'Escape') {
           ev[config.ctxName] = true;
@@ -242,11 +238,19 @@ export default function directiveFactory(options, markRawFn) {
 
             if (ctx.modifiers.vertical !== true || ctx.modifiers.horizontal === true) {
               if (code === 'ArrowLeft') {
-                step = -1 * rtlReverseSign;
+                step = -1;
                 rovingDirection = 'h';
               } else if (code === 'ArrowRight') {
-                step = 1 * rtlReverseSign;
+                step = 1;
                 rovingDirection = 'h';
+              }
+
+              if (step !== 0) {
+                const dirEl = (activeElement && activeElement !== el ? activeElement.parentElement || el : el).closest('[dir="rtl"],[dir="ltr"]');
+
+                if (dirEl && dirEl.matches('[dir="rtl"]')) {
+                  step *= -1;
+                }
               }
             }
           }
@@ -346,16 +350,11 @@ export default function directiveFactory(options, markRawFn) {
       refocus(onlyIfTrapEl) {
         if (
           ctx.disable === false
+          && activeTrapEl === el
           && ctx.focusTarget
           && ctx.focusTarget.closest(config.datasetNameSelector) === el
         ) {
           if (ctx.focusTarget.tabIndex === config.trapTabIndex) {
-            const newCtx = getCtx(ctx.focusTarget);
-
-            if (newCtx !== null && newCtx !== ctx && newCtx.disable === false) {
-              return newCtx.refocus();
-            }
-
             return (ctx.modifiers.autofocus === true && focus(el.querySelector(config.autofocusSelector)) === true)
               || focus(el.querySelector(config.focusableSelector)) === true
               || focus(ctx.focusTarget) === true;

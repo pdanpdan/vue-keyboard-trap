@@ -7,7 +7,7 @@ cd docs/.vitepress/dist
 
 git init
 git add -A
-git commit -m 'deploy'
-git push -f git@github.com:pdanpdan/vue-keyboard-trap.git master:gh-pages
+git commit --allow-empty -m 'deploy'
+git push -f git@github.com:pdanpdan/vue-keyboard-trap.git main:gh-pages
 
 cd -

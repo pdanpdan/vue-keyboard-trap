@@ -302,6 +302,32 @@
 
     <div
       class="test row"
+      dir="rtl"
+      v-kbd-trap.roving.horizontal
+    >
+      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12bis.1
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12bis.2
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12bis.3
+      </div>
+    </div>
+
+    <div
+      class="test row"
       dir="ltr"
       v-kbd-trap.roving.horizontal
     >
@@ -323,6 +349,32 @@
         tabindex="0"
       >
         13.3
+      </div>
+    </div>
+
+    <div
+      class="test row"
+      dir="ltr"
+      v-kbd-trap.roving.horizontal
+    >
+      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13bis.1
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13bis.2
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13bis.3
       </div>
     </div>
 

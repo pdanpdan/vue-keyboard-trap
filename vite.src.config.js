@@ -12,7 +12,7 @@ export default defineConfig({
     emptyOutDir: true,
     outDir: './dist',
     lib: {
-      entry: './src/directives.js',
+      entry: './src/exports.js',
       name: 'VueKeyboardTrap',
       fileName: (format) => `index.${ format }.js`,
     },
