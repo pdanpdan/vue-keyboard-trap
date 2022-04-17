@@ -1,14 +1,6 @@
-# VueKeyboardTrap (vue-keyboard-trap) <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-
-## Project description
-
-Vue directive for keyboard navigation - roving movement and trapping inside container.
-
-Works both for Vue3 and Vue2.
-
-[Docs and examples](https://pdanpdan.github.io/vue-keyboard-trap/)
-
-[Demo codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
+---
+title: Guide
+---
 
 ## Install
 
@@ -19,6 +11,10 @@ or
 ```bash
 npm install https://github.com/pdanpdan/vue-keyboard-trap
 ```
+
+## Playground
+
+[Demo codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
 ## Usage
 
@@ -140,19 +136,6 @@ The directive checks the closest parent DOM Element of the active element that h
 
 If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse (according to document order of the focusable elements) but consistent to the way the elements are order on screen.
 
-## Author
-
-* Name: Dan Popescu (PDan)
-* Email: <pdan.popescu@gmail.com>
-* Website: https://github.com/pdanpdan/
-* Github: [@pdanpdan](https://github.com/pdanpdan)
-
-## License
-
-Copyright © 2022 [Dan Popescu](https://github.com/pdanpdan).
-
-This application is distributed under [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT), see LICENSE for more information.
-
 ## Develpment
 
 ### Install the dependencies
@@ -178,7 +161,3 @@ yarn lint
 ```bash
 yarn build
 ```
-
-## Source code, issues, bug reports, feature requests
-
-[Vue Keyboard Trap (vue-keyboard-trap)](https://github.com/pdanpdan/vue-keyboard-trap)
