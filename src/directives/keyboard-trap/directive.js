@@ -19,11 +19,11 @@ import { extractNumber, focus } from './helpers';
 //
 //
 // modifiers:
-//   .autofocus - autofocuses the element with [autofocus] or [data-autofocus] when the directive is mounted of enabled
+//   .autofocus - autofocuses the element with [autofocus] or [data-autofocus] attribute when the directive is mounted or enabled
 //   .roving, .roving.vertical.horizontal - allow roving navigation (Home, End, ArrowKeys)
 //   .roving.vertical - allow roving navigation (Home, End, ArrowUp, ArrowDown)
 //   .roving.horizontal - allow roving navigation (Home, End, ArrowLeft, ArrowRight)
-//   .roving.grid - allow roving navigation (Home, End, ArrowLeft, ArrowRight) using dataset attrs on elements [data-${ camelCase from datasetName }-(row|col)]
+//   .roving.grid - allow roving navigation (Home, End, ArrowKeys) using dataset attrs on elements [data-${ camelCase from datasetName }-(row|col)]
 //                  [data-${ camelCase from datasetName }-(row|col)~="*"] is a catchall
 //   .roving.tabinside - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)
 //   .escrefocus - refocus element that was in focus before activating the trap on Esc

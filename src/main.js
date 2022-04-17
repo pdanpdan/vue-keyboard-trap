@@ -5,7 +5,7 @@ import {
 } from './directives.js';
 import App from './App.vue';
 
-import './public/VueKeyboardTrapDirective.sass';
+import './public/styles/VueKeyboardTrapDirective.sass';
 
 const app = createApp(App);
 

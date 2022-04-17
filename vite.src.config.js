@@ -10,7 +10,7 @@ export default defineConfig({
     target: 'esnext',
     sourcemap: true,
     emptyOutDir: true,
-    outDir: './dist/src',
+    outDir: './dist',
     lib: {
       entry: './src/directives.js',
       name: 'VueKeyboardTrap',

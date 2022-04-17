@@ -1,7 +1,7 @@
 {
   "name": "vue-keyboard-trap",
-  "version": "0.0.1",
-  "description": "Vue2 and Vue3 directive for keyboard navigation - roving movement and trapping inside container",
+  "version": "1.0.0",
+  "description": "Vue3 and Vue2 directive for keyboard navigation - roving movement and trapping inside container",
   "productName": "Vue Keyboard Trap",
   "author": {
     "name": "Dan Popescu",
@@ -33,23 +33,23 @@
     "url": "https://github.com/pdanpdan/vue-keyboard-trap/issues"
   },
   "homepage": "https://pdanpdan.github.io/vue-keyboard-trap",
-  "main": "./dist/src/index.umd.js",
-  "module": "./dist/src/index.es.js",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
   "exports": {
     ".": {
-      "require": "./dist/src/index.umd.js",
-      "import": "./dist/src/index.es.js"
+      "require": "./dist/index.umd.js",
+      "import": "./dist/index.es.js"
     }
   },
-  "typings": "./dist/src/index.d.ts",
-  "types": "./dist/src/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
+  "types": "./dist/types/index.d.ts",
+  "web-types": "dist/web-types/web-types.json",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "dev": "vite --config ./vite.dev.config.js",
-    "dev:build": "vite build --config ./vite.dev.config.js",
-    "dev:serve": "vite preview",
 
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -58,7 +58,7 @@
 
     "lint": "eslint --ext .js,.vue ./",
     "build": "vite build --config ./vite.src.config.js",
-    "prepublishOnly": "yarn lint && yarn dev:build && yarn build && ./deploy.docs.sh"
+    "prepublishOnly": "yarn lint && yarn build"
   },
   "peerDependencies": {
     "vue": "^3.0.0 || ^2.0.0"
