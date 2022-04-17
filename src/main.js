@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import {
   VueKeyboardTrapDirectivePlugin,
   // VueKeyboardTrapDirectiveFactory,
-} from './directives.js';
+} from './exports.js';
 import App from './App.vue';
 
 import './public/styles/VueKeyboardTrapDirective.sass';
