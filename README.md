@@ -13,11 +13,11 @@ Works both for Vue3 and Vue2.
 ## Install
 
 ```bash
-yarn add https://github.com/pdanpdan/vue-keyboard-trap
+yarn add pdanpdan/vue-keyboard-trap#1.0.3
 ```
 or
 ```bash
-npm install https://github.com/pdanpdan/vue-keyboard-trap
+npm install https://github.com/pdanpdan/vue-keyboard-trap#1.0.3
 ```
 
 ## Usage
