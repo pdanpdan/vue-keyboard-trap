@@ -7,6 +7,7 @@ Vue directive for keyboard navigation - roving movement and trapping inside cont
 Works both for Vue3 and Vue2.
 
 [Docs and examples](https://pdanpdan.github.io/vue-keyboard-trap/)
+[Example codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
 ## Install
 
@@ -18,7 +19,7 @@ or
 npm install https://github.com/pdanpdan/vue-keyboard-trap
 ```
 
-## Usage
+## Usage as ESM
 
 Can be globally registered on the App (plugin mode)
 ```javascript
@@ -51,13 +52,19 @@ export default defineComponent({
 });
 ```
 
-## CSS Styles
-
 The directive does not require any CSS styles to work, but for cosmetic purposes some example styles are provided in `dist/styles/VueKeyboardTrapDirective.sass`.
 
 ```javascript
 import 'vue-keyboard-trap/dist/styles/VueKeyboardTrapDirective.sass';
 ```
+
+## Usage as UMD
+
+Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/index.umd.js).
+
+It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrap.VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrap.VueKeyboardTrapDirectiveFactory`.
+
+If you want you ca access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/styles/VueKeyboardTrapDirective.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/styles/VueKeyboardTrapDirective.sass).
 
 ## Directive configuration options
 

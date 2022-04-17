@@ -1,5 +1,5 @@
 <template>
-  <div :dir="rtl === true ? 'rtl' : undefined">
+  <div :dir="rtl === true ? 'rtl' : undefined" style="padding-top: 4em">
     <img
       class="logo"
       alt="VueKeyboardTrap logo"
