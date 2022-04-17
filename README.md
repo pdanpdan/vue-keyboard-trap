@@ -152,7 +152,7 @@ Copyright © 2022 [Dan Popescu](https://github.com/pdanpdan).
 
 This application is distributed under [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT), see LICENSE for more information.
 
-## Develpment
+## Development
 
 ### Install the dependencies
 
