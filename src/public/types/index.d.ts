@@ -1,6 +1,5 @@
 interface IVueKeyboardTrapDirectiveOptions {
     name?: string;
-    ctxName?: string;
     datasetName?: string;
     focusableSelector?: string;
     rovingSkipSelector?: string;

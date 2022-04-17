@@ -418,7 +418,7 @@ const rtl = ref(false);
   position: fixed
   top: 4px
   left: 4px
-  padding-right: 5em
+  padding-right: 8em
   z-index: 1
   pointer-events: none
 

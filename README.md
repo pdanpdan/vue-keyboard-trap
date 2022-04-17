@@ -13,11 +13,11 @@ Works both for Vue3 and Vue2.
 ## Install
 
 ```bash
-yarn add pdanpdan/vue-keyboard-trap#1.0.3
+yarn add pdanpdan/vue-keyboard-trap#1.0.4
 ```
 or
 ```bash
-npm install https://github.com/pdanpdan/vue-keyboard-trap#1.0.3
+npm install https://github.com/pdanpdan/vue-keyboard-trap#1.0.4
 ```
 
 ## Usage
@@ -85,7 +85,6 @@ If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.ne
 ### Directive configuration options
 
 - `name`: snake-case name of the directive (without `v-` prefix) - default `kbd-trap`
-- `ctxName`: key used to store context on element - default `__v${ PascalCase from name }`
 - `datasetName`: camelCase name of the `data-attribute` to be set on element when trap is enabled - default `v${ PascalCase from name}`
 - `focusableSelector`: CSS selector for focusable elements
 - `rovingSkipSelector`: CSS selector for elements that should not respond to roving key navigation (input, textarea, ...)

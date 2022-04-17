@@ -5,7 +5,6 @@ import { extractNumber, focus } from './helpers';
 //
 // options:
 //   name: snake-case name of the directive (without `v-` prefix) - default `kbd-trap`
-//   ctxName: key used to store context on element - default `__v${ PascalCase from name }`
 //   datasetName: camelCase name of the `data-attribute` to be set on element when trap is enabled - default `v${ PascalCase from name}`
 //
 //   focusableSelector: CSS selector for focusable elements
@@ -29,19 +28,23 @@ import { extractNumber, focus } from './helpers';
 //   .escrefocus - refocus element that was in focus before activating the trap on Esc
 //   .escexits - refocus a parent trap on Esc (has priority over .escrefocus)
 
+let activeTrapEl = null;
+
 export default function directiveFactory(options, markRawFn) {
   const config = createConfig(options);
-
-  let activeTrapEl = null;
 
   const setActiveTrapEl = (newEl) => {
     if (activeTrapEl !== newEl) {
       if (newEl !== null) {
         newEl.dataset[config.datasetNameActive] = '';
+        newEl.__vKbdTrapActiveClean = () => {
+          delete newEl.dataset[config.datasetNameActive];
+          newEl.__vKbdTrapActiveClean = undefined;
+        };
       }
 
-      if (activeTrapEl !== null) {
-        delete activeTrapEl.dataset[config.datasetNameActive];
+      if (activeTrapEl !== null && typeof activeTrapEl.__vKbdTrapActiveClean === 'function') {
+        activeTrapEl.__vKbdTrapActiveClean();
       }
 
       activeTrapEl = newEl;
@@ -49,7 +52,7 @@ export default function directiveFactory(options, markRawFn) {
   };
 
   const getCtx = (el) => {
-    const ctx = (el || {})[config.ctxName];
+    const ctx = (el || {}).__vKbdTrap;
 
     return ctx === Object(ctx) ? ctx : null;
   };
@@ -81,7 +84,7 @@ export default function directiveFactory(options, markRawFn) {
       relatedFocusTarget: null,
 
       bind() {
-        el[config.ctxName] = ctx;
+        el.__vKbdTrap = ctx;
         el.addEventListener('keydown', ctx.trap);
         el.addEventListener('focusin', ctx.activate);
         el.addEventListener('focusout', ctx.deactivate);
@@ -93,7 +96,7 @@ export default function directiveFactory(options, markRawFn) {
       },
 
       unbind() {
-        delete el[config.ctxName];
+        delete el.__vKbdTrap;
         el.removeEventListener('keydown', ctx.trap);
         el.removeEventListener('focusin', ctx.activate);
         el.removeEventListener('focusout', ctx.deactivate);
@@ -102,11 +105,11 @@ export default function directiveFactory(options, markRawFn) {
       },
 
       activate(ev) {
-        if (ctx.disable === true || ev[config.ctxName] === true) {
+        if (ctx.disable === true || ev.__vKbdTrap === true) {
           return;
         }
 
-        ev[config.ctxName] = true;
+        ev.__vKbdTrap = true;
 
         const oldFocusedElement = ev.relatedTarget;
 
@@ -134,11 +137,11 @@ export default function directiveFactory(options, markRawFn) {
       },
 
       deactivate(ev) {
-        if (ctx.disable === true || ev[config.ctxName] === true) {
+        if (ctx.disable === true || ev.__vKbdTrap === true) {
           return;
         }
 
-        ev[config.ctxName] = true;
+        ev.__vKbdTrap = true;
 
         const newFocusedElement = ev.relatedTarget;
 
@@ -156,7 +159,7 @@ export default function directiveFactory(options, markRawFn) {
       },
 
       trap(ev) {
-        if (ctx.disable === true || ev[config.ctxName] === true) {
+        if (ctx.disable === true || ev.__vKbdTrap === true) {
           return;
         }
 
@@ -164,7 +167,7 @@ export default function directiveFactory(options, markRawFn) {
         const { activeElement } = document;
 
         if (code === 'Escape') {
-          ev[config.ctxName] = true;
+          ev.__vKbdTrap = true;
 
           if (activeTrapEl === el) {
             ctx.focusTarget = activeElement;
@@ -193,7 +196,7 @@ export default function directiveFactory(options, markRawFn) {
           return;
         }
 
-        ev[config.ctxName] = true;
+        ev.__vKbdTrap = true;
 
         let step = 0;
         let indexSelector = (i) => i;
@@ -340,8 +343,8 @@ export default function directiveFactory(options, markRawFn) {
       },
 
       overwiteFocusTarget(ev) {
-        if (ctx.disable === false && ev[config.ctxName] !== true) {
-          ev[config.ctxName] = true;
+        if (ctx.disable === false && ev.__vKbdTrap !== true) {
+          ev.__vKbdTrap = true;
 
           ctx.focusTarget = ev.target;
         }

@@ -1,6 +1,5 @@
 // options:
 //   name: snake-case name of the directive (without `v-` prefix) - default `kbd-trap`
-//   ctxName: key used to store context on element - default `__v${ PascalCase from name }`
 //   datasetName: camelCase name of the `data-attribute` to be set on element when trap is enabled - default `v${ PascalCase from name}`
 //
 //   focusableSelector: CSS selector for focusable elements
@@ -57,10 +56,6 @@ function createConfig(options) {
     .filter((t) => t.length > 0)
     .map((t) => `${ t[0].toLocaleUpperCase() }${ t.slice(1) }`)
     .join('');
-
-  if (config.ctxName === undefined) {
-    config.ctxName = `__v${ pascalName }`;
-  }
 
   if (config.datasetName === undefined) {
     config.datasetName = `v${ pascalName }`;
