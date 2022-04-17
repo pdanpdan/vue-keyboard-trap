@@ -6,7 +6,7 @@
       src="./assets/logo.png"
     />
 
-    <div class="global-settings" dir="ltr" v-kbd-trap.escrefocus>
+    <div class="global-settings" dir="ltr" v-kbd-trap.roving.horizontal.escrefocus>
       <label>
         <input
           type="checkbox"
@@ -417,7 +417,7 @@ const rtl = ref(false);
 .global-settings
   position: fixed
   top: 4px
-  left: 0
+  left: 4px
   padding-right: 5em
   z-index: 1
   pointer-events: none

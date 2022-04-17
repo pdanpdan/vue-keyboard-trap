@@ -28,7 +28,7 @@ function createConfig(options) {
     ].join(','),
 
     rovingSkipSelector: [
-      'input:not([disabled]):not([type="button"])',
+      'input:not([disabled]):not([type="button"]):not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="radio"]):not([type="reset"]):not([type="submit"])',
       'select:not([disabled])',
       'select:not([disabled]) *',
       'textarea:not([disabled])',
