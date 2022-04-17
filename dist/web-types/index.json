@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json.schemastore.org/web-types",
+  "framework": "vue",
+  "name": "vue-pdan",
+  "version": "1.0.0",
+  "js-types-syntax": "typescript",
+  "contributions": {
+    "html": {
+      "vue-directives": [
+        {
+          "name": "v-kbd-trap",
+          "source": {
+            "module": "vue-pdan",
+            "symbol": "KbdTrap"
+          },
+          "required": false,
+          "description": "VueKeyboardTrap - directive for keyboard navigation - roving movement and trapping inside container",
+          "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/",
+          "vue-modifiers": [
+            {
+              "name": "autofocus",
+              "description": "Autofocuses the element with [autofocus] or [data-autofocus] attribute when the directive is mounted or enabled",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "roving",
+              "description": "Allow roving navigation (Home, End, ArrowKeys) - it's the same as using .roving.vertical.horizontal",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "vertical",
+              "description": "Used with .roving - allow roving navigation (Home, End, ArrowUp, ArrowDown)",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "horizontal",
+              "description": "Used with .roving - allow roving navigation (Home, End, ArrowLeft, ArrowRight)",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "grid",
+              "description": "Used with .roving - allow roving navigation (Home, End, ArrowKeys) using dataset attrs on elements [data-${ camelCase from datasetName }-(row|col)]; [data-${ camelCase from datasetName }-(row|col)~=\"*\"] is a catchall",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "tabinside",
+              "description": "Used with .roving - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "escrefocus",
+              "description": "Refocus element that was in focus before activating the trap on Esc",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "escexits",
+              "description": "Refocus a parent trap on Esc (has priority over .escrefocus)",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            }
+          ],
+          "value": {
+            "kind": "expression",
+            "type": "boolean",
+            "description": "Disable directive if false"
+          }
+        }
+      ]
+    }
+  }
+}
