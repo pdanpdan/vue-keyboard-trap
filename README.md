@@ -63,7 +63,7 @@ import 'vue-keyboard-trap/dist/styles/VueKeyboardTrapDirective.sass';
 
 ### Usage as UMD
 
-Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/index.umd.js).
+Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/index.umd.js).
 
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrap.VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrap.VueKeyboardTrapDirectiveFactory`.
 
@@ -80,7 +80,7 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#q-app');
 ```
 
-If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/styles/VueKeyboardTrapDirective.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@1/dist/styles/VueKeyboardTrapDirective.sass).
+If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/VueKeyboardTrapDirective.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/VueKeyboardTrapDirective.sass).
 
 ### Directive configuration options
 
