@@ -7,6 +7,7 @@ Vue directive for keyboard navigation - roving movement and trapping inside cont
 Works both for Vue3 and Vue2.
 
 [Docs and examples](https://pdanpdan.github.io/vue-keyboard-trap/)
+
 [Example codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
 ## Install
@@ -105,9 +106,9 @@ Use the value of the directive (boolean) to enable/disable it.
 
 ## License
 
-Copyright © 2021 [Dan Popescu](https://github.com/pdanpdan).
+Copyright © 2022 [Dan Popescu](https://github.com/pdanpdan).
 
-This application is distributed under the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT), see LICENSE for more information.
+This application is distributed under [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT), see LICENSE for more information.
 
 ## Develpment
 
