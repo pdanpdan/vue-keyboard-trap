@@ -55,10 +55,10 @@ export default defineComponent({
 });
 ```
 
-The directive does not require any CSS styles to work, but for cosmetic purposes some example styles are provided in `dist/styles/VueKeyboardTrapDirective.sass`.
+The directive does not require any CSS styles to work, but for cosmetic purposes some example styles are provided in `dist/styles/index.sass`.
 
 ```javascript
-import 'vue-keyboard-trap/dist/styles/VueKeyboardTrapDirective.sass';
+import 'vue-keyboard-trap/styles';
 ```
 
 ### Usage as UMD
@@ -80,7 +80,7 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#q-app');
 ```
 
-If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/VueKeyboardTrapDirective.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/VueKeyboardTrapDirective.sass).
+If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass).
 
 ### Directive configuration options
 
