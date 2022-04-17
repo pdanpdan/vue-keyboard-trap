@@ -198,6 +198,77 @@ The directive checks the closest parent DOM Element of the active element that h
 
 If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse (according to document order of the focusable elements) but consistent to the way the elements are order on screen.
 
+## CSS (visual hints for users)
+
+The directive does not require any styles, but it might help the users to have visual hints for navigation.
+
+A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`).
+
+There are 3 CSS variables that can be used to customize the aspect of the hints:
+
+- `--color-v-kbd-trap-enabled` - the text color when directive is enabled
+- `--color-v-kbd-trap-disabled` - the text color when directive is disabled
+- `--color-v-kbd-trap-background` - the background color of the hint area
+
+In the default style the hint is positioned on the top-right corner of the trap group.
+
+```sass
+$ColorVKeyboardTrapEnabled: #c33 !default
+$ColorVKeyboardTrapDisabled: #999 !default
+$ColorVKeyboardTrapBackground: #eeee !default
+
+// :root
+//   --color-v-kbd-trap-enabled: #c33
+//   --color-v-kbd-trap-disabled: #999
+//   --color-v-kbd-trap-background: #eeee
+
+[data-v-kbd-trap]:after
+  content: var(--v-kbd-trap, '') var(--v-kbd-trap-esc, '') var(--v-kbd-trap-tab, '') var(--v-kbd-trap-roving, '')
+  pointer-events: none
+  position: absolute
+  top: 2px
+  right: 2px
+  font: italic small-caps bold 14px monospace
+  line-height: 1em
+  padding: 4px
+  color: var(--color-v-kbd-trap-disabled, $ColorVKeyboardTrapDisabled)
+  background-color: var(--color-v-kbd-trap-background, $ColorVKeyboardTrapBackground)
+  border-radius: 2px
+  z-index: 1
+[data-v-kbd-trap]
+  --v-kbd-trap: 'Trap'
+  --v-kbd-trap-esc: ''
+  --v-kbd-trap-tab: ''
+  --v-kbd-trap-roving: ''
+[data-v-kbd-trap]:focus-within
+  --v-kbd-trap: 'Trap/'
+  --v-kbd-trap-esc: 'Esc'
+[data-v-kbd-trap-active]
+  --v-kbd-trap: '' !important
+  --v-kbd-trap-esc: 'Esc'
+  --v-kbd-trap-tab: '/Tab'
+  --v-kbd-trap-roving: ''
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"]
+  --v-kbd-trap-tab: '/Tab\21C5'
+  --v-kbd-trap-roving: '/\2962\2963\2965\2964'
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="tabinside"]
+  --v-kbd-trap-tab: '/Tab'
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="vertical"]
+  --v-kbd-trap-roving: '/\2963\2965'
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="horizontal"]
+  --v-kbd-trap-roving: '/\2962\2964'
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="grid"]
+  --v-kbd-trap-roving: '/\229E'
+[data-v-kbd-trap-active][data-v-kbd-trap~="escrefocus"]
+  --v-kbd-trap-esc: 'Esc\2949'
+[data-v-kbd-trap-active][data-v-kbd-trap~="escexits"]
+  --v-kbd-trap-esc: 'Esc\2923'
+[data-v-kbd-trap][tabindex="-9999"]
+  outline: none
+[data-v-kbd-trap][data-v-kbd-trap-active]:after
+  color: var(--color-v-kbd-trap-enabled, $ColorVKeyboardTrapEnabled)
+```
+
 ## Development
 
 ### Install the dependencies
