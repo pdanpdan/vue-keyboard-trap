@@ -63,6 +63,18 @@ The last focusable element of each `.roving` trap group is remembered and refocu
 
 ### .roving.grid
 
+In order to specify the navigation pattern you must use 2 dataset attributes on the focusable elements inside the `.roving` trap group:
+
+- `data-v-kbd-trap-row` specifies the numeric identifier of the row the element belongs to (numbers need not be consecutive, but their natural order determines the navigation order)
+- `data-v-kbd-trap-col` specifies the numeric identifier of the column the element belongs to (numbers need not be consecutive, but their natural order determines the navigation order)
+
+Any or both attributes can have a value of `*` that means that it is an alement that can be focused from elements having any coresponding (row or col) attribute.
+
+#### Navigation rules
+
+- the first focusable element on the row / col (based on direction of movement) is searched
+- an element with `*` for row or col is considered to belong to any row / col
+
 ```html{3,8-9}
 <div tabindex="0">Before</div>
 

@@ -1,6 +1,6 @@
 {
   "name": "@pdanpdan/vue-keyboard-trap",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Vue3 and Vue2 directive for keyboard navigation - roving movement and trapping inside container",
   "productName": "Vue Keyboard Trap",
   "author": {

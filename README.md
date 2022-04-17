@@ -13,11 +13,11 @@ Works both for Vue3 and Vue2.
 ## Install
 
 ```bash
-yarn add pdanpdan/vue-keyboard-trap#1.0.4
+yarn add @pdanpdan/vue-keyboard-trap
 ```
 or
 ```bash
-npm install https://github.com/pdanpdan/vue-keyboard-trap#1.0.4
+npm install @pdanpdan/vue-keyboard-trap
 ```
 
 ## Usage
@@ -58,7 +58,7 @@ export default defineComponent({
 The directive does not require any CSS styles to work, but for cosmetic purposes some example styles are provided in `dist/styles/index.sass`.
 
 ```javascript
-import 'vue-keyboard-trap/styles';
+import '@pdanpdan/vue-keyboard-trap/styles';
 ```
 
 ### Usage as UMD
