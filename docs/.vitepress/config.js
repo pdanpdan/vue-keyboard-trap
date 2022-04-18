@@ -10,7 +10,7 @@ export default defineConfig({
     editLinkText: 'Edit on GitHub',
     repo: 'pdanpdan/vue-keyboard-trap',
     docsDir: 'docs',
-    docsBranch: 'develop',
+    docsBranch: 'main',
     logo: '/logo.png',
     lastUpdated: true,
     nav: [

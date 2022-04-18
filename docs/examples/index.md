@@ -11,7 +11,7 @@ title: Examples
 
 ### .autofocus
 
-Focuses the first child element with `[autofocus]` or `[data-autofocus]` attribute or, if no such element is found, the first focusable child element.
+Focuses the first child element that matches `autofocusSelector` or (if no such element is found) the first focusable child element.
 
 Is only triggered on mount and on directive activation (changed value from false to true).
 

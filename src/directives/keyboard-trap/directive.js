@@ -18,7 +18,7 @@ import { extractNumber, focus } from './helpers';
 //
 //
 // modifiers:
-//   .autofocus - autofocuses the element with [autofocus] or [data-autofocus] attribute when the directive is mounted or enabled
+//   .autofocus - autofocuses the first element that matches `autofocusSelector` or (if no such element is found) the first focusable child element when the directive is mounted or enabled
 //   .roving, .roving.vertical.horizontal - allow roving navigation (Home, End, ArrowKeys)
 //   .roving.vertical - allow roving navigation (Home, End, ArrowUp, ArrowDown)
 //   .roving.horizontal - allow roving navigation (Home, End, ArrowLeft, ArrowRight)

@@ -35,7 +35,7 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#app');
 ```
 
-or included in specific components
+or included in specific components (script)
 ```javascript
 import { defineComponent } from 'vue';
 import { VueKeyboardTrapDirectiveFactory } from 'vue-keyboard-trap';
@@ -49,6 +49,15 @@ export default defineComponent({
     KbdTrap,
   },
 });
+```
+
+or included in specific components (script setup)
+```javascript
+import { VueKeyboardTrapDirectiveFactory } from 'vue-keyboard-trap';
+
+const vKbdTrap = VueKeyboardTrapDirectiveFactory({
+  // ...options if required
+}).directive;
 ```
 
 The directive does not require any CSS styles to work, but for cosmetic purposes some example styles are provided in `dist/styles/index.sass`.
@@ -76,6 +85,22 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#q-app');
 ```
 
+or as directive
+```javascript
+const { createApp } = Vue;
+const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
+
+const app = createApp({});
+
+const { name, directive } = VueKeyboardTrapDirectiveFactory({
+  // ...options if required
+});
+
+app.directive(name, directive);
+
+app.mount('#q-app');
+```
+
 If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass).
 
 ### Directive configuration options
@@ -90,51 +115,43 @@ If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.ne
 
 Default focusableSelector:
 
-```javascript
-[
-  ':focus',
-  'a[href]:not([tabindex^="-"])',
-  'area[href]:not([tabindex^="-"])',
-  'input:not([disabled]):not([tabindex^="-"])',
-  'select:not([disabled]):not([tabindex^="-"])',
-  'textarea:not([disabled]):not([tabindex^="-"])',
-  'button:not([disabled]):not([tabindex^="-"])',
-  'iframe:not([tabindex^="-"])',
-  '[tabindex]:not([tabindex^="-"])',
-  '[contenteditable]:not([tabindex^="-"]):not([contenteditable="false"])',
-  '[class*="focusable"]:not([disabled]):not([tabindex^="-"])',
-].join(',')
+```css
+:focus,
+a[href]:not([tabindex^="-"]),
+area[href]:not([tabindex^="-"]),
+input:not([disabled]):not([tabindex^="-"]),
+select:not([disabled]):not([tabindex^="-"]),
+textarea:not([disabled]):not([tabindex^="-"]),
+button:not([disabled]):not([tabindex^="-"]),
+iframe:not([tabindex^="-"]),
+[tabindex]:not([tabindex^="-"]),
+[contenteditable]:not([tabindex^="-"]):not([contenteditable="false"]),
+[class*="focusable"]:not([disabled]):not([tabindex^="-"])
 ```
 
 Default rovingSkipSelector:
 
-```javascript
-[
-  'input:not([disabled]):not([type="button"]):not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="radio"]):not([type="reset"]):not([type="submit"])',
-  'select:not([disabled])',
-  'select:not([disabled]) *',
-  'textarea:not([disabled])',
-  '[contenteditable]:not([contenteditable="false"])',
-  '[contenteditable]:not([contenteditable="false"]) *',
-].join(',')
+```css
+input:not([disabled]):not([type="button"]):not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="radio"]):not([type="reset"]):not([type="submit"]),
+select:not([disabled]),
+select:not([disabled]) *,
+textarea:not([disabled]),
+[contenteditable]:not([contenteditable="false"]),
+[contenteditable]:not([contenteditable="false"]) *
 ```
 
 Default gridSkipSelector:
 
-```javascript
-[
-  ':not([disabled])',
-  ':not([tabindex^="-"])',
-].join('')
+```css
+:not([disabled]),
+:not([tabindex^="-"])
 ```
 
 Default autofocusSelector:
 
-```javascript
-[
-  '[autofocus]:not([disabled]):not([autofocus="false"])',
-  '[data-autofocus]:not([disabled]):not([data-autofocus="false"])',
-].join(',')
+```css
+[autofocus]:not([disabled]):not([autofocus="false"]),
+[data-autofocus]:not([disabled]):not([data-autofocus="false"])
 ```
 
 ### Dynamic enable/disable
@@ -149,7 +166,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
 
 ### Directive modifiers
 
-- `.autofocus` - autofocuses the element with `[autofocus]` or `[data-autofocus]` attribute when the directive is mounted or enabled
+- `.autofocus` - autofocuses the first element that matches `autofocusSelector` or (if no such element is found) the first focusable child element when the directive is mounted or enabled
 - `.roving` (or `.roving.vertical.horizontal`) - allow roving navigation (Home, End, ArrowKeys)
 - `.roving.vertical` - allow roving navigation (Home, End, ArrowUp, ArrowDown)
 - `.roving.horizontal` - allow roving navigation (Home, End, ArrowLeft, ArrowRight)
@@ -202,7 +219,7 @@ If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse 
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
-A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`).
+A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'` or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass)).
 
 There are 3 CSS variables that can be used to customize the aspect of the hints:
 
@@ -213,10 +230,12 @@ There are 3 CSS variables that can be used to customize the aspect of the hints:
 In the default style the hint is positioned on the top-right corner of the trap group.
 
 ```sass
+// defaults
 $ColorVKeyboardTrapEnabled: #c33 !default
 $ColorVKeyboardTrapDisabled: #999 !default
 $ColorVKeyboardTrapBackground: #eeee !default
 
+// place your custom colors on any element and they will be applied on children
 // :root
 //   --color-v-kbd-trap-enabled: #c33
 //   --color-v-kbd-trap-disabled: #999
