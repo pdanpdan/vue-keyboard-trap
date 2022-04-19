@@ -19,7 +19,7 @@
           "vue-modifiers": [
             {
               "name": "autofocus",
-              "description": "Autofocuses the element with [autofocus] or [data-autofocus] attribute when the directive is mounted or enabled",
+              "description": "Autofocuses the element with [autofocus] or [data-autofocus] attribute when the directive is mounted or enabled (only if it not covered by another element)",
               "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
             },
             {

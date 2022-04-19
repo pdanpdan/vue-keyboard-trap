@@ -13,7 +13,7 @@ title: Examples
 
 Focuses the first child element that matches `autofocusSelector` or (if no such element is found) the first focusable child element.
 
-Is only triggered on mount and on directive activation (changed value from false to true).
+Is only triggered on mount or on directive activation (changed value from false to true) and only if it not covered by another element.
 
 #### Autofocus on mount
 

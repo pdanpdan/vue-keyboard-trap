@@ -1,5 +1,5 @@
 import { createConfig } from './options';
-import { extractNumber, focus } from './helpers';
+import { extractNumber, focus, visibleFocusCheckFn } from './helpers';
 
 // markRawFn: function from Vue - will generate a Vue3 directive (else Vue2)
 //
@@ -374,8 +374,8 @@ export default function directiveFactory(options, markRawFn) {
 
       autofocus() {
         requestAnimationFrame(() => {
-          if (ctx.disable === false && focus(el.querySelector(config.autofocusSelector)) === false) {
-            focus(el.querySelector(config.focusableSelector));
+          if (ctx.disable === false && focus(el.querySelector(config.autofocusSelector), visibleFocusCheckFn) === false) {
+            focus(el.querySelector(config.focusableSelector), visibleFocusCheckFn);
           }
         });
       },

@@ -38,6 +38,22 @@
         />
         Skip cells in set 9
       </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="covered3"
+        />
+        Cover set 14
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="active3"
+        />
+        Activate set 14 ({{ covered3 === true ? 'covered' : 'uncovered' }})
+      </label>
     </div>
 
     <div
@@ -378,11 +394,48 @@
       </div>
     </div>
 
+    <div class="test">
+      <div style="margin-bottom: 16px; height: 150px; overflow: auto;">
+        <div class="test-covered">
+          <div
+            class="test"
+            style="margin-top: 200px"
+            v-kbd-trap.autofocus="active3"
+          >
+            <legend>v-kbd-trap.autofocus {{ active3 }}</legend>
+            <div
+              class="test"
+              tabindex="0"
+            >
+              14.1
+            </div>
+            <div
+              class="test"
+              tabindex="0"
+            >
+              14.2
+            </div>
+            <div
+              class="test"
+              tabindex="0"
+              data-autofocus
+            >
+              14.3
+            </div>
+          </div>
+
+          <div v-if="covered3" class="test-covered__cover">Cover</div>
+        </div>
+      </div>
+
+      <legend>Autofocus covered test</legend>
+    </div>
+
     <div
       class="test"
       tabindex="0"
     >
-      14
+      15
     </div>
   </div>
 </template>
@@ -393,6 +446,8 @@ import { ref } from 'vue';
 const text = ref('text');
 const active1 = ref(false);
 const active2 = ref(false);
+const active3 = ref(false);
+const covered3 = ref(true);
 const skipCells = ref(false);
 const rtl = ref(false);
 </script>
@@ -427,8 +482,8 @@ const rtl = ref(false);
 
 legend
   position: absolute
-  bottom: 1px
-  inline-start: 1px
+  inset-inline-start: 1px
+  inset-block-end: 1px
   font-weight: bold
   font-variant: small-caps
   color: #36f
@@ -480,4 +535,21 @@ label
 
   &:focus
     background-color: #6e66
+
+.test-covered
+  position: relative
+
+  &__cover
+    position: absolute
+    left: 0
+    right: 0
+    top: -8px
+    bottom: -8px
+    padding: 8px
+    background: #c633
+    text-align: center
+    color: #c63
+    font-size: 1.5em
+    font-variant: small-caps
+    font-weight: bold
 </style>
