@@ -487,6 +487,7 @@ legend
   font-weight: bold
   font-variant: small-caps
   color: #36f
+  pointer-events: none
 
 label
   font-weight: bold
