@@ -24,6 +24,7 @@ import { extractNumber, focus, visibleFocusCheckFn } from './helpers';
 //   .roving.horizontal - allow roving navigation (Home, End, ArrowLeft, ArrowRight)
 //   .roving.grid - allow roving navigation (Home, End, ArrowKeys) using dataset attrs on elements [data-${ camelCase from datasetName }-(row|col)]
 //                  [data-${ camelCase from datasetName }-(row|col)~="*"] is a catchall
+//   .roving used on an element with [role="grid"] - allow roving navigation (Home, End, ArrowKeys) using role attrs on elements [role="row|gridcell"]
 //   .roving.tabinside - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)
 //   .escrefocus - refocus element that was in focus before activating the trap on Esc
 //   .escexits - refocus a parent trap on Esc (has priority over .escrefocus)
@@ -248,7 +249,7 @@ export default function directiveFactory(options, markRawFn) {
                 rovingDirection = 'h';
               }
 
-              if (step !== 0) {
+              if (step !== 0 && rovingDirection === 'h') {
                 const dirEl = (activeElement && activeElement !== el ? activeElement.parentElement || el : el).closest('[dir="rtl"],[dir="ltr"]');
 
                 if (dirEl && dirEl.matches('[dir="rtl"]')) {
@@ -279,39 +280,79 @@ export default function directiveFactory(options, markRawFn) {
         }
 
         let focusableList = [];
-        let focusableSelector;
 
-        if (ctx.modifiers.grid === true && rovingDirection !== false) {
-          const row = extractNumber(activeElement.dataset[config.datasetNameRow]);
-          const col = extractNumber(activeElement.dataset[config.datasetNameCol]);
+        if (rovingDirection !== false) {
+          let focusableMap;
 
-          focusableSelector = rovingDirection === 'v' ? config.datasetNameColSelector(col) : config.datasetNameRowSelector(row);
-          focusableList = Array.from(el.querySelectorAll(focusableSelector));
+          if (ctx.modifiers.grid === true) {
+            const row = extractNumber(activeElement.dataset[config.datasetNameRow]);
+            const col = extractNumber(activeElement.dataset[config.datasetNameCol]);
 
-          const focusableMap = new WeakMap(
-            focusableList.map((o) => {
-              const r = extractNumber(o.dataset[config.datasetNameRow]);
-              const c = extractNumber(o.dataset[config.datasetNameCol]);
-              let val;
+            const focusableSelector = rovingDirection === 'v' ? config.datasetNameColSelector(col) : config.datasetNameRowSelector(row);
+            focusableList = Array.from(el.querySelectorAll(focusableSelector));
 
-              if (rovingDirection === 'v') {
-                if (r !== row || c === col) {
-                  val = 1000 * r + 1 * c;
+            focusableMap = new WeakMap(
+              focusableList.map((o) => {
+                const r = extractNumber(o.dataset[config.datasetNameRow]);
+                const c = extractNumber(o.dataset[config.datasetNameCol]);
+                let val;
+
+                if (rovingDirection === 'v') {
+                  if (r !== row || c === col) {
+                    val = 1000 * r + 1 * c;
+                  }
+                } else if (c !== col || r === row) {
+                  val = 1000 * c + 1 * r;
                 }
-              } else if (c !== col || r === row) {
-                val = 1000 * c + 1 * r;
-              }
 
-              return [o, val];
-            }),
-          );
+                return [o, val];
+              }),
+            );
+          } else if (el.matches('[role="grid"]') === true && activeElement.matches('[role="row"] [role="gridcell"]')) {
+            const rows = Array.from(el.querySelectorAll('[role="row"]'));
+            const elToRowCol = new WeakMap();
+            const rowsCells = rows.map((r, rIndex) => {
+              const cols = Array.from(r.querySelectorAll('[role="gridcell"]'));
 
-          focusableList = focusableList.filter((o) => focusableMap.get(o) !== undefined);
-          focusableList.sort((el1, el2) => (focusableMap.get(el1) || 0) - (focusableMap.get(el2) || 0));
+              cols.forEach((o, cIndex) => {
+                elToRowCol.set(o, [rIndex + 1, cIndex + 1]);
+              });
+
+              return cols;
+            });
+            const curRow = activeElement.closest('[role="row"]');
+            const row = rows.indexOf(curRow) + 1;
+            const col = rowsCells[row - 1].indexOf(activeElement) + 1;
+
+            const { focusableSelector } = config;
+            focusableList = Array.from(el.querySelectorAll(focusableSelector));
+
+            focusableMap = new WeakMap(
+              focusableList.map((o) => {
+                const [r, c] = elToRowCol.get(o) || [null, null];
+                let val;
+
+                if (rovingDirection === 'v') {
+                  if (c === col) {
+                    val = 1 * r;
+                  }
+                } else if (r === row) {
+                  val = 1 * c;
+                }
+
+                return [o, val];
+              }),
+            );
+          }
+
+          if (focusableMap !== undefined) {
+            focusableList = focusableList.filter((o) => focusableMap.get(o) !== undefined);
+            focusableList.sort((el1, el2) => (focusableMap.get(el1) || 0) - (focusableMap.get(el2) || 0));
+          }
         }
 
         if (focusableList.length === 0) {
-          focusableSelector = config.focusableSelector;
+          const { focusableSelector } = config;
           focusableList = Array.from(el.querySelectorAll(focusableSelector));
 
           if (el.matches(focusableSelector)) {

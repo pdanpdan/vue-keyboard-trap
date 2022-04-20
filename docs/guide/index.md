@@ -171,6 +171,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
 - `.roving.vertical` - allow roving navigation (Home, End, ArrowUp, ArrowDown)
 - `.roving.horizontal` - allow roving navigation (Home, End, ArrowLeft, ArrowRight)
 - `.roving.grid` - allow roving navigation (Home, End, ArrowKeys) using dataset attrs on elements `[data-${ camelCase from datasetName }-(row|col)]`; `[data-${ camelCase from datasetName }-(row|col)~="*"]` is a catchall
+- `.roving` used on an element with `[role="grid"]` - allow roving navigation (Home, End, ArrowKeys) using role attrs on elements `[role="row|gridcell"]`
 - `.roving.tabinside` - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)
 - `.escrefocus` - refocus element that was in focus before activating the trap on Esc
 - `.escexits` - refocus a parent trap on Esc (has priority over `.escrefocus`)
@@ -192,7 +193,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
   - if only `.vertical` modifier is used then only `ARROW_UP` / `ARROW_DOWN` keys can be used
   - `ARROW_LEFT` / `ARROW_UP` move to the previous focusable element inside the trap group
   - `ARROW_RIGHT` / `ARROW_DOWN` move to the next focusable element inside the trap group
-- `ARROW_KEYS` when `.roving.grid` modifiers are used
+- `ARROW_KEYS` when `.roving.grid` modifiers are used or `.roving` modifier on a trap element with [role="grid"]
   - move in the grid inside the current trap group
 
 ### Keyboard navigation inside `.roving.grid` trap groups
@@ -206,8 +207,20 @@ Any or both attributes can have a value of `*` that means that it is an alement 
 
 #### Navigation rules
 
-- the first focusable element on the row / col (based on direction of movement) is searched
+- the first focusable element on the row / col (based on direction of movement) is focused
 - an element with `*` for row or col is considered to belong to any row / col
+
+### Keyboard navigation inside `.roving` trap groups with `[role="grid"]`
+
+In order to specify the navigation pattern you must use role attributes `[role="row"]` and `[role="gridcell"]`.
+
+All focusable element must have `[role="gridcell"]` and must be inside `[role="row"]` elements inside `[role="grid"]` trap element.
+
+The `gridcell`s will be considered inline-start aligned in every row.
+
+#### Navigation rules
+
+- the first focusable element on the row / col (based on direction of movement) is focused
 
 ### RTL / LTR
 
@@ -276,7 +289,8 @@ $ColorVKeyboardTrapBackground: #eeee !default
   --v-kbd-trap-roving: '/\2963\2965'
 [data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="horizontal"]
   --v-kbd-trap-roving: '/\2962\2964'
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="grid"]
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="grid"],
+[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][role="grid"]
   --v-kbd-trap-roving: '/\229E'
 [data-v-kbd-trap-active][data-v-kbd-trap~="escrefocus"]
   --v-kbd-trap-esc: 'Esc\2949'

@@ -9,7 +9,7 @@ title: Examples
 
 ## Modifiers
 
-### .autofocus
+### `.autofocus`
 
 Focuses the first child element that matches `autofocusSelector` or (if no such element is found) the first focusable child element.
 
@@ -35,7 +35,7 @@ Is only triggered on mount or on directive activation (changed value from false 
 </div>
 ```
 
-### .roving
+### `.roving`
 
 Simplify `TAB` key navigation in large applications where lots of elements are focusable.
 
@@ -61,7 +61,7 @@ The last focusable element of each `.roving` trap group is remembered and refocu
 <div tabindex="0">After</div>
 ```
 
-### .roving.grid
+### `.roving.grid`
 
 In order to specify the navigation pattern you must use 2 dataset attributes on the focusable elements inside the `.roving` trap group:
 
@@ -72,7 +72,7 @@ Any or both attributes can have a value of `*` that means that it is an alement 
 
 #### Navigation rules
 
-- the first focusable element on the row / col (based on direction of movement) is searched
+- the first focusable element on the row / col (based on direction of movement) is focused
 - an element with `*` for row or col is considered to belong to any row / col
 
 ```html{3,8-9}
@@ -94,6 +94,42 @@ Any or both attributes can have a value of `*` that means that it is an alement 
     </span>
   </div>
 </div>
+
+<div tabindex="0">After</div>
+```
+
+### `.roving` on `[role="grid"]` trap group element
+
+In order to specify the navigation pattern you must use role attributes `[role="row"]` and `[role="gridcell"]`.
+
+All focusable element must have `[role="gridcell"]` and must be inside `[role="row"]` elements inside `[role="grid"]` trap element.
+
+The `gridcell`s will be considered inline-start aligned in every row.
+
+#### Navigation rules
+
+- the first focusable element on the row / col (based on direction of movement) is focused
+
+```html{3,8-9}
+<div tabindex="0">Before</div>
+
+<table role="grid" v-kbd-trap.roving>
+  <tbody role="rowgroup">
+    <tr v-for="i in 5" :key="i" role="row">
+      <td
+        v-for="j in 5"
+        :key="i * 100 + j"
+        role="gridcell"
+        :tabindex="i !== 3 && j !== 3
+          ? ((i + j) % 2 === 0 ? null : -1)
+          : 0
+        "
+      >
+        R:{{ i + 1 }}/C:{{ j + 1 }}
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <div tabindex="0">After</div>
 ```
