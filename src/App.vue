@@ -1,0 +1,629 @@
+<template>
+  <div :dir="rtl === true ? 'rtl' : undefined" style="padding-top: 4em">
+    <img
+      class="logo"
+      alt="VueKeyboardTrap logo"
+      src="./assets/logo.png"
+    />
+
+    <div class="global-settings" dir="ltr" v-kbd-trap.roving.horizontal.escrefocus>
+      <label>
+        <input
+          type="checkbox"
+          v-model="rtl"
+        />
+        RTL
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="active1"
+        />
+        Show set 5
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="active2"
+        />
+        Activate set 6
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="skipCells"
+        />
+        Skip cells in set 9
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="covered3"
+        />
+        Cover set 14
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          v-model="active3"
+        />
+        Activate set 14 ({{ covered3 === true ? 'covered' : 'uncovered' }})
+      </label>
+    </div>
+
+    <div
+      class="test"
+      tabindex="0"
+    >
+      0
+    </div>
+
+    <div
+      class="test"
+      v-kbd-trap.roving
+    >
+      <legend>v-kbd-trap.roving</legend>
+      <div
+        class="test"
+        tabindex="0"
+      >
+        1
+      </div>
+      <div
+        class="test"
+        tabindex="0"
+      >
+        2
+      </div>
+      <input
+        v-model="text"
+        placeholder="Input field"
+      />
+      <div
+        class="test"
+        tabindex="-1"
+        v-kbd-trap.roving.escrefocus
+      >
+        <legend>v-kbd-trap.roving.escrefocus</legend>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          3.1
+        </div>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          3.2
+        </div>
+        <input
+          v-model="text"
+          placeholder="Input field"
+        />
+        <div
+          class="test"
+          tabindex="0"
+        >
+          3.3
+        </div>
+      </div>
+      <div
+        class="test"
+        tabindex="0"
+      >
+        4
+      </div>
+
+      <div
+        v-if="active1"
+        class="test"
+        v-kbd-trap.autofocus.escexits
+      >
+        <legend>v-kbd-trap.autofocus.escexits</legend>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          5.1
+        </div>
+        <div
+          class="test"
+          tabindex="0"
+          data-autofocus
+        >
+          5.2
+        </div>
+        <input
+          v-model="text"
+          placeholder="Input field"
+        />
+        <div
+          class="test"
+          tabindex="0"
+        >
+          5.3
+        </div>
+      </div>
+      <div
+        class="test"
+        tabindex="0"
+      >
+        6
+      </div>
+
+      <div
+        class="test"
+        tabindex="0"
+        v-kbd-trap.autofocus="active2"
+      >
+        <legend>v-kbd-trap.autofocus {{ active2 }}</legend>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          6.1
+        </div>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          6.2
+        </div>
+        <div
+          class="test"
+          tabindex="0"
+          data-autofocus
+        >
+          6.3
+        </div>
+      </div>
+
+      <div
+        class="test row"
+        tabindex="-1"
+        v-kbd-trap.roving.horizontal.tabinside.escrefocus
+      >
+        <legend>v-kbd-trap.roving.horizontal.tabinside.escrefocus</legend>
+        <div
+          class="test col"
+          tabindex="0"
+        >
+          7.1
+        </div>
+        <div
+          class="test col"
+          tabindex="0"
+        >
+          7.2
+        </div>
+        <div
+          class="test col"
+          tabindex="0"
+        >
+          7.3
+        </div>
+      </div>
+
+      <div
+        class="test"
+        tabindex="-1"
+        v-kbd-trap.roving.vertical.tabinside.escrefocus
+      >
+        <legend>v-kbd-trap.roving.vertical.tabinside.escrefocus</legend>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          8.1
+        </div>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          8.2
+        </div>
+        <div
+          class="test"
+          tabindex="0"
+        >
+          8.3
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="test"
+      v-kbd-trap.roving.grid
+    >
+      <legend>v-kbd-trap.roving.grid</legend>
+      <div
+        class="row"
+        v-for="i in 6"
+        :key="i"
+      >
+        <div
+          class="test col"
+          v-for="j in 8"
+          :key="i * 100 + j"
+          :data-v-kbd-trap-row="i"
+          :data-v-kbd-trap-col="j"
+          :tabindex="skipCells === true && (7 * i + 11 * j) % ((11 * i + 7 * j) % 3 + 1) === 0 ? ((i + j) % 2 === 0 ? null : -1) : 0"
+        >
+          9 R:{{ i }}/C:{{ j }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="test"
+      v-kbd-trap.roving.grid
+    >
+      <legend>v-kbd-trap.roving.grid</legend>
+      <div
+        class="row"
+        v-for="i in 5"
+        :key="i"
+      >
+        <div
+          v-for="j in 5"
+          :key="i * 100 + j"
+          class="test col"
+          :data-v-kbd-trap-row="j === 3 ? i : `${ i } *`"
+          :data-v-kbd-trap-col="i === 3 ? j : `${ j } *`"
+          :tabindex="i !== 3 && j !== 3 ? ((i + j) % 2 === 0 ? null : -1) : 0"
+        >
+          10 R:{{ i }}/C:{{ j }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="test"
+      tabindex="0"
+    >
+      11
+    </div>
+
+    <div
+      class="test row"
+      dir="rtl"
+      v-kbd-trap.roving.horizontal
+    >
+      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12.1
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12.2
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12.3
+      </div>
+    </div>
+
+    <div
+      class="test row"
+      dir="rtl"
+      v-kbd-trap.roving.horizontal
+    >
+      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12bis.1
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12bis.2
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        12bis.3
+      </div>
+    </div>
+
+    <div
+      class="test row"
+      dir="ltr"
+      v-kbd-trap.roving.horizontal
+    >
+      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13.1
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13.2
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13.3
+      </div>
+    </div>
+
+    <div
+      class="test row"
+      dir="ltr"
+      v-kbd-trap.roving.horizontal
+    >
+      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13bis.1
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13bis.2
+      </div>
+      <div
+        class="test col"
+        tabindex="0"
+      >
+        13bis.3
+      </div>
+    </div>
+
+    <div class="test">
+      <div style="margin-bottom: 16px; height: 150px; overflow: auto;">
+        <div class="test-covered">
+          <div
+            class="test"
+            style="margin-top: 200px"
+            v-kbd-trap.autofocus="active3"
+          >
+            <legend>v-kbd-trap.autofocus {{ active3 }}</legend>
+            <div
+              class="test"
+              tabindex="0"
+            >
+              14.1
+            </div>
+            <div
+              class="test"
+              tabindex="0"
+            >
+              14.2
+            </div>
+            <div
+              class="test"
+              tabindex="0"
+              data-autofocus
+            >
+              14.3
+            </div>
+          </div>
+
+          <div v-if="covered3" class="test-covered__cover">Cover</div>
+        </div>
+      </div>
+
+      <legend>Autofocus covered test</legend>
+    </div>
+
+    <div
+      class="test"
+      tabindex="0"
+    >
+      15
+    </div>
+
+    <div class="test">
+      <table
+        class="calendar"
+        role="grid"
+        aria-labelledby="calendarheader"
+        v-kbd-trap.roving
+      >
+        <caption id="calendarheader">April 2022</caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" aria-label="Week">Wk.</th>
+            <th role="columnheader" aria-label="Sunday">Su</th>
+            <th role="columnheader" aria-label="Monday">Mo</th>
+            <th role="columnheader" aria-label="Tuesday">Tu</th>
+            <th role="columnheader" aria-label="Wednesday">We</th>
+            <th role="columnheader" aria-label="Thursday">Th</th>
+            <th role="columnheader" aria-label="Friday">Fr</th>
+            <th role="columnheader" aria-label="Saturday">Sa</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th scope="row" role="rowheader">13</th>
+            <td role="gridcell" tabindex="-1">27</td>
+            <td role="gridcell">28</td>
+            <td role="gridcell">29</td>
+            <td role="gridcell">30</td>
+            <td role="gridcell">31</td>
+            <td role="gridcell" tabindex="0">1</td>
+            <td role="gridcell" tabindex="0">2</td>
+          </tr>
+          <tr v-for="m in 4" :key="m" role="row">
+            <th scope="row" role="rowheader">{{ 13 + m}}</th>
+            <td
+              v-for="d in 7"
+              :key="d"
+              role="gridcell"
+              tabindex="0"
+            >{{ 2 + (m - 1) * 7 + d }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <legend>Role grid test (roles: grid, row, gridcell)</legend>
+    </div>
+
+    <div
+      class="test"
+      tabindex="0"
+    >
+      16
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const text = ref('text');
+const active1 = ref(false);
+const active2 = ref(false);
+const active3 = ref(false);
+const covered3 = ref(true);
+const skipCells = ref(false);
+const rtl = ref(false);
+</script>
+
+<style lang="sass">
+#app
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: #2c3e50
+  min-height: 100vh
+
+.logo
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  max-height: 40vh
+  max-width: 40vw
+  opacity: .1
+
+.global-settings
+  position: fixed
+  top: 4px
+  left: 4px
+  padding-right: 8em
+  z-index: 1
+  pointer-events: none
+
+  > *
+    pointer-events: all
+
+legend
+  position: absolute
+  inset-inline-start: 1px
+  inset-block-end: 1px
+  font-weight: bold
+  font-variant: small-caps
+  color: #36f
+  pointer-events: none
+
+label
+  font-weight: bold
+  font-variant: small-caps
+  color: #f63
+  padding: 8px 16px 8px 4px
+  box-shadow: 0 0 3px 1px #333
+  cursor: pointer
+  background-color: #eee
+
+  + label
+    margin-left: 8px
+
+  input[type="checkbox"]
+    width: 1.6em
+    height: 1.6em
+    transform: translateY(.35em)
+
+.row
+  display: flex
+
+  .col
+    flex: 1 1 auto
+    max-width: 100%
+
+table.calendar
+  margin: 32px 16px
+  border-collapse: collapse
+
+  tbody
+    th,
+    td
+      padding: 12px
+
+    td
+      border: 1px solid #ccc
+      text-align: center
+      color: #ccc
+
+      &[tabindex]:not([tabindex^="-"])
+        color: #000
+
+      &:focus
+        background-color: #6e66
+
+.test
+  position: relative
+  padding: 4px 8px
+  margin: 24px 8px
+  border: 1px solid #ccc
+  text-align: center
+  font-weight: bold
+  font-size: 18px
+
+  &[tabindex]
+    border: 1px solid #333
+
+  &[tabindex="-1"]
+    border: 1px dashed #333
+
+  &[tabindex="-9999"]
+    border: 1px dashed #c33
+
+  &[data-autofocus]
+    box-shadow: 0 0 2px 3px #f99
+
+  &:focus
+    background-color: #6e66
+
+.test-covered
+  position: relative
+
+  &__cover
+    position: absolute
+    left: 0
+    right: 0
+    top: -8px
+    bottom: -8px
+    padding: 8px
+    background: #c633
+    text-align: center
+    color: #c63
+    font-size: 1.5em
+    font-variant: small-caps
+    font-weight: bold
+</style>
