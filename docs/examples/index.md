@@ -110,7 +110,7 @@ The `gridcell`s will be considered inline-start aligned in every row.
 
 - the first focusable element on the row / col (based on direction of movement) is focused
 
-```html{3,8-9}
+```html{3,5,9-10}
 <div tabindex="0">Before</div>
 
 <table role="grid" v-kbd-trap.roving>
