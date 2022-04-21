@@ -1,5 +1,5 @@
 <template>
-  <div :dir="rtl === true ? 'rtl' : undefined" style="padding-top: 4em">
+  <div :dir="rtl === true ? 'rtl' : undefined">
     <img
       class="logo"
       alt="VueKeyboardTrap logo"
@@ -523,10 +523,10 @@ const rtl = ref(false);
   opacity: .1
 
 .global-settings
-  position: fixed
-  top: 4px
-  left: 4px
-  padding-right: 8em
+  position: sticky
+  top: 8px
+  left: 8px
+  right: 8px
   z-index: 1
   pointer-events: none
 
@@ -543,20 +543,22 @@ legend
   pointer-events: none
 
 label
+  font-size: 14px
+  display: inline-block
   font-weight: bold
   font-variant: small-caps
   color: #f63
-  padding: 8px 16px 8px 4px
+  padding: 0 .8em 0 .4em
   box-shadow: 0 0 3px 1px #333
   cursor: pointer
   background-color: #eee
-
-  + label
-    margin-left: 8px
+  margin-inline-end: 8px
+  margin-block-end: 8px
+  line-height: 2.4em
 
   input[type="checkbox"]
-    width: 1.6em
-    height: 1.6em
+    width: 1.4em
+    height: 1.4em
     transform: translateY(.35em)
 
 .row
