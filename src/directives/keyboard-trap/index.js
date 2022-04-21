@@ -1,5 +1,8 @@
-import { markRaw } from 'vue';
+import * as Vue from 'vue';
+
 import directiveFactory from './directive';
+
+const { markRaw } = Vue;
 
 const directivePlugin = {
   install(app, options) {

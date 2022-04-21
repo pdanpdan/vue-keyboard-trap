@@ -23,7 +23,7 @@ npm install @pdanpdan/vue-keyboard-trap
 Can be globally registered on the App (plugin mode)
 ```javascript
 import { createApp } from 'vue';
-import { VueKeyboardTrapDirectivePlugin } from 'vue-keyboard-trap';
+import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
 import App from './App.vue';
 
 const app = createApp(App);
@@ -38,7 +38,7 @@ app.mount('#app');
 or included in specific components (script)
 ```javascript
 import { defineComponent } from 'vue';
-import { VueKeyboardTrapDirectiveFactory } from 'vue-keyboard-trap';
+import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
 const KbdTrap = VueKeyboardTrapDirectiveFactory({
   // ...options if required
@@ -53,7 +53,7 @@ export default defineComponent({
 
 or included in specific components (script setup)
 ```javascript
-import { VueKeyboardTrapDirectiveFactory } from 'vue-keyboard-trap';
+import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
 const vKbdTrap = VueKeyboardTrapDirectiveFactory({
   // ...options if required
@@ -64,6 +64,12 @@ The directive does not require any CSS styles to work, but for cosmetic purposes
 
 ```javascript
 import '@pdanpdan/vue-keyboard-trap/styles';
+```
+
+or (if the `/styles` export is not used by your packer)
+
+```javascript
+import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
 ```
 
 ### Usage as UMD
@@ -113,7 +119,7 @@ If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.ne
 - `autofocusSelector`: CSS selector for the elements that should be autofocused
 - `trapTabIndex`: tabIndex value to be used when trap element has a tabIndex of -1 and has no `tabindex` attribute (default -9999)
 
-Default focusableSelector:
+#### Default `focusableSelector`:
 
 ```css
 :focus,
@@ -129,7 +135,10 @@ iframe:not([tabindex^="-"]),
 [class*="focusable"]:not([disabled]):not([tabindex^="-"])
 ```
 
-Default rovingSkipSelector:
+By default `a` tags without href are not focusable - add a `tabindex="0"` attribute on them to make them focusable.
+This can be done for all other elements if you want them to be focusable.
+
+#### Default `rovingSkipSelector`:
 
 ```css
 input:not([disabled]):not([type="button"]):not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="radio"]):not([type="reset"]):not([type="submit"]),
@@ -140,14 +149,14 @@ textarea:not([disabled]),
 [contenteditable]:not([contenteditable="false"]) *
 ```
 
-Default gridSkipSelector:
+#### Default `gridSkipSelector`:
 
 ```css
 :not([disabled]),
 :not([tabindex^="-"])
 ```
 
-Default autofocusSelector:
+#### Default `autofocusSelector`:
 
 ```css
 [autofocus]:not([disabled]):not([autofocus="false"]),
@@ -232,7 +241,7 @@ If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse 
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
-A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'` or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass)).
+A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`, as `import from '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the packer does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass)).
 
 There are 3 CSS variables that can be used to customize the aspect of the hints:
 
