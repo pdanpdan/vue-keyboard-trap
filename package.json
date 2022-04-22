@@ -1,6 +1,6 @@
 {
   "name": "@pdanpdan/vue-keyboard-trap",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Vue3 and Vue2 directive for keyboard navigation - roving movement and trapping inside container",
   "productName": "Vue Keyboard Trap",
   "author": {
@@ -79,7 +79,7 @@
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-vue": "^8.6.0",
+    "eslint-plugin-vue": "^8.7.1",
     "sass": "^1.50.1",
     "vite": "^2.9.5",
     "vitepress": "^0.22.3",
