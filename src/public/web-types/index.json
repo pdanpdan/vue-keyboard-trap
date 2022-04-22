@@ -56,6 +56,11 @@
               "name": "escexits",
               "description": "Refocus a parent trap on Esc (has priority over .escrefocus)",
               "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
+            },
+            {
+              "name": "indexorder",
+              "description": "When used without .grid modifier and on elements without [role=\"grid\"]: force usage of order in tabindex (tabindex in ascending order and then DOM order)",
+              "doc-url": "https://pdanpdan.github.io/vue-keyboard-trap/"
             }
           ],
           "value": {

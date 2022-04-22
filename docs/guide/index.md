@@ -184,6 +184,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
 - `.roving.tabinside` - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)
 - `.escrefocus` - refocus element that was in focus before activating the trap on Esc
 - `.escexits` - refocus a parent trap on Esc (has priority over `.escrefocus`)
+- `.indexorder` used without `.grid` modifier and on elements without `[role="grid"]` - force usage of order in `tabindex` (`tabindex` in ascending order and then DOM order)
 
 ## Keyboard navigation
 
@@ -191,6 +192,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
   - moves to next / previous focusable element inside the trap group (moves from last one to first one or from first one to last one when no more focusable elements are available in the group)
   - if `.roving` modifier is used moves to next / previous trap group or focusable element outside the current trap group
   - if `.roving.tabinside` modifiers are used then move inside the trap group
+  - if `.indexorder` modifier is used without `.grid` and on elements without `[role="grid"]` - the order of tabindex will be used
 - `ESC` key
   - disables / enables the current tab group
   - if `.escexits` modifier is used then refocus the last active focusable element in a parent trap group
@@ -202,6 +204,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
   - if only `.vertical` modifier is used then only `ARROW_UP` / `ARROW_DOWN` keys can be used
   - `ARROW_LEFT` / `ARROW_UP` move to the previous focusable element inside the trap group
   - `ARROW_RIGHT` / `ARROW_DOWN` move to the next focusable element inside the trap group
+  - if `.indexorder` modifier is used without `.grid` and on elements without `[role="grid"]` - the order of tabindex will be used
 - `ARROW_KEYS` when `.roving.grid` modifiers are used or `.roving` modifier on a trap element with [role="grid"]
   - move in the grid inside the current trap group
 

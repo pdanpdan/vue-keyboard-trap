@@ -28,6 +28,7 @@ import { extractNumber, focus, visibleFocusCheckFn } from './helpers';
 //   .roving.tabinside - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)
 //   .escrefocus - refocus element that was in focus before activating the trap on Esc
 //   .escexits - refocus a parent trap on Esc (has priority over .escrefocus)
+//   .indexorder used without .grid and not on elements with [role="grid"] - force usage of order in tabindex (tabindex in ascending order and then DOM order)
 
 let activeTrapEl = null;
 
@@ -347,13 +348,21 @@ export default function directiveFactory(options, markRawFn) {
 
           if (focusableMap !== undefined) {
             focusableList = focusableList.filter((o) => focusableMap.get(o) !== undefined);
-            focusableList.sort((el1, el2) => (focusableMap.get(el1) || 0) - (focusableMap.get(el2) || 0));
+            focusableList.sort((el1, el2) => focusableMap.get(el1) - focusableMap.get(el2));
           }
         }
 
         if (focusableList.length === 0) {
           const { focusableSelector } = config;
           focusableList = Array.from(el.querySelectorAll(focusableSelector));
+
+          if (modifiers.indexorder === true) {
+            const tabindexOrder = new WeakMap(
+              focusableList.map((o) => ([o, Math.max(o.tabIndex || 0, 0)])),
+            );
+
+            focusableList.sort((el1, el2) => tabindexOrder.get(el1) - tabindexOrder.get(el2));
+          }
 
           if (el.matches(focusableSelector)) {
             focusableList.unshift(el);

@@ -1,252 +1,99 @@
 <template>
-  <div :dir="rtl === true ? 'rtl' : undefined">
-    <img
-      class="logo"
-      alt="VueKeyboardTrap logo"
-      src="./assets/logo.png"
-    />
+  <img class="logo" alt="VueKeyboardTrap logo" src="./assets/logo.png" />
 
-    <div class="global-settings" dir="ltr" v-kbd-trap.roving.horizontal.escrefocus>
-      <label>
-        <input
-          type="checkbox"
-          v-model="rtl"
-        />
-        RTL
-      </label>
+  <div class="global-settings" dir="ltr" v-kbd-trap.roving.horizontal.escrefocus>
+    <label><input type="checkbox" v-model="rtl" /> RTL</label>
 
-      <label>
-        <input
-          type="checkbox"
-          v-model="active1"
-        />
-        Show set 5
-      </label>
+    <label><input type="checkbox" v-model="active1" /> Show set 5</label>
 
-      <label>
-        <input
-          type="checkbox"
-          v-model="active2"
-        />
-        Activate set 6
-      </label>
+    <label><input type="checkbox" v-model="active2" /> Activate set 6</label>
 
-      <label>
-        <input
-          type="checkbox"
-          v-model="skipCells"
-        />
-        Skip cells in set 9
-      </label>
+    <label><input type="checkbox" v-model="skipCells" /> Skip cells in set 9 / 18</label>
 
-      <label>
-        <input
-          type="checkbox"
-          v-model="covered3"
-        />
-        Cover set 14
-      </label>
+    <label><input type="checkbox" v-model="covered3" /> Cover set 14</label>
 
-      <label>
-        <input
-          type="checkbox"
-          v-model="active3"
-        />
-        Activate set 14 ({{ covered3 === true ? 'covered' : 'uncovered' }})
-      </label>
-    </div>
+    <label><input type="checkbox" v-model="active3" /> Activate set 14 ({{ covered3 === true ? 'covered' : 'uncovered' }})</label>
 
-    <div
-      class="test"
-      tabindex="0"
-    >
-      0
-    </div>
+    <a href="https://github.com/pdanpdan/vue-keyboard-trap" target="blank">
+      <span>Code, Issues, Discussions for @pdanpdan/vue-keyboard-trap on GitHub</span>
+    </a>
+  </div>
 
-    <div
-      class="test"
-      v-kbd-trap.roving
-    >
+  <div style="width: 800px; max-width: 95vw; margin-inline: auto" :dir="rtl === true ? 'rtl' : undefined" v-kbd-trap>
+    <div class="test" tabindex="0">0</div>
+
+    <div class="test" v-kbd-trap.roving>
       <legend>v-kbd-trap.roving</legend>
-      <div
-        class="test"
-        tabindex="0"
-      >
-        1
-      </div>
-      <div
-        class="test"
-        tabindex="0"
-      >
-        2
-      </div>
-      <input
-        v-model="text"
-        placeholder="Input field"
-      />
-      <div
-        class="test"
-        tabindex="-1"
-        v-kbd-trap.roving.escrefocus
-      >
+
+      <div class="test" tabindex="0">1</div>
+
+      <div class="test" tabindex="0">2</div>
+
+      <input v-model="text" placeholder="Input field" />
+
+      <div class="test" tabindex="-1" v-kbd-trap.roving.escrefocus>
         <legend>v-kbd-trap.roving.escrefocus</legend>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          3.1
-        </div>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          3.2
-        </div>
-        <input
-          v-model="text"
-          placeholder="Input field"
-        />
-        <div
-          class="test"
-          tabindex="0"
-        >
-          3.3
-        </div>
-      </div>
-      <div
-        class="test"
-        tabindex="0"
-      >
-        4
+
+        <div class="test" tabindex="0">3.1</div>
+
+        <div class="test" tabindex="0">3.2</div>
+
+        <input v-model="text" placeholder="Input field 3.3" />
+
+        <div class="test" tabindex="0">3.4</div>
       </div>
 
-      <div
-        v-if="active1"
-        class="test"
-        v-kbd-trap.autofocus.escexits
-      >
+      <div class="test" tabindex="0">4</div>
+
+      <div v-if="active1" class="test" v-kbd-trap.autofocus.escexits>
         <legend>v-kbd-trap.autofocus.escexits</legend>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          5.1
-        </div>
-        <div
-          class="test"
-          tabindex="0"
-          data-autofocus
-        >
-          5.2
-        </div>
-        <input
-          v-model="text"
-          placeholder="Input field"
-        />
-        <div
-          class="test"
-          tabindex="0"
-        >
-          5.3
-        </div>
-      </div>
-      <div
-        class="test"
-        tabindex="0"
-      >
-        6
+
+        <div class="test" tabindex="0">5.1</div>
+
+        <div class="test" tabindex="0" data-autofocus>5.2</div>
+
+        <input v-model="text" placeholder="Input field 5.3" />
+
+        <div class="test" tabindex="0">5.4</div>
       </div>
 
-      <div
-        class="test"
-        tabindex="0"
-        v-kbd-trap.autofocus="active2"
-      >
+      <div class="test" tabindex="0">6</div>
+
+      <div class="test" tabindex="0" v-kbd-trap.autofocus="active2">
         <legend>v-kbd-trap.autofocus {{ active2 }}</legend>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          6.1
-        </div>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          6.2
-        </div>
-        <div
-          class="test"
-          tabindex="0"
-          data-autofocus
-        >
-          6.3
-        </div>
+
+        <div class="test" tabindex="0">6.1</div>
+
+        <div class="test" tabindex="0">6.2</div>
+
+        <div class="test" tabindex="0" data-autofocus>6.3</div>
       </div>
 
-      <div
-        class="test row"
-        tabindex="-1"
-        v-kbd-trap.roving.horizontal.tabinside.escrefocus
-      >
+      <div class="test row" tabindex="-1" v-kbd-trap.roving.horizontal.tabinside.escrefocus>
         <legend>v-kbd-trap.roving.horizontal.tabinside.escrefocus</legend>
-        <div
-          class="test col"
-          tabindex="0"
-        >
-          7.1
-        </div>
-        <div
-          class="test col"
-          tabindex="0"
-        >
-          7.2
-        </div>
-        <div
-          class="test col"
-          tabindex="0"
-        >
-          7.3
-        </div>
+
+        <div class="test col" tabindex="0">7.1</div>
+
+        <div class="test col" tabindex="0">7.2</div>
+
+        <div class="test col" tabindex="0">7.3</div>
       </div>
 
-      <div
-        class="test"
-        tabindex="-1"
-        v-kbd-trap.roving.vertical.tabinside.escrefocus
-      >
+      <div class="test" tabindex="-1" v-kbd-trap.roving.vertical.tabinside.escrefocus>
         <legend>v-kbd-trap.roving.vertical.tabinside.escrefocus</legend>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          8.1
-        </div>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          8.2
-        </div>
-        <div
-          class="test"
-          tabindex="0"
-        >
-          8.3
-        </div>
+
+        <div class="test" tabindex="0">8.1</div>
+
+        <div class="test" tabindex="0">8.2</div>
+
+        <div class="test" tabindex="0">8.3</div>
       </div>
     </div>
 
-    <div
-      class="test"
-      v-kbd-trap.roving.grid
-    >
+    <div class="test" v-kbd-trap.roving.grid>
       <legend>v-kbd-trap.roving.grid</legend>
-      <div
-        class="row"
-        v-for="i in 6"
-        :key="i"
-      >
+
+      <div class="row" v-for="i in 6" :key="i">
         <div
           class="test col"
           v-for="j in 8"
@@ -260,16 +107,10 @@
       </div>
     </div>
 
-    <div
-      class="test"
-      v-kbd-trap.roving.grid
-    >
+    <div class="test" v-kbd-trap.roving.grid>
       <legend>v-kbd-trap.roving.grid</legend>
-      <div
-        class="row"
-        v-for="i in 5"
-        :key="i"
-      >
+
+      <div class="row" v-for="i in 5" :key="i">
         <div
           v-for="j in 5"
           :key="i * 100 + j"
@@ -283,162 +124,9 @@
       </div>
     </div>
 
-    <div
-      class="test"
-      tabindex="0"
-    >
-      11
-    </div>
-
-    <div
-      class="test row"
-      dir="rtl"
-      v-kbd-trap.roving.horizontal
-    >
-      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        12.1
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        12.2
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        12.3
-      </div>
-    </div>
-
-    <div
-      class="test row"
-      dir="rtl"
-      v-kbd-trap.roving.horizontal
-    >
-      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        12bis.1
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        12bis.2
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        12bis.3
-      </div>
-    </div>
-
-    <div
-      class="test row"
-      dir="ltr"
-      v-kbd-trap.roving.horizontal
-    >
-      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        13.1
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        13.2
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        13.3
-      </div>
-    </div>
-
-    <div
-      class="test row"
-      dir="ltr"
-      v-kbd-trap.roving.horizontal
-    >
-      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        13bis.1
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        13bis.2
-      </div>
-      <div
-        class="test col"
-        tabindex="0"
-      >
-        13bis.3
-      </div>
-    </div>
-
     <div class="test">
-      <div style="margin-bottom: 16px; height: 150px; overflow: auto;">
-        <div class="test-covered">
-          <div
-            class="test"
-            style="margin-top: 200px"
-            v-kbd-trap.autofocus="active3"
-          >
-            <legend>v-kbd-trap.autofocus {{ active3 }}</legend>
-            <div
-              class="test"
-              tabindex="0"
-            >
-              14.1
-            </div>
-            <div
-              class="test"
-              tabindex="0"
-            >
-              14.2
-            </div>
-            <div
-              class="test"
-              tabindex="0"
-              data-autofocus
-            >
-              14.3
-            </div>
-          </div>
+      <legend>v-kbd-trap.roving - Role grid test (roles: grid, row, gridcell)</legend>
 
-          <div v-if="covered3" class="test-covered__cover">Cover</div>
-        </div>
-      </div>
-
-      <legend>Autofocus covered test</legend>
-    </div>
-
-    <div
-      class="test"
-      tabindex="0"
-    >
-      15
-    </div>
-
-    <div class="test">
       <table
         class="calendar"
         role="grid"
@@ -446,6 +134,7 @@
         v-kbd-trap.roving
       >
         <caption id="calendarheader">April 2022</caption>
+
         <thead role="rowgroup">
           <tr role="row">
             <th role="columnheader" aria-label="Week">Wk.</th>
@@ -458,6 +147,7 @@
             <th role="columnheader" aria-label="Saturday">Sa</th>
           </tr>
         </thead>
+
         <tbody role="rowgroup">
           <tr role="row">
             <th scope="row" role="rowheader">13</th>
@@ -469,6 +159,7 @@
             <td role="gridcell" tabindex="0">1</td>
             <td role="gridcell" tabindex="0">2</td>
           </tr>
+
           <tr v-for="m in 4" :key="m" role="row">
             <th scope="row" role="rowheader">{{ 13 + m}}</th>
             <td
@@ -480,16 +171,145 @@
           </tr>
         </tbody>
       </table>
-
-      <legend>Role grid test (roles: grid, row, gridcell)</legend>
     </div>
 
-    <div
-      class="test"
-      tabindex="0"
-    >
-      16
+    <div class="test" tabindex="0">11</div>
+
+    <div class="test row" dir="rtl" v-kbd-trap.roving.horizontal>
+      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+
+      <div class="test col" tabindex="0">12.1</div>
+
+      <div class="test col" tabindex="0">12.2</div>
+
+      <div class="test col" tabindex="0">12.3</div>
     </div>
+
+    <div class="test row" dir="rtl" v-kbd-trap.roving.horizontal>
+      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+
+      <div class="test col" tabindex="0">12bis.1</div>
+
+      <div class="test col" tabindex="0">12bis.2</div>
+
+      <div class="test col" tabindex="0">12bis.3</div>
+    </div>
+
+    <div class="test row" dir="ltr" v-kbd-trap.roving.horizontal>
+      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+
+      <div class="test col" tabindex="0">13.1</div>
+
+      <div class="test col" tabindex="0">13.2</div>
+
+      <div class="test col" tabindex="0">13.3</div>
+    </div>
+
+    <div class="test row" dir="ltr" v-kbd-trap.roving.horizontal>
+      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+
+      <div class="test col" tabindex="0">13bis.1</div>
+
+      <div class="test col" tabindex="0">13bis.2</div>
+
+      <div class="test col" tabindex="0">13bis.3</div>
+    </div>
+
+    <div class="test">
+      <legend>Autofocus covered test</legend>
+
+      <div style="margin-bottom: 16px; height: 150px; overflow: auto;">
+        <div class="test-covered">
+          <div class="test" style="margin-top: 200px" v-kbd-trap.autofocus="active3">
+            <legend>v-kbd-trap.autofocus {{ active3 }}</legend>
+
+            <div class="test" tabindex="0">14.1</div>
+
+            <div class="test" tabindex="0">14.2</div>
+
+            <div class="test" tabindex="0" data-autofocus>14.3</div>
+          </div>
+
+          <div v-if="covered3" class="test-covered__cover">Cover</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test" tabindex="0">15</div>
+
+    <div class="test" v-kbd-trap>
+      <legend>v-kbd-trap (Use DOM order)</legend>
+
+      <div class="test col" tabindex="0">16.1 (tabindex 0)</div>
+
+      <div class="test col" tabindex="-1">16.2 (tabindex -1)</div>
+
+      <div class="test col" tabindex="4">16.3 (tabindex 4)</div>
+
+      <div class="test col" tabindex="0">16.4 (tabindex 0)</div>
+
+      <div class="test col" tabindex="1">16.5 (tabindex 1)</div>
+
+      <div class="test col" tabindex="5">16.6 (tabindex 5)</div>
+
+      <div class="test col" tabindex="0">16.7 (tabindex 0)</div>
+    </div>
+
+    <div class="test" v-kbd-trap.indexorder>
+      <legend>v-kbd-trap.indexorder (Force tabindex order)</legend>
+
+      <div class="test col" tabindex="0">16.1bis (tabindex 0)</div>
+
+      <div class="test col" tabindex="-1">16.2bis (tabindex -1)</div>
+
+      <div class="test col" tabindex="4">16.3bis (tabindex 4)</div>
+
+      <div class="test col" tabindex="0">16.4bis (tabindex 0)</div>
+
+      <div class="test col" tabindex="1">16.5bis (tabindex 1)</div>
+
+      <div class="test col" tabindex="5">16.6bis (tabindex 5)</div>
+
+      <div class="test col" tabindex="0">16.7bis (tabindex 0)</div>
+    </div>
+
+    <div class="test" v-kbd-trap.roving>
+      <legend>v-kbd-trap.roving (Use DOM order)</legend>
+
+      <div class="test col" tabindex="0">17.1 (tabindex 0)</div>
+
+      <div class="test col" tabindex="-1">17.2 (tabindex -1)</div>
+
+      <div class="test col" tabindex="4">17.3 (tabindex 4)</div>
+
+      <div class="test col" tabindex="0">17.4 (tabindex 0)</div>
+
+      <div class="test col" tabindex="1">17.5 (tabindex 1)</div>
+
+      <div class="test col" tabindex="5">17.6 (tabindex 5)</div>
+
+      <div class="test col" tabindex="0">17.7 (tabindex 0)</div>
+    </div>
+
+    <div class="test" v-kbd-trap.roving.indexorder>
+      <legend>v-kbd-trap.roving.indexorder (Force tabindex order)</legend>
+
+      <div class="test col" tabindex="0">17.1bis (tabindex 0)</div>
+
+      <div class="test col" tabindex="-1">17.2bis (tabindex -1)</div>
+
+      <div class="test col" tabindex="4">17.3bis (tabindex 4)</div>
+
+      <div class="test col" tabindex="0">17.4bis (tabindex 0)</div>
+
+      <div class="test col" tabindex="1">17.5bis (tabindex 1)</div>
+
+      <div class="test col" tabindex="5">17.6bis (tabindex 5)</div>
+
+      <div class="test col" tabindex="0">17.7bis (tabindex 0)</div>
+    </div>
+
+    <div class="test" tabindex="0">18</div>
   </div>
 </template>
 
@@ -532,6 +352,34 @@ const rtl = ref(false);
 
   > *
     pointer-events: all
+    font-size: 14px
+    display: inline-block
+    font-weight: bold
+    font-variant: small-caps
+    color: #f63
+    padding: 0 .8em 0 .4em
+    box-shadow: 0 0 3px 1px #333
+    cursor: pointer
+    background-color: #eee
+    margin-inline-end: 8px
+    margin-block-end: 8px
+    line-height: 2.4em
+
+    input[type="checkbox"]
+      width: 1.4em
+      height: 1.4em
+      transform: translateY(.35em)
+
+  > a
+    color: #36f
+    text-decoration: none
+
+    > span
+      text-decoration: underline
+
+    &:before
+      content: '\1f517'
+      padding: 4px
 
 legend
   position: absolute
@@ -541,25 +389,6 @@ legend
   font-variant: small-caps
   color: #36f
   pointer-events: none
-
-label
-  font-size: 14px
-  display: inline-block
-  font-weight: bold
-  font-variant: small-caps
-  color: #f63
-  padding: 0 .8em 0 .4em
-  box-shadow: 0 0 3px 1px #333
-  cursor: pointer
-  background-color: #eee
-  margin-inline-end: 8px
-  margin-block-end: 8px
-  line-height: 2.4em
-
-  input[type="checkbox"]
-    width: 1.4em
-    height: 1.4em
-    transform: translateY(.35em)
 
 .row
   display: flex
