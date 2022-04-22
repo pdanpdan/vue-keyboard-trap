@@ -48,3 +48,13 @@ export function extractNumber(val) {
 
   return match === null ? '' : match[1];
 }
+
+export function dirIsRtl(activeElement, currentTrapEl) {
+  const dirEl = (
+    activeElement && activeElement !== currentTrapEl
+      ? activeElement.parentElement || currentTrapEl
+      : currentTrapEl
+  ).closest('[dir="rtl"],[dir="ltr"]');
+
+  return dirEl && dirEl.matches('[dir="rtl"]');
+}

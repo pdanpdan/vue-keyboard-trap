@@ -14,7 +14,11 @@ const directivePlugin = {
 
 export default directivePlugin;
 
+const VueKeyboardTrapDirectiveFactory = (options) => {
+  directiveFactory(options, markRaw);
+};
+
 export {
   directivePlugin as VueKeyboardTrapDirectivePlugin,
-  directiveFactory as VueKeyboardTrapDirectiveFactory,
+  VueKeyboardTrapDirectiveFactory,
 };

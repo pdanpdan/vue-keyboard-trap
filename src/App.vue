@@ -310,6 +310,80 @@
     </div>
 
     <div class="test" tabindex="0">18</div>
+
+    <div class="test" v-kbd-trap.roving.vertical>
+      <legend>v-kbd-trap.roving - form elements</legend>
+
+      <div class="test" tabindex="0">19.1</div>
+
+      <div class="test">
+        <button type="button">Button 19.2</button>
+      </div>
+
+      <div class="test">
+        <input type="button" value="Input type=&quot;button&quot; 19.3" />
+      </div>
+
+      <div class="test">
+        <input type="submit" value="Input type=&quot;submit&quot; 19.4" />
+      </div>
+
+      <div class="test">
+        <input type="reset" value="Input type=&quot;reset&quot; 19.5" />
+      </div>
+
+      <div class="test">
+        <input type="file" placeholder="Input type=&quot;file&quot; 19.6" />
+      </div>
+
+      <div class="test" v-kbd-trap.roving.horizontal>
+        <label tabindex="-1"><input type="checkbox" /> Checkox 19.7.1</label>
+        <label tabindex="-1"><input type="checkbox" /> Checkox 19.7.2</label>
+        <label tabindex="-1"><input type="checkbox" /> Checkox 19.7.3</label>
+      </div>
+
+      <div class="test" v-kbd-trap.roving.horizontal>
+        <label tabindex="-1"><input type="radio" name="radio" value="1" /> Radio 19.8.1</label>
+        <label tabindex="-1"><input type="radio" name="radio" value="2" /> Radio 19.8.2</label>
+        <label tabindex="-1"><input type="radio" name="radio" value="3" /> Radio 19.8.3</label>
+      </div>
+
+      <div class="test" style="padding-bottom: 1.5em">
+        <legend>Tab / Shift + Tab</legend>
+
+        <input v-model="text" placeholder="Input field 19.9" />
+      </div>
+
+      <div class="test" style="padding-bottom: 1.5em">
+        <legend>Tab / Shift + Tab</legend>
+
+        <textarea v-model="text" placeholder="Input field 19.10"></textarea>
+      </div>
+
+      <div class="test" style="padding-bottom: 1.5em">
+        <legend>Tab / Shift + Tab</legend>
+
+        <select placeholder="Select 19.11">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </select>
+      </div>
+
+      <div class="test" style="padding-bottom: 1.5em">
+        <legend>Tab / Shift + Tab</legend>
+
+        <select multiple placeholder="Select multiple 19.12">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </select>
+      </div>
+
+      <div class="test" tabindex="0">19.13</div>
+    </div>
+
+    <div class="test" tabindex="0">20</div>
   </div>
 </template>
 
@@ -326,7 +400,8 @@ const rtl = ref(false);
 </script>
 
 <style lang="sass">
-#app
+html
+  scroll-padding: 4em
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale

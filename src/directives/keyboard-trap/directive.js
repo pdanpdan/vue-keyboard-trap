@@ -1,5 +1,10 @@
 import { createConfig } from './options';
-import { extractNumber, focus, visibleFocusCheckFn } from './helpers';
+import {
+  extractNumber,
+  focus,
+  visibleFocusCheckFn,
+  dirIsRtl,
+} from './helpers';
 
 // markRawFn: function from Vue - will generate a Vue3 directive (else Vue2)
 //
@@ -212,24 +217,59 @@ export default function directiveFactory(options, markRawFn) {
             return;
           }
 
-          if (code === 'Tab' && rovingSkipSelector === false && ctx.modifiers.tabinside !== true) {
-            rovingExit = true;
+          if (code === 'Tab') {
+            if (rovingSkipSelector === false && ctx.modifiers.tabinside !== true) {
+              rovingExit = true;
 
-            if (shiftKey === true) {
-              step = 1;
-              indexSelector = (_, iMax) => iMax;
+              if (shiftKey === true) {
+                step = 1;
+                indexSelector = (_, iMax) => iMax;
+              } else {
+                step = -1;
+                indexSelector = () => 0;
+              }
             } else {
-              step = -1;
-              indexSelector = () => 0;
+              step = shiftKey === true ? -1 : 1;
             }
-          } else if (code === 'Tab') {
-            step = shiftKey === true ? -1 : 1;
           } else if (code === 'Home') {
             step = 1;
             indexSelector = (_, iMax) => iMax;
           } else if (code === 'End') {
             step = -1;
             indexSelector = () => 0;
+          } else if (
+            el.parentElement !== null
+            && (
+              (
+                ctx.modifiers.vertical === true
+                && ctx.modifiers.horizontal !== true
+                && (code === 'ArrowLeft' || code === 'ArrowRight')
+              ) || (
+                ctx.modifiers.horizontal === true
+                && ctx.modifiers.vertical !== true
+                && (code === 'ArrowUp' || code === 'ArrowDown')
+              )
+            )
+          ) {
+            const parentTrap = el.parentElement.closest(
+              ctx.modifiers.vertical === true
+                ? config.datasetNameSelectorRovingHorizontal
+                : config.datasetNameSelectorRovingVertical,
+            );
+
+            if (parentTrap !== null) {
+              rovingExit = parentTrap;
+
+              ev.__vKbdTrap = undefined;
+
+              if (code === (dirIsRtl(activeElement, el) === true ? 'ArrowRight' : 'ArrowLeft') || code === 'ArrowUp') {
+                step = 1;
+                indexSelector = (_, iMax) => iMax;
+              } else {
+                step = -1;
+                indexSelector = () => 0;
+              }
+            }
           } else {
             if (ctx.modifiers.vertical === true || ctx.modifiers.horizontal !== true) {
               if (code === 'ArrowUp') {
@@ -250,12 +290,8 @@ export default function directiveFactory(options, markRawFn) {
                 rovingDirection = 'h';
               }
 
-              if (step !== 0 && rovingDirection === 'h') {
-                const dirEl = (activeElement && activeElement !== el ? activeElement.parentElement || el : el).closest('[dir="rtl"],[dir="ltr"]');
-
-                if (dirEl && dirEl.matches('[dir="rtl"]')) {
-                  step *= -1;
-                }
+              if (step !== 0 && rovingDirection === 'h' && dirIsRtl(activeElement, el) === true) {
+                step *= -1;
               }
             }
           }
@@ -383,8 +419,8 @@ export default function directiveFactory(options, markRawFn) {
           }
 
           if (focus(focusableList[focusableIndex]) === true) {
-            if (rovingExit === true) {
-              setActiveTrapEl(null);
+            if (rovingExit !== false) {
+              setActiveTrapEl(rovingExit === true ? null : rovingExit);
             }
 
             return;
@@ -463,6 +499,8 @@ export default function directiveFactory(options, markRawFn) {
           ctx.autofocus();
         }
       }
+    } else if (markRawFn !== undefined) {
+      beforeMount(el, { value, modifiers });
     } else if (activeTrapEl === el) {
       setActiveTrapEl(null);
     }

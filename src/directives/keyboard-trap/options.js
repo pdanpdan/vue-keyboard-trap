@@ -69,6 +69,8 @@ function createConfig(options) {
   const datasetNameSnake = dsEl.getAttributeNames()[0];
 
   config.datasetNameSelector = `[${ datasetNameSnake }]`;
+  config.datasetNameSelectorRovingHorizontal = `[${ datasetNameSnake }~="roving"][${ datasetNameSnake }~="horizontal"],[${ datasetNameSnake }~="roving"]:not([${ datasetNameSnake }~="vertical"])`;
+  config.datasetNameSelectorRovingVertical = `[${ datasetNameSnake }~="roving"][${ datasetNameSnake }~="vertical"],[${ datasetNameSnake }~="roving"]:not([${ datasetNameSnake }~="horizontal"])`;
 
   config.datasetNameRow = `${ config.datasetName }Row`;
   config.datasetNameRowSelector = (i) => `:focus,[${ datasetNameSnake }-row~="${ i }"]${ config.gridSkipSelector },[${ datasetNameSnake }-row~="*"]${ config.gridSkipSelector }`;
