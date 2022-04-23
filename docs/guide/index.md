@@ -4,11 +4,11 @@ title: Guide
 
 # VueKeyboardTrap (vue-keyboard-trap)
 
-[![License: MIT](https://img.shields.io/github/license/pdanpdan/vue-keyboard-trap?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![minzip](https://img.shields.io/bundlephobia/minzip/@pdanpdan/vue-keyboard-trap/latest?style=for-the-badge)](https://bundlephobia.com/result?p=@pdanpdan/vue-keyboard-trap@latest)
-![github release](https://img.shields.io/github/v/tag/pdanpdan/vue-keyboard-trap?sort=semver&style=for-the-badge)
-![jsdelivr hits](https://img.shields.io/jsdelivr/gh/hm/pdanpdan/vue-keyboard-trap?style=for-the-badge)
-![npm release](https://img.shields.io/npm/v/@pdanpdan/vue-keyboard-trap?style=for-the-badge)
+[![License: MIT](https://img.shields.io/github/license/pdanpdan/vue-keyboard-trap?style=for-the-badge)](https://opensource.org/licenses/MIT) &nbsp;
+[![minzip](https://img.shields.io/bundlephobia/minzip/@pdanpdan/vue-keyboard-trap/latest?style=for-the-badge)](https://bundlephobia.com/result?p=@pdanpdan/vue-keyboard-trap@latest) &nbsp;
+![github release](https://img.shields.io/github/v/tag/pdanpdan/vue-keyboard-trap?sort=semver&style=for-the-badge) &nbsp;
+![jsdelivr hits](https://img.shields.io/jsdelivr/gh/hm/pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
+![npm release](https://img.shields.io/npm/v/@pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
 ![npm downloads](https://img.shields.io/npm/dm/@pdanpdan/vue-keyboard-trap?style=for-the-badge)
 
 ## Project description
