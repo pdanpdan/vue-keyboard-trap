@@ -38,7 +38,7 @@ npm install @pdanpdan/vue-keyboard-trap
 ### Usage as ESM
 
 Can be globally registered on the App (plugin mode)
-```javascript
+```javascript{2,7-9}
 import { createApp } from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
 import App from './App.vue';
@@ -53,37 +53,41 @@ app.mount('#app');
 ```
 
 or included in specific components (script)
-```javascript
-import { defineComponent } from 'vue';
-import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+```html{3,5-7,10-12}
+<script>
+  import { defineComponent } from 'vue';
+  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
-const KbdTrap = VueKeyboardTrapDirectiveFactory({
-  // ...options if required
-}).directive;
+  const KbdTrap = VueKeyboardTrapDirectiveFactory({
+    // ...options if required
+  }).directive;
 
-export default defineComponent({
-  directives: {
-    KbdTrap,
-  },
-});
+  export default defineComponent({
+    directives: {
+      KbdTrap,
+    },
+  });
+</script>
 ```
 
 or included in specific components (script setup)
-```javascript
-import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+```html{2-6}
+<script setup>
+  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
-const vKbdTrap = VueKeyboardTrapDirectiveFactory({
-  // ...options if required
-}).directive;
+  const vKbdTrap = VueKeyboardTrapDirectiveFactory({
+    // ...options if required
+  }).directive;
+</script>
 ```
 
-The directive does not require any CSS styles to work, but for cosmetic purposes some example styles are provided in `dist/styles/index.sass`.
+The directive does not require any CSS styles to work, but for cosmetic purposes (as user hints) some example styles are provided in `dist/styles/index.sass`.
 
 ```javascript
 import '@pdanpdan/vue-keyboard-trap/styles';
 ```
 
-or (if the `/styles` export is not used by your packer)
+or (if the `/styles` export is not used by your bundler)
 
 ```javascript
 import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
@@ -93,9 +97,10 @@ import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
 
 Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/index.umd.js).
 
-It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrap.VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrap.VueKeyboardTrapDirectiveFactory`.
+It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
 
-```javascript
+Use as plugin
+```javascript{2,6-8}
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
 
@@ -109,7 +114,7 @@ app.mount('#q-app');
 ```
 
 or as directive
-```javascript
+```javascript{2,6-8,10}
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
 
@@ -124,17 +129,19 @@ app.directive(name, directive);
 app.mount('#q-app');
 ```
 
-If you want you can access the SASS cosmetic style from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass).
+If you want you can access the SASS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass).
 
 ### Directive configuration options
 
-- `name`: snake-case name of the directive (without `v-` prefix) - default `kbd-trap`
-- `datasetName`: camelCase name of the `data-attribute` to be set on element when trap is enabled - default `v${ PascalCase from name}`
-- `focusableSelector`: CSS selector for focusable elements
-- `rovingSkipSelector`: CSS selector for elements that should not respond to roving key navigation (input, textarea, ...)
-- `gridSkipSelector`: CSS selector that will be applied in .roving.grid mode to exclude elements - must be a series of `:not()` selectors
-- `autofocusSelector`: CSS selector for the elements that should be autofocused
-- `trapTabIndex`: tabIndex value to be used when trap element has a tabIndex of -1 and has no `tabindex` attribute (default -9999)
+| Option | Description | Default |
+|--------|-------------|:-------:|
+| `name` | snake-case name of the directive (without `v-` prefix) | `kbd-trap` |
+| `datasetName` | camelCase name of the `data-attribute` to be set on element when trap is enabled | `v${PascalCase from name}` |
+| `focusableSelector` | CSS selector for focusable elements | [see here](#default-focusableselector) |
+| `rovingSkipSelector` | CSS selector for elements that should not respond to roving key navigation (input, textarea, ...) | [see here](#default-rovingskipselector) |
+| `gridSkipSelector` | CSS selector that will be applied in .roving.grid mode to exclude elements - must be a series of `:not()` selectors | [see here](#default-gridskipselector) |
+| `autofocusSelector` | CSS selector for the elements that should be autofocused | [see here](#default-autofocusselector) |
+| `trapTabIndex` | tabIndex value to be used when trap element has a tabIndex of -1 and has no `tabindex` attribute | -9999 |
 
 #### Default `focusableSelector`:
 
@@ -192,16 +199,18 @@ The modifiers are reactive so if you use render functions you can dynamically ch
 
 ### Directive modifiers
 
-- `.autofocus` - autofocuses the first element that matches `autofocusSelector` or (if no such element is found) the first focusable child element when the directive is mounted or enabled (only if it not covered by another element)
-- `.roving` (or `.roving.vertical.horizontal`) - allow roving navigation (Home, End, ArrowKeys)
-- `.roving.vertical` - allow roving navigation (Home, End, ArrowUp, ArrowDown)
-- `.roving.horizontal` - allow roving navigation (Home, End, ArrowLeft, ArrowRight)
-- `.roving.grid` - allow roving navigation (Home, End, ArrowKeys) using dataset attrs on elements `[data-${ camelCase from datasetName }-(row|col)]`; `[data-${ camelCase from datasetName }-(row|col)~="*"]` is a catchall
-- `.roving` used on an element with `[role="grid"]` - allow roving navigation (Home, End, ArrowKeys) using role attrs on elements `[role="row|gridcell"]`
-- `.roving.tabinside` - Tab key navigates to next/prev element inside trap (by default Tab key navigates to next/prev element outside trap in roving mode)
-- `.escrefocus` - refocus element that was in focus before activating the trap on Esc
-- `.escexits` - refocus a parent trap on Esc (has priority over `.escrefocus`)
-- `.indexorder` used without `.grid` modifier and on elements without `[role="grid"]` - force usage of order in `tabindex` (`tabindex` in ascending order and then DOM order)
+| Modifier | Description |
+|----------|-------------|
+| `.autofocus` | autofocuses the first element that matches [autofocusSelector](#default-autofocusselector) or (if no such element is found) the first focusable child element **when the directive is mounted or enabled** (**only if it not covered by another element**) |
+| `.roving` or `.roving.vertical.horizontal` | allow roving navigation (`Home`, `End`, `ArrowKeys`) |
+| `.roving.vertical` | allow roving navigation (`Home`, `End`, `ArrowUp`, `ArrowDown`) |
+| `.roving.horizontal` | allow roving navigation (`Home`, `End`, `ArrowLeft`, `ArrowRight`) |
+| `.roving.grid` | allow roving navigation (`Home`, `End`, `ArrowKeys`) using dataset attrs on elements `[data-${camelCase from datasetName}-(row/col)]`; `[data-${camelCase from datasetName}-(row/col)~="*"]` is a catchall |
+| `.roving` used on an element with `[role="grid"]` | allow roving navigation (`Home`, `End`, `ArrowKeys`) using role attrs on elements `[role="row/gridcell"]` |
+| `.roving.tabinside` | `Tab` key navigates to next/prev element inside trap (by default `Tab` key navigates to next/prev element outside trap in roving mode) |
+| `.escrefocus` | refocus element that was in focus before activating the trap on `Esc` |
+| `.escexits` | refocus a parent trap on `Esc` (has priority over `.escrefocus`) |
+| `.indexorder` used without `.grid` modifier and on elements without `[role="grid"]` | force usage of order in `tabindex` (`tabindex` in ascending order and then DOM order) |
 
 ## Keyboard navigation
 
@@ -255,81 +264,36 @@ The `gridcell`s will be considered inline-start aligned in every row.
 
 The directive checks the closest parent DOM Element of the active element that has a `[dir="rtl"]` or `[dir="ltr`]` attribute.
 
-If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse (according to document order of the focusable elements) but consistent to the way the elements are order on screen.
+If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse (according to document order of the focusable elements) but consistent to the way the elements are ordered on screen.
 
 ## CSS (visual hints for users)
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
-A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`, as `import from '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the packer does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass)).
+A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`, as `import from '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass)).
 
-There are 3 CSS variables that can be used to customize the aspect of the hints:
+There are some CSS variables that can be used to customize the aspect of the hints:
 
-- `--color-v-kbd-trap-enabled` - the text color when directive is enabled
-- `--color-v-kbd-trap-disabled` - the text color when directive is disabled
-- `--color-v-kbd-trap-background` - the background color of the hint area
+| Variable | Role | Default |
+|----------|------|:-------:|
+| `--color-v-kbd-trap-enabled` | the text color when directive is enabled | `#c33` <span style="color: #c33">■</span> |
+| `--color-v-kbd-trap-disabled` | the text color when directive is disabled | `#999` <span style="color: #999">■</span> |
+| `--color-v-kbd-trap-background` | the background color of the hint area | `#eeee` <span style="color: #eeee">■</span> |
+| `--text-v-kbd-trap-separator` | separator between elements | `/` |
+| `--text-v-kbd-trap-enabled` | indicator for enabled but not active trap | `Trap` |
+| `--text-v-kbd-trap-esc` | indicator for `Esc` key active | `Esc` |
+| `--text-v-kbd-trap-esc-refocus` | indicator for `Esc` key active when it refocuses | `Esc\2949` / `Esc⥉` |
+| `--text-v-kbd-trap-esc-exits` | indicator for `Esc` key active when it exits trap | `Esc\2923` / `Esc⤣` |
+| `--text-v-kbd-trap-tab` | indicator for `Tab` key active inside trap | `Tab` |
+| `--text-v-kbd-trap-tab-exits` | indicator for `Tab` key active when it exits trap | `Tab\21C5` / `Tab⇅` |
+| `--text-v-kbd-trap-grid` | indicator for grid mode active | `\229E` / `⊞` |
+| `--text-v-kbd-trap-arrows-all` | indicator for move keys active in roving mode | `\2962\2963\2965\2964` / `⥢⥣⥥⥤` |
+| `--text-v-kbd-trap-arrows-horizontal` | indicator for move keys active in roving mode horizontal | `\2962\2964` / `⥢⥤` |
+| `--text-v-kbd-trap-arrows-vertical` | indicator for move keys active in roving mode vertical | `\2963\2965` / `⥣⥥` |
 
 In the default style the hint is positioned on the top-right corner of the trap group.
 
-```sass
-// defaults
-$ColorVKeyboardTrapEnabled: #c33 !default
-$ColorVKeyboardTrapDisabled: #999 !default
-$ColorVKeyboardTrapBackground: #eeee !default
-
-// place your custom colors on any element and they will be applied on children
-// :root
-//   --color-v-kbd-trap-enabled: #c33
-//   --color-v-kbd-trap-disabled: #999
-//   --color-v-kbd-trap-background: #eeee
-
-[data-v-kbd-trap]:after
-  content: var(--v-kbd-trap, '') var(--v-kbd-trap-esc, '') var(--v-kbd-trap-tab, '') var(--v-kbd-trap-roving, '')
-  pointer-events: none
-  position: absolute
-  top: 2px
-  right: 2px
-  font: italic small-caps bold 14px monospace
-  line-height: 1em
-  padding: 4px
-  color: var(--color-v-kbd-trap-disabled, $ColorVKeyboardTrapDisabled)
-  background-color: var(--color-v-kbd-trap-background, $ColorVKeyboardTrapBackground)
-  border-radius: 2px
-  z-index: 1
-[data-v-kbd-trap]
-  --v-kbd-trap: 'Trap'
-  --v-kbd-trap-esc: ''
-  --v-kbd-trap-tab: ''
-  --v-kbd-trap-roving: ''
-[data-v-kbd-trap]:focus-within
-  --v-kbd-trap: 'Trap/'
-  --v-kbd-trap-esc: 'Esc'
-[data-v-kbd-trap-active]
-  --v-kbd-trap: '' !important
-  --v-kbd-trap-esc: 'Esc'
-  --v-kbd-trap-tab: '/Tab'
-  --v-kbd-trap-roving: ''
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"]
-  --v-kbd-trap-tab: '/Tab\21C5'
-  --v-kbd-trap-roving: '/\2962\2963\2965\2964'
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="tabinside"]
-  --v-kbd-trap-tab: '/Tab'
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="vertical"]
-  --v-kbd-trap-roving: '/\2963\2965'
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="horizontal"]
-  --v-kbd-trap-roving: '/\2962\2964'
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="grid"],
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][role="grid"]
-  --v-kbd-trap-roving: '/\229E'
-[data-v-kbd-trap-active][data-v-kbd-trap~="escrefocus"]
-  --v-kbd-trap-esc: 'Esc\2949'
-[data-v-kbd-trap-active][data-v-kbd-trap~="escexits"]
-  --v-kbd-trap-esc: 'Esc\2923'
-[data-v-kbd-trap][tabindex="-9999"]
-  outline: none
-[data-v-kbd-trap][data-v-kbd-trap-active]:after
-  color: var(--color-v-kbd-trap-enabled, $ColorVKeyboardTrapEnabled)
-```
+<<< @/../src/public/styles/index.sass
 
 ## Development
 
