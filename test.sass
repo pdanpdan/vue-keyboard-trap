@@ -1,0 +1,115 @@
+.global-settings
+  position: sticky
+  top: 8px
+  left: 8px
+  right: 8px
+  z-index: 1
+  pointer-events: none
+
+  > *
+    pointer-events: all
+    font-size: 14px
+    display: inline-block
+    font-weight: bold
+    font-variant: small-caps
+    color: #f63
+    padding: 0 .8em 0 .4em
+    box-shadow: 0 0 3px 1px #333
+    cursor: pointer
+    background-color: #eee
+    margin-inline-end: 8px
+    margin-block-end: 8px
+    line-height: 2.4em
+
+    input[type="checkbox"]
+      width: 1.4em
+      height: 1.4em
+      transform: translateY(.35em)
+
+  > a
+    color: #36f
+    text-decoration: none
+
+    > span
+      text-decoration: underline
+
+    &:before
+      content: '\1f517'
+      padding: 4px
+
+legend
+  position: absolute
+  inset-inline-start: 1px
+  inset-block-end: 1px
+  font-weight: bold
+  font-variant: small-caps
+  color: #36f
+  pointer-events: none
+
+.row
+  display: flex
+
+  .col
+    flex: 1 1 auto
+    max-width: 100%
+
+table.calendar
+  margin: 32px 16px
+  border-collapse: collapse
+
+  tbody
+    th,
+    td
+      padding: 12px
+
+    td
+      border: 1px solid #ccc
+      text-align: center
+      color: #ccc
+
+      &[tabindex]:not([tabindex^="-"])
+        color: #000
+
+      &:focus
+        background-color: #6e66
+
+.test
+  position: relative
+  padding: 4px 8px
+  margin: 24px 8px
+  border: 1px solid #ccc
+  text-align: center
+  font-weight: bold
+  font-size: 18px
+
+  &[tabindex]
+    border: 1px solid #333
+
+  &[tabindex="-1"]
+    border: 1px dashed #333
+
+  &[tabindex="-9999"]
+    border: 1px dashed #c33
+
+  &[data-autofocus]
+    box-shadow: 0 0 2px 3px #f99
+
+  &:focus
+    background-color: #6e66
+
+.test-covered
+  position: relative
+
+  &__cover
+    position: absolute
+    left: 0
+    right: 0
+    top: -8px
+    bottom: -8px
+    padding: 8px
+    background: #c633
+    text-align: center
+    color: #c63
+    font-size: 1.5em
+    font-variant: small-caps
+    font-weight: bold
