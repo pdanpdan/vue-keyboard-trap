@@ -78,7 +78,7 @@ importCodePenComponent[codePenSrc]().then((obj) => {
 
 const source = ref(null);
 const importCodePenSource = import.meta.glob('../../../**/*.vue', { as: 'raw' });
-source.value = decodeURIComponent(importCodePenSource[codePenSrc]);
+source.value = importCodePenSource[codePenSrc];
 const sourceExpanded = ref(props.sourceExpanded === true);
 const sourceToggle = () => {
   sourceExpanded.value = sourceExpanded.value !== true;

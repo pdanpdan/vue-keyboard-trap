@@ -7,13 +7,12 @@ title: Examples
 [Demo codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
 <code-pen
-  example="examples/simple-trap.vue"
+  example="examples/trap-simple.vue"
   title="Default behaviour"
   desc="The focus stays inside trap while navigating with Tab / Shift + Tab. Trap can be enabled/disabled with Esc key."
 >
-  <<< @/examples/simple-trap.vue{2}
+  <<< @/examples/trap-simple.vue{2}
 </code-pen>
-
 
 ## Modifiers
 
@@ -47,23 +46,13 @@ Simplify `TAB` key navigation in large applications where lots of elements are f
 
 The last focusable element of each `.roving` trap group is remembered and refocused when the trap group is focused.
 
-```html{3,7}
-<div tabindex="0">Before</div>
-
-<div v-kbd.trap.roving>
-  <div v-for="i in 20" :key="i" tabindex="0">
-    Focusable group 1 / {{ i + 1 }}
-  </div>
-</div>
-
-<div v-kbd.trap.roving>
-  <div v-for="i in 20" :key="i" tabindex="0">
-    Focusable group 2 / {{ i + 1 }}
-  </div>
-</div>
-
-<div tabindex="0">After</div>
-```
+<code-pen
+  example="examples/roving-simple.vue"
+  title="Default roving behaviour"
+  desc="Inside the trap you can navigate with ArrowKeys and with Home / End. To exit the trap use Tab / Shift + Tab. Trap can be enabled/disabled with Esc key. A roving trap remembers the last focused element inside."
+>
+  <<< @/examples/roving-simple.vue{5,16}
+</code-pen>
 
 ### `.roving.grid`
 
@@ -79,28 +68,13 @@ Any or both attributes can have a value of `*` that means that it is an alement 
 - the first focusable element on the row / col (based on direction of movement) is focused
 - an element with `*` for row or col is considered to belong to any row / col
 
-```html{3,8-9}
-<div tabindex="0">Before</div>
-
-<div v-kbd-trap.roving.grid>
-  <div v-for="i in 5" :key="i">
-    <span
-      v-for="j in 5"
-      :key="i * 100 + j"
-      :data-v-kbd-trap-row="j === 3 ? i : `${ i } *`"
-      :data-v-kbd-trap-col="i === 3 ? j : `${ j } *`"
-      :tabindex="i !== 3 && j !== 3
-        ? ((i + j) % 2 === 0 ? null : -1)
-        : 0
-      "
-    >
-      R:{{ i + 1 }}/C:{{ j + 1 }}
-    </span>
-  </div>
-</div>
-
-<div tabindex="0">After</div>
-```
+<code-pen
+  example="examples/roving-grid.vue"
+  title="Roving behaviour in grid mode"
+  desc="Inside the trap you can navigate with ArrowKeys and with Home / End. To exit the trap use Tab / Shift + Tab. Trap can be enabled/disabled with Esc key. A roving trap remembers the last focused element inside."
+>
+  <<< @/examples/roving-grid.vue{5,11-12}
+</code-pen>
 
 ### `.roving` on `[role="grid"]` trap group element
 

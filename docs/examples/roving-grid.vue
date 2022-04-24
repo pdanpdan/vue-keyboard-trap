@@ -1,0 +1,66 @@
+<template>
+  <div class="test" v-kbd-trap>
+    <div class="test" tabindex="0">Before</div>
+
+    <div class="test" v-kbd-trap.roving.grid>
+      <div v-for="i in 5" :key="i" class="row">
+        <div
+          v-for="j in 5"
+          :key="i * 100 + j"
+          class="test col"
+          :data-v-kbd-trap-row="j === 3 ? i : `${ i } *`"
+          :data-v-kbd-trap-col="i === 3 ? j : `${ j } *`"
+          :tabindex="i !== 3 && j !== 3
+            ? ((i + j) % 2 === 0 ? null : -1)
+            : 0
+          "
+        >
+          R:{{ i + 1 }}/C:{{ j + 1 }}
+        </div>
+      </div>
+    </div>
+
+    <div class="test" tabindex="0">After</div>
+  </div>
+</template>
+
+<script>
+import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+import '@pdanpdan/vue-keyboard-trap/styles';
+
+export default {
+  directives: {
+    KbdTrap: VueKeyboardTrapDirectiveFactory().directive,
+  },
+};
+</script>
+
+<style lang="sass" scoped>
+.test
+  position: relative
+  padding: 4px 8px
+  margin: 24px 8px
+  border: 1px solid #ccc
+  text-align: center
+  font-weight: bold
+  font-size: 18px
+
+  &[tabindex]
+    border: 1px solid #333
+
+  &[tabindex="-1"]
+    border: 1px dashed #333
+
+  &[tabindex="-9999"]
+    border: 1px dashed #c33
+
+  &:focus
+    background-color: #6e66
+
+.row
+  display: flex
+
+  .col
+    flex: 1 1 auto
+    max-width: 100%
+</style>
