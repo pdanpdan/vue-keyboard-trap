@@ -64,6 +64,10 @@ function createConfig(options) {
   config.datasetNameActive = `${ config.datasetName }Active`;
   config.datasetNamePreventRefocus = `${ config.datasetName }PreventRefocus`;
 
+  if (typeof window === 'undefined') {
+    return config;
+  }
+
   const dsEl = document.createElement('span');
   dsEl.dataset[config.datasetName] = '';
   const datasetNameSnake = dsEl.getAttributeNames()[0];
