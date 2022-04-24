@@ -1,7 +1,7 @@
 # VueKeyboardTrap (vue-keyboard-trap)
 
 [![License: MIT](https://img.shields.io/github/license/pdanpdan/vue-keyboard-trap?style=for-the-badge)](https://opensource.org/licenses/MIT) &nbsp;
-[![minzip](https://img.shields.io/bundlephobia/minzip/@pdanpdan/vue-keyboard-trap/latest?style=for-the-badge)](https://bundlephobia.com/result?p=@pdanpdan/vue-keyboard-trap@latest) &nbsp;
+[![minzip](https://img.shields.io/bundlephobia/minzip/@pdanpdan/vue-keyboard-trap/latest?style=for-the-badge)](https://bundlephobia.com/result?p=@pdanpdan/vue-keyboard-trap) &nbsp;
 ![github release](https://img.shields.io/github/v/tag/pdanpdan/vue-keyboard-trap?sort=semver&style=for-the-badge) &nbsp;
 ![jsdelivr hits](https://img.shields.io/jsdelivr/gh/hm/pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
 ![npm release](https://img.shields.io/npm/v/@pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
@@ -95,7 +95,7 @@ import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
 
 ### Usage as UMD
 
-Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/index.umd.js).
+Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js).
 
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
 
@@ -129,7 +129,7 @@ app.directive(name, directive);
 app.mount('#q-app');
 ```
 
-If you want you can access the SASS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass).
+If you want you can access the SASS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass).
 
 ### Directive configuration options
 
@@ -270,7 +270,7 @@ If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse 
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
-A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`, as `import from '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap@latest/dist/styles/index.sass)).
+A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`, as `import from '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass)).
 
 There are some CSS variables that can be used to customize the aspect of the hints:
 

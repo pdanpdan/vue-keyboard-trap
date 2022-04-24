@@ -12,7 +12,7 @@
     />
 
     <div class="code-pen__actions">
-      <!-- <button @click="openCodePen">Open in CodePen</button> -->
+      <button @click="openCodePen">Open in CodePen</button>
 
       <span class="spacer" />
 
@@ -26,13 +26,30 @@
     <div v-if="sourceExpanded" class="code-pen__source">
       <slot />
     </div>
+
+    <form
+      ref="formRef"
+      method="post"
+      action="https://codepen.io/pen/define/"
+      target="_blank"
+      rel="noopener"
+    >
+      <input
+        v-if="formOptions !== null"
+        type="hidden"
+        name="data"
+        :value="formOptions"
+      />
+    </form>
   </article>
 </template>
 
 <script setup>
-import { ref, markRaw } from 'vue';
+import { ref, markRaw, nextTick } from 'vue';
 
 import useCopyCode from './use-copy-code.js';
+import parseCodeForPen from './parse-code-for-pen.js';
+
 import './code-pen.sass';
 
 const props = defineProps({
@@ -67,7 +84,17 @@ const sourceToggle = () => {
   sourceExpanded.value = sourceExpanded.value !== true;
 };
 
-// const openCodePen = () => {};
+const formRef = ref(null);
+const formOptions = ref(null);
+const openCodePen = () => {
+  formOptions.value = parseCodeForPen(props.title || props.desc, source.value);
+
+  nextTick(() => {
+    if (formRef.value !== null) {
+      formRef.value.submit();
+    }
+  });
+};
 
 const { showTip: copyCodeDone, copyCode } = useCopyCode(source.value);
 </script>
