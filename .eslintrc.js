@@ -37,7 +37,7 @@ module.exports = {
 
     'linebreak-style': 'off',
     'arrow-parens': ['error', 'always'],
-    'max-len': ['error', 400],
+    'max-len': 'off',
     'template-curly-spacing': ['error', 'always'],
     'no-underscore-dangle': 'off',
     'no-var': 'error',
