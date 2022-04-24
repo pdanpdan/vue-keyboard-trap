@@ -6,6 +6,14 @@ title: Examples
 
 [Demo codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
+<code-pen
+  example="examples/simple-trap.vue"
+  title="Default behaviour"
+  desc="The focus stays inside trap while navigating with Tab / Shift + Tab. Trap can be enabled/disabled with Esc key."
+>
+  <<< @/examples/simple-trap.vue{2}
+</code-pen>
+
 
 ## Modifiers
 
@@ -15,25 +23,21 @@ Focuses the first child element that matches `autofocusSelector` or (if no such 
 
 Is only triggered on mount or on directive activation (changed value from false to true) and only if it not covered by another element.
 
-#### Autofocus on mount
+<code-pen
+  example="examples/autofocus-on-mount.vue"
+  title="Autofocus on mount"
+  desc="Element is focused when it is mounted"
+>
+  <<< @/examples/autofocus-on-mount.vue{5}
+</code-pen>
 
-```html{4}
-<div v-if="showContent" v-kbd-trap.autofocus>
-  <div tabindex="0">First</div>
-  <div tabindex="0">Second</div>
-  <div tabindex="0" data-autofocus>Autofocus</div>
-</div>
-```
-
-#### Autofocus on activation
-
-```html{4}
-<div v-kbd-trap.autofocus="trapActive">
-  <div tabindex="0">First</div>
-  <div tabindex="0">Second</div>
-  <div tabindex="0" data-autofocus>Autofocus</div>
-</div>
-```
+<code-pen
+  example="examples/autofocus-on-activation.vue"
+  title="Autofocus on activation"
+  desc="Element is focused when the trap is activated"
+>
+  <<< @/examples/autofocus-on-activation.vue{5}
+</code-pen>
 
 ### `.roving`
 

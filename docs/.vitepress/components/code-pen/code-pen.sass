@@ -1,0 +1,68 @@
+$codePenBorderRadius: 6px !default
+
+.code-pen
+  color: var(--c-text)
+  background-color: var(--c-bg)
+  border: 1px solid var(--c-divider)
+  border-radius: var(--code-pen-border-radius, $codePenBorderRadius)
+  margin-block: 16px
+  overflow: hidden
+
+  &__header
+    background-color: var(--c-bg-accent)
+    border-bottom: 1px dashed var(--c-divider)
+    padding: .5em 1em
+
+    &-title
+      font-size: 1.1em
+      font-weight: bold
+      color: var(--c-text)
+
+    &-desc
+      font-size: .9em
+      font-weight: light
+      color: var(--c-text-light)
+
+  &__component
+    padding: 1em
+
+  &__source
+    > div
+      margin: 0
+      border-radius: 0
+
+  &__actions
+    background-color: var(--c-bg-accent)
+    border-top: 1px dashed var(--c-divider)
+    padding: .25em
+    display: flex
+    flex-wrap: wrap
+    max-width: 100%
+    align-items: center
+
+    > .spacer
+      display: inline-block
+      flex: 1 1 auto
+
+    > .separator
+      display: inline-block
+      align-self: stretch
+      width: 1px
+      background-color: var(--c-divider-light)
+      margin-inline: .5em
+      margin-block: .25em
+
+    > button
+      cursor: pointer
+      color: var(--c-brand)
+      background-color: var(--c-bg)
+      border: 1px solid var(--c-divider-light)
+      padding: .4em .6em .3em
+      border-radius: .2em
+      outline: none
+      font-size: 1em
+
+      &:active,
+      &:focus-visible,
+      &:hover
+        border-color: var(--c-brand)
