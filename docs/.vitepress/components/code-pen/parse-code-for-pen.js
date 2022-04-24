@@ -1,7 +1,10 @@
 const reHtml = /(?:^|[\n\r]+)<template[^>]*?(?:\s+lang="([^"]+)")?[^>]*?>[\r\n]*(.*?)[\r\n]*<\/template>/is;
 const reCss = /(?:^|[\n\r]+)<style[^>]*?(?:\s+lang="([^"]+)")?[^>]*?>[\r\n](.*?)[\r\n]<\/style>/is;
-const reJs = /(?:^|[\n\r]+)<script[^>]*?(?:\s+(setup))?[^>]*?>[\r\n](.*?)[\r\n]<\/script>/is;
-const reImport = /(^|[\n\r]+)import(?:\s+(.*?)\s+from)?\s+(['"])(.+?)\3(;)?/isg;
+const reJs = /(?:^|[\n\r]+)<script[^>]*?(?:\s+lang="([^"]+)")?[^>]*?>[\r\n](.*?)[\r\n]<\/script>/is;
+const reImport = /(^|[\n\r]+)import(?:\s+(.*?)\s+from)?\s+(['"])(.+?)\3(;)?(?:\s*\/\/\s*asGlobal=(['"])(.+?)\6)?/isg;
+const reExternal = /(?:^|[\n\r]+)\s*\/\/\s*external(js|css)=(['"])(.+?)\2/isg;
+
+const vueUmdSrc = 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js';
 
 function extractMatch(text, re) {
   const match = re.exec(text);
@@ -17,10 +20,18 @@ function extractMatch(text, re) {
     };
 }
 
-function formatImport(_match, initialSpace, importedNames, _quote, importedFrom, semicolon) {
+function formatImport(_match, initialSpace, importedNames, _quote1, importedFrom, semicolon, _quote2, asGlobal) {
+  if (typeof importedNames !== 'string' || importedNames.length === 0) {
+    return '';
+  }
+
+  if (typeof asGlobal === 'string' && asGlobal.length > 0) {
+    return `${ initialSpace }const ${ importedNames } = ${ asGlobal }${ semicolon }`;
+  }
+
   const packageMatch = /^(?:@[^/]+\/)?([^@]+)$/i.exec(importedFrom);
 
-  if (importedNames === undefined || packageMatch === null) {
+  if (packageMatch === null) {
     return '';
   }
 
@@ -35,14 +46,42 @@ function formatImport(_match, initialSpace, importedNames, _quote, importedFrom,
     )
     .join('.');
 
-  return `${ initialSpace }const ${ importedNames } = ${ objFrom }${ semicolon }`;
+  return `${ initialSpace }const ${ importedNames } = ${ objFrom }${ semicolon || '' }`;
 }
 
-export default function parseCodeForPen(title, text) {
+export default function parseCodeForPen({
+  title,
+  text,
+  externalCss,
+  externalJs,
+}) {
   const parsedHtml = extractMatch(text, reHtml);
   const parsedCss = extractMatch(text, reCss);
   const parsedJs = extractMatch(text, reJs);
+  // eslint-disable-next-line no-nested-ternary
+  const cssExternal = Array.isArray(externalCss) === true
+    ? externalCss
+    : (typeof externalCss === 'string' && externalCss.length > 0 ? [externalCss] : []);
+  // eslint-disable-next-line no-nested-ternary
+  const jsExternal = Array.isArray(externalJs) === true
+    ? externalJs
+    : (typeof externalJs === 'string' && externalJs.length > 0 ? [externalJs] : []);
 
+  if (jsExternal.indexOf(vueUmdSrc) === -1) {
+    jsExternal.unshift(vueUmdSrc);
+  }
+
+  parsedJs.code = parsedJs.code.replace(reExternal, (_match, type, _quote, src) => {
+    if (type.toLowerCase() === 'js') {
+      if (jsExternal.indexOf(src) === -1) {
+        jsExternal.push(src);
+      }
+    } else if (cssExternal.indexOf(src) === -1) {
+      cssExternal.push(src);
+    }
+
+    return '';
+  });
   parsedJs.code = parsedJs.code.replaceAll(reImport, formatImport);
 
   let parsedHtmlCode = parsedHtml.code
@@ -56,10 +95,8 @@ export default function parseCodeForPen(title, text) {
     .replace(/___TEMP_REPLACEMENT___/g, '>')
     .replace(/^\s{2}/gm, '')
     .trim();
-  parsedHtmlCode = `<!--
-  Check Vue Keyboard Trap at https://pdanpdan.github.io/vue-keyboard-trap/
--->
-<div id="app" style="min-height: 100vh;">
+  parsedHtmlCode = `
+<div id="app">
   ${ parsedHtmlCode }
 </div>`;
 
@@ -72,13 +109,13 @@ export default function parseCodeForPen(title, text) {
   let parsedJsCode = /^([\s\S]*)export default {/g.exec(parsedJs.code);
   parsedJsCode = ((parsedJsCode && parsedJsCode[1]) || '').trim();
   parsedJsCode += parsedJsCode ? '\n\n' : '';
-  parsedJsCode += `const app = Vue.createApp({${ component }})
+  parsedJsCode += `const app = Vue.createApp({${ component }});
 
-app.mount('#app')
+app.mount('#app');
 `;
 
   const options = {
-    title: `Vue Keyboard Trap - ${ title }`,
+    title,
     head: '',
     // eslint-disable-next-line no-bitwise
     editors: (parsedHtmlCode && 0b100) | (parsedCss.code && 0b010) | (parsedJsCode && 0b001).toString(2),
@@ -88,16 +125,11 @@ app.mount('#app')
 
     css: parsedCss.code,
     css_pre_processor: parsedCss.type,
-    css_external: [
-      'https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass',
-    ],
+    css_external: cssExternal,
 
     js: parsedJsCode,
     js_pre_processor: parsedJs.type === 'none' ? 'babel' : parsedJs.type,
-    js_external: [
-      'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js',
-      'https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js',
-    ],
+    js_external: jsExternal,
   };
 
   return JSON.stringify(options);

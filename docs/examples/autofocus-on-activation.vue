@@ -1,4 +1,5 @@
 <template>
+  <!-- Check Vue Keyboard Trap at https://pdanpdan.github.io/vue-keyboard-trap/ -->
   <div>
     <button @click="toggleTrapActive">{{ trapActive === true ? 'Deactivate trap' : 'Activate trap' }}</button>
 
@@ -12,7 +13,9 @@
 
 <script>
 import { ref } from 'vue';
-import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+// externalJs="https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js"
+// externalCss="https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass"
+import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap'; // asGlobal="VueKeyboardTrap"
 import '@pdanpdan/vue-keyboard-trap/styles';
 
 export default {

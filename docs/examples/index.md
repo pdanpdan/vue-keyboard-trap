@@ -9,7 +9,7 @@ title: Examples
 <code-pen
   example="examples/trap-simple.vue"
   title="Default behaviour"
-  desc="The focus stays inside trap while navigating with Tab / Shift + Tab. Trap can be enabled/disabled with Esc key."
+  desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key."
 >
   <<< @/examples/trap-simple.vue{2}
 </code-pen>
@@ -49,7 +49,7 @@ The last focusable element of each `.roving` trap group is remembered and refocu
 <code-pen
   example="examples/roving-simple.vue"
   title="Default roving behaviour"
-  desc="Inside the trap you can navigate with ArrowKeys and with Home / End. To exit the trap use Tab / Shift + Tab. Trap can be enabled/disabled with Esc key. A roving trap remembers the last focused element inside."
+  desc="Inside the trap you can navigate with ArrowKeys and with Home / End.\nTo exit the trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
 >
   <<< @/examples/roving-simple.vue{5,16}
 </code-pen>
@@ -71,7 +71,7 @@ Any or both attributes can have a value of `*` that means that it is an alement 
 <code-pen
   example="examples/roving-grid.vue"
   title="Roving behaviour in grid mode"
-  desc="Inside the trap you can navigate with ArrowKeys and with Home / End. To exit the trap use Tab / Shift + Tab. Trap can be enabled/disabled with Esc key. A roving trap remembers the last focused element inside."
+  desc="Inside the trap you can navigate with ArrowKeys and with Home / End.\nTo exit the trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
 >
   <<< @/examples/roving-grid.vue{5,11-12}
 </code-pen>
