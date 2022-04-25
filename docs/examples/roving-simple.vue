@@ -10,7 +10,7 @@
         :key="i"
         tabindex="0"
       >
-        Focusable group 1 / {{ i + 1 }}
+        Group 1 / {{ i }}
       </div>
     </div>
 
@@ -21,7 +21,7 @@
         :key="i"
         tabindex="0"
       >
-        Focusable group 2 / {{ i + 1 }}
+        Group 2 / {{ i }}
       </div>
     </div>
 
