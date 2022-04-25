@@ -37,7 +37,7 @@ npm install @pdanpdan/vue-keyboard-trap
 
 ### Usage as ESM
 
-Can be globally registered on the App (plugin mode)
+Use as plugin on Vue3
 ```javascript{2,7-9}
 import { createApp } from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
@@ -52,7 +52,22 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#app');
 ```
 
-or included in specific components (script)
+or as plugin on Vue2
+```javascript{2,5-7}
+import Vue from 'vue';
+import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
+import App from './App.vue';
+
+Vue.use(VueKeyboardTrapDirectivePlugin, {
+  // ...options if required
+});
+
+new Vue({
+  el: '#app',
+});
+```
+
+or included in specific components (Vue3 script)
 ```html{3,5-7,10-12}
 <script>
   import { defineComponent } from 'vue';
@@ -70,8 +85,8 @@ or included in specific components (script)
 </script>
 ```
 
-or included in specific components (script setup)
-```html{2-6}
+or included in specific components (Vue3 script setup)
+```html{2,4-6}
 <script setup>
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
@@ -81,16 +96,45 @@ or included in specific components (script setup)
 </script>
 ```
 
+or included in specific components (Vue2)
+```html{2,4-6,9-11}
+<script>
+  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+
+  const KbdTrap = VueKeyboardTrapDirectiveFactory({
+    // ...options if required
+  }).directive;
+
+  export default {
+    directives: {
+      KbdTrap,
+    },
+  };
+</script>
+```
+
 The directive does not require any CSS styles to work, but for cosmetic purposes (as user hints) some example styles are provided in `dist/styles/index.sass`.
 
+in Javascript
 ```javascript
 import '@pdanpdan/vue-keyboard-trap/styles';
 ```
 
+or in SASS
+```sass
+@import '@pdanpdan/vue-keyboard-trap/styles'
+```
+
 or (if the `/styles` export is not used by your bundler)
 
+in Javascript
 ```javascript
 import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
+```
+
+or in SASS
+```sass
+@import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass'
 ```
 
 ### Usage as UMD
@@ -99,7 +143,7 @@ Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap
 
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
 
-Use as plugin
+Use as plugin on Vue3
 ```javascript{2,6-8}
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
@@ -110,10 +154,23 @@ app.use(VueKeyboardTrapDirectivePlugin, {
   // ...options if required
 });
 
-app.mount('#q-app');
+app.mount('#app');
 ```
 
-or as directive
+or as plugin on Vue2
+```javascript{1,3-5}
+const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
+
+Vue.use(VueKeyboardTrapDirectivePlugin, {
+  // ...options if required
+});
+
+new Vue({
+  el: '#app',
+});
+```
+
+or as directive on Vue3
 ```javascript{2,6-8,10}
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
@@ -126,7 +183,18 @@ const { name, directive } = VueKeyboardTrapDirectiveFactory({
 
 app.directive(name, directive);
 
-app.mount('#q-app');
+app.mount('#app');
+```
+
+or as directive on Vue2
+```javascript{1,3-5,7}
+const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
+
+const { name, directive } = VueKeyboardTrapDirectiveFactory({
+  // ...options if required
+});
+
+Vue.directive(name, directive);
 ```
 
 If you want you can access the SASS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass).
@@ -270,7 +338,7 @@ If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse 
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
-A default style is provided in `dist/styles/index.sass` (can be imported as `import from '@pdapdan/vue-keyboard-trap/styles'`, as `import from '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass)).
+A default style is provided in `dist/styles/index.sass` (can be imported as `import '@pdapdan/vue-keyboard-trap/styles'`, as `import '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass)).
 
 There are some CSS variables that can be used to customize the aspect of the hints:
 
