@@ -1,18 +1,18 @@
 <template>
   <client-only>
-    <article v-bind="$attrs" class="code-pen">
-      <div class="code-pen__header" v-if="title || desc">
-        <div class="code-pen__header-title">{{ title }}</div>
-        <div class="code-pen__header-desc" v-html="desc.split(/\\n/).join('<br/>').split(/\n/).join('<br/>')" />
+    <article v-bind="$attrs" class="interactive-code">
+      <div class="interactive-code__header" v-if="title || desc">
+        <div class="interactive-code__header-title">{{ title }}</div>
+        <div class="interactive-code__header-desc" v-html="desc.split(/\\n/).join('<br/>').split(/\n/).join('<br/>')" />
       </div>
 
       <component
         v-if="component !== null"
         :is="component"
-        class="code-pen__component"
+        class="interactive-code__component"
       />
 
-      <div class="code-pen__actions">
+      <div class="interactive-code__actions">
         <button @click="openCodePen">Open in CodePen</button>
 
         <span class="spacer" />
@@ -24,7 +24,7 @@
         <button @click="sourceToggle">&lt;/&gt;</button>
       </div>
 
-      <div v-if="sourceExpanded" class="code-pen__source">
+      <div v-if="sourceExpanded" class="interactive-code__source">
         <slot />
       </div>
 
@@ -49,9 +49,9 @@
 <script setup>
 import { ref, markRaw, nextTick } from 'vue';
 
-import parseCodeForPen from './parse-code-for-pen.js';
+import transformCodeForCodepen from './transform-code-for-codepen.js';
 
-import './code-pen.sass';
+import './interactive-code.sass';
 
 const props = defineProps({
   example: String,
@@ -73,17 +73,17 @@ const props = defineProps({
   externalJs: [Array, String],
 });
 
-const codePenSrc = `../../../${ props.example }`;
+const interactiveCodeSrc = `../../../${ props.example }`;
 
 const component = ref(null);
-const importCodePenComponent = import.meta.glob('../../../**/*.vue');
-importCodePenComponent[codePenSrc]().then((obj) => {
+const importInteractiveCodeComponent = import.meta.glob('../../../**/*.vue');
+importInteractiveCodeComponent[interactiveCodeSrc]().then((obj) => {
   component.value = markRaw(obj.default);
 });
 
 const source = ref(null);
-const importCodePenSource = import.meta.glob('../../../**/*.vue', { as: 'raw' });
-source.value = importCodePenSource[codePenSrc];
+const importInteractiveCodeSource = import.meta.glob('../../../**/*.vue', { as: 'raw' });
+source.value = importInteractiveCodeSource[interactiveCodeSrc];
 const sourceExpanded = ref(props.sourceExpanded === true);
 const sourceToggle = () => {
   sourceExpanded.value = sourceExpanded.value !== true;
@@ -92,7 +92,7 @@ const sourceToggle = () => {
 const formRef = ref(null);
 const formOptions = ref(null);
 const openCodePen = () => {
-  formOptions.value = parseCodeForPen({
+  formOptions.value = transformCodeForCodepen({
     title: props.title || props.desc,
     text: source.value,
     externalCss: props.externalCss,
