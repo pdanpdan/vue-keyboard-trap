@@ -11,7 +11,15 @@ title: Examples
   title="Default behaviour"
   desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key."
 >
-  <<< @/examples/trap-simple.vue{2}
+  <<< @/examples/trap-simple.vue{3,14-15,18-20}
+</code-pen>
+
+<code-pen
+  example="examples/trap-rtl.vue"
+  title="Default behaviour (RTL / LTR)"
+  desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key."
+>
+  <<< @/examples/trap-rtl.vue{6-7,15,23,38-39,42-44}
 </code-pen>
 
 ## Modifiers
@@ -27,7 +35,7 @@ Is only triggered on mount or on directive activation (changed value from false 
   title="Autofocus on mount"
   desc="Element is focused when it is mounted"
 >
-  <<< @/examples/autofocus-on-mount.vue{5}
+  <<< @/examples/autofocus-on-mount.vue{6,9,18-19,22-24}
 </code-pen>
 
 <code-pen
@@ -35,7 +43,7 @@ Is only triggered on mount or on directive activation (changed value from false 
   title="Autofocus on activation"
   desc="Element is focused when the trap is activated"
 >
-  <<< @/examples/autofocus-on-activation.vue{5}
+  <<< @/examples/autofocus-on-activation.vue{6,9,18-19,22-24}
 </code-pen>
 
 ### `.roving`
@@ -51,7 +59,23 @@ The last focusable element of each `.roving` trap group is remembered and refocu
   title="Default roving behaviour"
   desc="Inside the trap you can navigate with ArrowKeys and with Home / End.\nTo exit the trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
 >
-  <<< @/examples/roving-simple.vue{5,16}
+  <<< @/examples/roving-simple.vue{6,17,35-36,39-41}
+</code-pen>
+
+<code-pen
+  example="examples/roving-nested.vue"
+  title="Roving behaviour when using nested traps with orthogonal directions"
+  desc="Inside the trap you can navigate with ArrowKeys (vertical in outer trap and horizontal in inner trap) and with Home / End.\nTo exit the inner trap you can use VerticalArrowKeys.\nTo exit inner or outer trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
+>
+  <<< @/examples/roving-nested.vue{6,16,44-45,48-50}
+</code-pen>
+
+<code-pen
+  example="examples/roving-rtl.vue"
+  title="Roving behaviour when using RTL / LTR"
+  desc="Inside the trap you can navigate with ArrowKeys and with Home / End.\nTo exit the trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
+>
+  <<< @/examples/roving-rtl.vue{6-7,15,23,38-39,42-44}
 </code-pen>
 
 ### `.roving.grid`
@@ -73,7 +97,7 @@ Any or both attributes can have a value of `*` that means that it is an alement 
   title="Roving behaviour in grid mode"
   desc="Inside the trap you can navigate with ArrowKeys and with Home / End.\nTo exit the trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
 >
-  <<< @/examples/roving-grid.vue{5,11-12}
+  <<< @/examples/roving-grid.vue{6,12-13,31-32,35-37}
 </code-pen>
 
 ### `.roving` on `[role="grid"]` trap group element
@@ -88,26 +112,10 @@ The `gridcell`s will be considered inline-start aligned in every row.
 
 - the first focusable element on the row / col (based on direction of movement) is focused
 
-```html{3,5,9-10}
-<div tabindex="0">Before</div>
-
-<table role="grid" v-kbd-trap.roving>
-  <tbody role="rowgroup">
-    <tr v-for="i in 5" :key="i" role="row">
-      <td
-        v-for="j in 5"
-        :key="i * 100 + j"
-        role="gridcell"
-        :tabindex="i !== 3 && j !== 3
-          ? ((i + j) % 2 === 0 ? null : -1)
-          : 0
-        "
-      >
-        R:{{ i + 1 }}/C:{{ j + 1 }}
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div tabindex="0">After</div>
-```
+<code-pen
+  example="examples/roving-gridcell.vue"
+  title="Roving behaviour with role='grid'"
+  desc="Inside the trap you can navigate with ArrowKeys and with Home / End.\nTo exit the trap use Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nA roving trap remembers the last focused element inside."
+>
+  <<< @/examples/roving-gridcell.vue{9,11,29,31-37,40,45,60-61,64-66}
+</code-pen>
