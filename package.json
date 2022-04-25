@@ -46,6 +46,7 @@
       "require": "./dist/index.umd.js",
       "import": "./dist/index.es.js"
     },
+    "./styles/css": "./dist/styles/index.css",
     "./styles": "./dist/styles/index.sass",
     "./types": "./dist/types/index.d.ts"
   },
