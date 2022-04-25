@@ -58,6 +58,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+button
+  font-size: 16px
+  padding: .5em 1em
+
 legend
   position: absolute
   inset-inline-start: 1px
