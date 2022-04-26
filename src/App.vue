@@ -401,7 +401,7 @@ const rtl = ref(false);
 
 <style lang="sass">
 html
-  scroll-padding: 4em
+  scroll-padding: 40% 1em 1em 1em
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
