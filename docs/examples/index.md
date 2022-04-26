@@ -32,6 +32,8 @@ Focuses the first child element that matches `autofocusSelector` or (if no such 
 
 Is only triggered on mount or on directive activation (changed value from false to true) and only if it not covered by another element.
 
+To check if an element is covered it will be scrolled into view (`el.scrollIntoView()`) so if you have fixed (or sticky) headers or footers set `scroll-padding` on `html` in CSS so that the elements scroll in a visible area.
+
 <interactive-code
   example="examples/autofocus-on-mount.vue"
   title="Autofocus on mount"
