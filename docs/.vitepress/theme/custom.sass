@@ -1,2 +1,19 @@
 html
   scroll-padding: 40% 1em 1em 1em
+
+h1, h2, h3, h4, h5, h6
+  pointer-events: none
+  position: relative
+
+  .header-anchor
+    pointer-events: all
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+
+  &:focus-within
+    .header-anchor
+      opacity: 1
+      outline: none
