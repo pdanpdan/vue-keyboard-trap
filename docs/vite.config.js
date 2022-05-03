@@ -8,4 +8,11 @@ export default defineConfig({
       '@pdanpdan/vue-keyboard-trap': resolve(__dirname, '../src/exports.js'),
     },
   },
+  css: {
+    preprocessorOptions: {
+      sass: {
+        charset: false,
+      },
+    },
+  },
 });
