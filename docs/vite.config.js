@@ -9,10 +9,24 @@ export default defineConfig({
     },
   },
   css: {
-    preprocessorOptions: {
-      sass: {
-        charset: false,
-      },
+    // preprocessorOptions: {
+    //   sass: {
+    //     charset: false,
+    //   },
+    // },
+    postcss: {
+      plugins: [
+        {
+          postcssPlugin: 'internal:charset-removal',
+          AtRule: {
+            charset: (atRule) => {
+              if (atRule.name === 'charset') {
+                atRule.remove();
+              }
+            },
+          },
+        },
+      ],
     },
   },
 });
