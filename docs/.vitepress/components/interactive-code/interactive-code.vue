@@ -83,7 +83,9 @@ importInteractiveCodeComponent[interactiveCodeSrc]().then((obj) => {
 
 const source = ref(null);
 const importInteractiveCodeSource = import.meta.glob('../../../**/*.vue', { as: 'raw' });
-source.value = importInteractiveCodeSource[interactiveCodeSrc];
+importInteractiveCodeSource[interactiveCodeSrc]().then((text) => {
+  source.value = text;
+});
 const sourceExpanded = ref(props.sourceExpanded === true);
 const sourceToggle = () => {
   sourceExpanded.value = sourceExpanded.value !== true;
