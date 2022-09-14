@@ -41,29 +41,29 @@ export default {
 button
   font-size: 16px
   padding: .5em 1em
-  border: 1px solid var(--vp-c-divider)
+  border: 1px solid var(--vp-c-divider, rgba(60, 60, 60, 0.29))
 
 .test
   position: relative
   padding: 4px 8px
   margin: 24px 8px
-  border: 1px solid var(--vp-c-text-4)
+  border: 1px solid var(--vp-c-text-4, rgba(60, 60, 60, 0.18))
   text-align: center
   font-weight: bold
   font-size: 18px
 
   &[tabindex]
-    border: 1px solid var(--vp-c-text-2)
+    border: 1px solid var(--vp-c-text-4, rgba(60, 60, 60, 0.7))
 
   &[tabindex="-1"]
-    border: 1px dashed var(--vp-c-text-2)
+    border: 1px dashed var(--vp-c-text-4, rgba(60, 60, 60, 0.7))
 
   &[tabindex="-9999"]
-    border: 1px dashed var(--vp-c-text-3)
+    border: 1px dashed var(--vp-c-text-4, rgba(60, 60, 60, 0.33))
 
   &[data-autofocus]
-    box-shadow: 0 0 2px 3px var(--vp-c-text-2)
+    box-shadow: 0 0 2px 3px var(--vp-c-text-4, rgba(60, 60, 60, 0.7))
 
   &:focus
-    background-color: var(--vp-c-bg-mute)
+    background-color: var(--vp-c-bg-mute, #f1f1f1)
 </style>

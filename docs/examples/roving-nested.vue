@@ -56,22 +56,22 @@ export default {
   position: relative
   padding: 4px 8px
   margin: 24px 8px
-  border: 1px solid var(--vp-c-text-4)
+  border: 1px solid var(--vp-c-text-4, rgba(60, 60, 60, 0.18))
   text-align: center
   font-weight: bold
   font-size: 18px
 
   &[tabindex]
-    border: 1px solid var(--vp-c-text-2)
+    border: 1px solid var(--vp-c-text-4, rgba(60, 60, 60, 0.7))
 
   &[tabindex="-1"]
-    border: 1px dashed var(--vp-c-text-2)
+    border: 1px dashed var(--vp-c-text-4, rgba(60, 60, 60, 0.7))
 
   &[tabindex="-9999"]
-    border: 1px dashed var(--vp-c-text-3)
+    border: 1px dashed var(--vp-c-text-4, rgba(60, 60, 60, 0.33))
 
   &:focus
-    background-color: var(--vp-c-bg-mute)
+    background-color: var(--vp-c-bg-mute, #f1f1f1)
 
 .row
   display: flex
