@@ -76,15 +76,15 @@
     "vue": "^3.0.0 || ^2.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "eslint": "^8.17.0",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "eslint": "^8.23.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-vue": "^9.1.0",
-    "sass": "^1.52.2",
-    "vite": "^2.9.10",
-    "vitepress": "^0.22.4",
-    "vue": "^3.2.37"
+    "eslint-plugin-vue": "^9.4.0",
+    "sass": "^1.54.9",
+    "vite": "^3.1.0",
+    "vitepress": "1.0.0-alpha.14",
+    "vue": "^3.2.39"
   },
   "engines": {
     "node": ">= 12.22.0 || >= 14.19.0 || >= 16.14.0",

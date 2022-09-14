@@ -1,39 +1,39 @@
 $interactiveCodeBorderRadius: 6px !default
 
 .interactive-code
-  color: var(--c-text)
-  background-color: var(--c-bg)
-  border: 1px solid var(--c-divider)
+  color: var(--vp-c-text-code)
+  background-color: var(--vp-c-bg)
+  border: 1px solid var(--vp-c-divider)
   border-radius: var(--interactive-code-border-radius, $interactiveCodeBorderRadius)
   margin-block: 16px
   overflow: hidden
 
   &__header
-    background-color: var(--c-bg-accent)
-    border-bottom: 1px dashed var(--c-divider)
+    background-color: var(--vp-c-bg-alt)
+    border-bottom: 1px dashed var(--vp-c-divider)
     padding: .5em 1em
 
     &-title
       font-size: 1.1em
       font-weight: bold
-      color: var(--c-text)
+      color: var(--vp-c-text-1)
 
     &-desc
       font-size: .9em
       font-weight: light
-      color: var(--c-text-light)
+      color: var(--vp-c-text-2)
 
   &__component
     padding: 1em
 
   &__source
     > div
-      margin: 0
-      border-radius: 0
+      margin: 0 !important
+      border-radius: 0 !important
 
   &__actions
-    background-color: var(--c-bg-accent)
-    border-top: 1px dashed var(--c-divider)
+    background-color: var(--vp-c-bg-alt)
+    border-top: 1px dashed var(--vp-c-divider)
     padding: .25em
     display: flex
     flex-wrap: wrap
@@ -48,16 +48,16 @@ $interactiveCodeBorderRadius: 6px !default
       display: inline-block
       align-self: stretch
       width: 1px
-      background-color: var(--c-divider-light)
+      background-color: var(--vp-c-divider-light)
       margin-inline: .5em
       margin-block: .25em
 
     > button
       cursor: pointer
-      color: var(--c-brand)
-      background-color: var(--c-bg)
-      border: 1px solid var(--c-divider-light)
-      padding: .4em .6em .3em
+      color: var(--vp-c-brand)
+      background-color: var(--vp-c-bg)
+      border: 1px solid var(--vp-c-divider-light)
+      padding: .3em .6em
       border-radius: .2em
       outline: none
       font-size: 1em
@@ -65,4 +65,4 @@ $interactiveCodeBorderRadius: 6px !default
       &:active,
       &:focus-visible,
       &:hover
-        border-color: var(--c-brand)
+        border-color: var(--vp-c-brand)

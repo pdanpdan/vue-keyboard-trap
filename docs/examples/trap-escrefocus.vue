@@ -55,27 +55,27 @@ legend
   inset-block-end: 1px
   font-weight: bold
   font-variant: small-caps
-  color: #36f
+  color: var(--vp-c-text-code)
   pointer-events: none
 
 .test
   position: relative
   padding: 4px 8px
   margin: 24px 8px
-  border: 1px solid #ccc
+  border: 1px solid var(--vp-c-text-4)
   text-align: center
   font-weight: bold
   font-size: 18px
 
   &[tabindex]
-    border: 1px solid #333
+    border: 1px solid var(--vp-c-text-2)
 
   &[tabindex="-1"]
-    border: 1px dashed #333
+    border: 1px dashed var(--vp-c-text-2)
 
   &[tabindex="-9999"]
-    border: 1px dashed #c33
+    border: 1px dashed var(--vp-c-text-3)
 
   &:focus
-    background-color: #6e66
+    background-color: var(--vp-c-bg-mute)
 </style>

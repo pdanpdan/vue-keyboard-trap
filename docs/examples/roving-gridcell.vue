@@ -72,22 +72,22 @@ export default {
   position: relative
   padding: 4px 8px
   margin: 24px 8px
-  border: 1px solid #ccc
+  border: 1px solid var(--vp-c-text-4)
   text-align: center
   font-weight: bold
   font-size: 18px
 
   &[tabindex]
-    border: 1px solid #333
+    border: 1px solid var(--vp-c-text-2)
 
   &[tabindex="-1"]
-    border: 1px dashed #333
+    border: 1px dashed var(--vp-c-text-2)
 
   &[tabindex="-9999"]
-    border: 1px dashed #c33
+    border: 1px dashed var(--vp-c-text-3)
 
   &:focus
-    background-color: #6e66
+    background-color: var(--vp-c-bg-mute)
 
 table.calendar
   margin: 32px 16px
@@ -95,8 +95,8 @@ table.calendar
 
   [role="columnheader"],
   [role="rowheader"]
-    color: #eee
-    background-color: #333
+    color: var(--vp-c-text-2)
+    background-color: var(--vp-c-text-inverse-2)
     font-style: italic
 
   [role="rowheader"]
@@ -108,13 +108,14 @@ table.calendar
       padding: 12px
 
     td
-      border: 1px solid #ccc
+      border: 1px solid var(--vp-c-text-4)
       text-align: center
-      color: #ccc
+      color: var(--vp-c-text-4)
+      background-color: var(--vp-c-text-inverse-1)
 
       &[tabindex]:not([tabindex^="-"])
-        color: #000
+        color: var(--vp-c-text-1)
 
       &:focus
-        background-color: #6e66
+        background-color: var(--vp-c-bg-mute)
 </style>

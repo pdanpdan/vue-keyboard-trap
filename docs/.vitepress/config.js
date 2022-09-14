@@ -8,18 +8,23 @@ export default defineConfig({
   title: 'Vue Keyboard Trap',
   description: 'Vue3 and Vue2 directive for keyboard navigation - roving movement and trapping inside container',
   themeConfig: {
-    editLinks: true,
-    editLinkText: 'Edit on GitHub',
-    repo: 'pdanpdan/vue-keyboard-trap',
-    docsDir: 'docs',
-    docsBranch: 'main',
     logo: '/logo.png',
-    lastUpdated: true,
     nav: [
       { text: 'Guide', link: '/guide/' },
       { text: 'Examples', link: '/examples/' },
       { text: 'Links', link: '/links/' },
     ],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/pdanpdan/vue-keyboard-trap' },
+    ],
+    editLink: {
+      pattern: 'https://github.com/pdanpdan/vue-keyboard-trap/edit/main/docs/:path',
+    },
+    footer: {
+      message: 'MIT Licensed',
+      copyright: 'Copyright © 2022-present Dan Popescu',
+    },
+    outline: [2, 3],
   },
   markdown: {
     lineNumbers: true,
