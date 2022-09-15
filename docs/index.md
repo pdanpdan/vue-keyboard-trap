@@ -1,8 +1,12 @@
 ---
 layout: home
 
+title: Vue Keyboard Trap
+titleTemplate: Tab Keyboard Navigation Helper for Vue
+
 hero:
-  text: Vue Keyboard Trap
+  name: Vue Keyboard Trap
+  text: Tab Keyboard Navigation Helper for Vue
   tagline: Vue3 and Vue2 directive for keyboard navigation - roving movement and trapping inside container
   image:
     src: /logo.png
@@ -11,6 +15,9 @@ hero:
     - theme: brand
       text: Get Started
       link: /guide/
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/pdanpdan/vue-keyboard-trap
 
 features:
   - title: Versatile
