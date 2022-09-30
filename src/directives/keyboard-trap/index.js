@@ -5,7 +5,7 @@ import directiveFactory from './directive';
 const { markRaw, version } = Vue;
 const vue3MarkRaw = version.indexOf('2.') === 0 ? undefined : markRaw;
 
-const directivePlugin = {
+export const VueKeyboardTrapDirectivePlugin = {
   install(app, options) {
     const { name, directive } = directiveFactory(options, vue3MarkRaw);
 
@@ -13,11 +13,6 @@ const directivePlugin = {
   },
 };
 
-export default directivePlugin;
+export const VueKeyboardTrapDirectiveFactory = (options) => directiveFactory(options, vue3MarkRaw);
 
-const VueKeyboardTrapDirectiveFactory = (options) => directiveFactory(options, vue3MarkRaw);
-
-export {
-  directivePlugin as VueKeyboardTrapDirectivePlugin,
-  VueKeyboardTrapDirectiveFactory,
-};
+export default VueKeyboardTrapDirectivePlugin;
