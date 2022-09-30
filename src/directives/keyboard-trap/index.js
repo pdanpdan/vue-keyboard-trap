@@ -3,10 +3,11 @@ import * as Vue from 'vue';
 import directiveFactory from './directive';
 
 const { markRaw, version } = Vue;
+const vue3MarkRaw = version.indexOf('2.') === 0 ? undefined : markRaw;
 
 const directivePlugin = {
   install(app, options) {
-    const { name, directive } = directiveFactory(options, markRaw);
+    const { name, directive } = directiveFactory(options, vue3MarkRaw);
 
     app.directive(name, directive);
   },
@@ -14,11 +15,7 @@ const directivePlugin = {
 
 export default directivePlugin;
 
-function isVue2() {
-  return version?.startsWith('2.');
-}
-
-const VueKeyboardTrapDirectiveFactory = (options) => directiveFactory(options, (isVue2()) ? undefined : markRaw);
+const VueKeyboardTrapDirectiveFactory = (options) => directiveFactory(options, vue3MarkRaw);
 
 export {
   directivePlugin as VueKeyboardTrapDirectivePlugin,
