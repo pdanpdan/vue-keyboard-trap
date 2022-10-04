@@ -21,11 +21,11 @@ Works both for Vue3 and Vue2.
 
 ## Install
 
-```bash
+```sh
 yarn add @pdanpdan/vue-keyboard-trap
 ```
 or
-```bash
+```sh
 npm install @pdanpdan/vue-keyboard-trap
 ```
 
@@ -38,7 +38,7 @@ npm install @pdanpdan/vue-keyboard-trap
 ### Usage as ESM
 
 Use as plugin on Vue3
-```javascript{2,7-9}
+```javascript
 import { createApp } from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
 import App from './App.vue';
@@ -53,7 +53,7 @@ app.mount('#app');
 ```
 
 or as plugin on Vue2
-```javascript{2,5-7}
+```javascript
 import Vue from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
 import App from './App.vue';
@@ -68,7 +68,7 @@ new Vue({
 ```
 
 or included in specific components (Vue3 script)
-```html{3,5-7,10-12}
+```html
 <script>
   import { defineComponent } from 'vue';
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
@@ -86,7 +86,7 @@ or included in specific components (Vue3 script)
 ```
 
 or included in specific components (Vue3 script setup)
-```html{2,4-6}
+```html
 <script setup>
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
@@ -97,7 +97,7 @@ or included in specific components (Vue3 script setup)
 ```
 
 or included in specific components (Vue2)
-```html{2,4-6,9-11}
+```html
 <script>
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
 
@@ -144,7 +144,7 @@ Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
 
 Use as plugin on Vue3
-```javascript{2,6-8}
+```javascript
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
 
@@ -158,7 +158,7 @@ app.mount('#app');
 ```
 
 or as plugin on Vue2
-```javascript{1,3-5}
+```javascript
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
 
 Vue.use(VueKeyboardTrapDirectivePlugin, {
@@ -171,7 +171,7 @@ new Vue({
 ```
 
 or as directive on Vue3
-```javascript{2,6-8,10}
+```javascript
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
 
@@ -187,7 +187,7 @@ app.mount('#app');
 ```
 
 or as directive on Vue2
-```javascript{1,3-5,7}
+```javascript
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
 
 const { name, directive } = VueKeyboardTrapDirectiveFactory({
@@ -367,25 +367,25 @@ In the default style the hint is positioned on the top-right corner of the trap 
 
 ### Install the dependencies
 
-```bash
+```sh
 yarn
 ```
 
 ### Start development mode (hot-code reloading, error reporting, etc.)
 
-```bash
+```sh
 yarn dev
 ```
 
 ### Lint the files
 
-```bash
+```sh
 yarn lint
 ```
 
 ### Build for production
 
-```bash
+```sh
 yarn build
 ```
 
