@@ -66,3 +66,29 @@ $interactiveCodeBorderRadius: 6px !default
       &:focus-visible,
       &:hover
         border-color: var(--vp-c-brand)
+
+  &__action-copy
+    width: 36px
+    height: 36px
+    background-image: var(--vp-icon-copy)
+    background-position: 50%
+    background-size: 20px
+    background-repeat: no-repeat
+
+    &--copied
+      background-image: var(--vp-icon-copied)
+
+      &::before
+        content: 'Copied'
+        display: inline-block
+        position: relative
+        left: -5.6em
+        top: -.33em
+
+        color: var(--vp-c-text-2)
+        background-color: var(--vp-c-bg)
+        border: 1px solid var(--vp-c-divider-light)
+        padding: .3em .6em
+        border-radius: .2em
+        outline: none
+        font-size: 1em

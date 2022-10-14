@@ -17,9 +17,15 @@
 
         <span class="spacer" />
 
-        <button @click="copyCode">{{ copyCodeDone === true ? 'Copied!' : 'Copy code' }}</button>
+        <button
+          v-show="sourceExpanded !== true"
+          class="interactive-code__action-copy"
+          :class="{ 'interactive-code__action-copy--copied': copyCodeDone }"
+          :title="copyCodeDone === true ? 'Copied' : 'Copy code'"
+          @click="copyCode"
+        />
 
-        <span class="separator" />
+        <span v-show="sourceExpanded !== true" class="separator" />
 
         <button @click="sourceToggle">&lt;/&gt;</button>
       </div>

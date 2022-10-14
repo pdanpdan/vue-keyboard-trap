@@ -61,6 +61,7 @@ export default {
 button
   font-size: 16px
   padding: .5em 1em
+  border: 1px solid var(--vp-c-divider, rgba(60, 60, 60, 0.29))
 
 legend
   position: absolute
