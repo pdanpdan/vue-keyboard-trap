@@ -54,22 +54,24 @@ $interactiveCodeBorderRadius: 6px !default
 
     > button
       cursor: pointer
-      color: var(--vp-c-brand)
+      color: var(--vp-c-text-2)
       background-color: var(--vp-c-bg)
       border: 1px solid var(--vp-c-divider-light)
       padding: .3em .6em
+      min-height: 36px
       border-radius: .2em
       outline: none
       font-size: 1em
+      font-weight: 500
 
       &:active,
       &:focus-visible,
       &:hover
-        border-color: var(--vp-c-brand)
+        background-color: var(--vp-c-bg-soft)
 
   &__action-copy
+    position: relative
     width: 36px
-    height: 36px
     background-image: var(--vp-icon-copy)
     background-position: 50%
     background-size: 20px
@@ -80,15 +82,11 @@ $interactiveCodeBorderRadius: 6px !default
 
       &::before
         content: 'Copied'
-        display: inline-block
-        position: relative
-        left: -5.6em
-        top: -.33em
-
-        color: var(--vp-c-text-2)
+        position: absolute
+        top: -1px
+        bottom: -1px
+        left: -5em
         background-color: var(--vp-c-bg)
         border: 1px solid var(--vp-c-divider-light)
         padding: .3em .6em
         border-radius: .2em
-        outline: none
-        font-size: 1em
