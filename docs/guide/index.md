@@ -221,13 +221,20 @@ If you want you can access the SASS cosmetic style (user hints) from [https://cd
 :focus,
 a[href]:not([tabindex^="-"]),
 area[href]:not([tabindex^="-"]),
-input:not([disabled]):not([tabindex^="-"]),
-select:not([disabled]):not([tabindex^="-"]),
-textarea:not([disabled]):not([tabindex^="-"]),
-button:not([disabled]):not([tabindex^="-"]),
+video[controls]:not([tabindex^="-"]),
+audio[controls]:not([tabindex^="-"]),
 iframe:not([tabindex^="-"]),
-[tabindex]:not([tabindex^="-"]),
-[contenteditable]:not([tabindex^="-"]):not([contenteditable="false"]),
+[tabindex]:not(slot):not([tabindex^="-"]),
+[contenteditable]:not([contenteditable="false"]):not([tabindex^="-"]),
+details > summary:first-of-type:not([tabindex^="-"]),
+input:not([type="hidden"]):not(fieldset[disabled] input):not([disabled]):not([tabindex^="-"]),
+select:not(fieldset[disabled] input):not([disabled]):not([tabindex^="-"]),
+textarea:not(fieldset[disabled] input):not([disabled]):not([tabindex^="-"]),
+button:not(fieldset[disabled] input):not([disabled]):not([tabindex^="-"]),
+fieldset[disabled]:not(fieldset[disabled] fieldset) > legend input:not([type="hidden"]):not([disabled]):not([tabindex^="-"]),
+fieldset[disabled]:not(fieldset[disabled] fieldset) > legend select:not([disabled]):not([tabindex^="-"]),
+fieldset[disabled]:not(fieldset[disabled] fieldset) > legend textarea:not([disabled]):not([tabindex^="-"]),
+fieldset[disabled]:not(fieldset[disabled] fieldset) > legend button:not([disabled]):not([tabindex^="-"]),
 [class*="focusable"]:not([disabled]):not([tabindex^="-"])
 ```
 
@@ -400,7 +407,7 @@ yarn build
 ## Author
 
 * Name: Dan Popescu (PDan)
-* Email: <pdan.popescu@gmail.com>
+* Email: [pdan.popescu@gmail.com](mailto:pdan.popescu@gmail.com)
 * Website: https://github.com/pdanpdan/
 * Github: [@pdanpdan](https://github.com/pdanpdan)
 

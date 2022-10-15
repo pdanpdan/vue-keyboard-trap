@@ -12,19 +12,37 @@ function createConfig(options) {
   const config = {
     name: 'kbd-trap',
 
-    focusableSelector: [
-      ':focus',
-      'a[href]:not([tabindex^="-"])',
-      'area[href]:not([tabindex^="-"])',
-      'input:not([disabled]):not([tabindex^="-"])',
-      'select:not([disabled]):not([tabindex^="-"])',
-      'textarea:not([disabled]):not([tabindex^="-"])',
-      'button:not([disabled]):not([tabindex^="-"])',
-      'iframe:not([tabindex^="-"])',
-      '[tabindex]:not([tabindex^="-"])',
-      '[contenteditable]:not([tabindex^="-"]):not([contenteditable="false"])',
-      '[class*="focusable"]:not([disabled]):not([tabindex^="-"])',
-    ].join(','),
+    focusableSelector: [':focus']
+      .concat(
+        [
+          'a[href]',
+          'area[href]',
+          'audio[controls]',
+          'video[controls]',
+          'iframe',
+          '[tabindex]:not(slot)',
+          '[contenteditable]:not([contenteditable="false"])',
+          'details > summary:first-of-type',
+        ].map((s) => `${ s }:not([tabindex^="-"])`),
+      )
+      .concat(
+        [
+          'input:not([type="hidden"]):not(fieldset[disabled] input)',
+          'select:not(fieldset[disabled] select)',
+          'textarea:not(fieldset[disabled] textarea)',
+          'button:not(fieldset[disabled] button)',
+          '[class*="focusable"]',
+        ].map((s) => `${ s }:not([disabled]):not([tabindex^="-"])`),
+      )
+      .concat(
+        [
+          'input:not([type="hidden"])',
+          'select',
+          'textarea',
+          'button',
+        ].map((s) => `fieldset[disabled]:not(fieldset[disabled] fieldset) > legend ${ s }:not([disabled]):not([tabindex^="-"])`),
+      )
+      .join(','),
 
     rovingSkipSelector: [
       'input:not([disabled]):not([type="button"]):not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="radio"]):not([type="reset"]):not([type="submit"])',
@@ -41,9 +59,9 @@ function createConfig(options) {
     ].join(''),
 
     autofocusSelector: [
-      '[autofocus]:not([disabled]):not([autofocus="false"])',
-      '[data-autofocus]:not([disabled]):not([data-autofocus="false"])',
-    ].join(','),
+      '[autofocus]:not([autofocus="false"])',
+      '[data-autofocus]:not([data-autofocus="false"])',
+    ].map((s) => `${ s }:not([disabled])`).join(','),
 
     trapTabIndex: -9999,
 

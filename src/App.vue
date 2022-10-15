@@ -321,19 +321,19 @@
       </div>
 
       <div class="test">
-        <input type="button" value="Input type=&quot;button&quot; 19.3" />
+        <input type="button" value="Input type='button' 19.3" />
       </div>
 
       <div class="test">
-        <input type="submit" value="Input type=&quot;submit&quot; 19.4" />
+        <input type="submit" value="Input type='submit' 19.4" />
       </div>
 
       <div class="test">
-        <input type="reset" value="Input type=&quot;reset&quot; 19.5" />
+        <input type="reset" value="Input type='reset' 19.5" />
       </div>
 
       <div class="test">
-        <input type="file" placeholder="Input type=&quot;file&quot; 19.6" />
+        <input type="file" placeholder="Input type='file' 19.6" />
       </div>
 
       <div class="test" v-kbd-trap.roving.horizontal>
@@ -346,6 +346,23 @@
         <label tabindex="-1"><input type="radio" name="radio" value="1" /> Radio 19.8.1</label>
         <label tabindex="-1"><input type="radio" name="radio" value="2" /> Radio 19.8.2</label>
         <label tabindex="-1"><input type="radio" name="radio" value="3" /> Radio 19.8.3</label>
+      </div>
+
+      <div class="test">
+        <video
+          class="test"
+          style="width: 600px; max-width: 80vw"
+          src="https://filesamples.com/samples/video/mp4/sample_960x540.mp4"
+          controls
+        />
+      </div>
+
+      <div class="test">
+        <audio
+          class="test"
+          src="https://filesamples.com/samples/audio/mp3/sample3.mp3"
+          controls
+        />
       </div>
 
       <div class="test" style="padding-bottom: 1.5em">
@@ -380,7 +397,35 @@
         </select>
       </div>
 
-      <div class="test" tabindex="0">19.13</div>
+      <fieldset class="test" style="padding-bottom: 1.5em">
+        <legend>Tab / Shift + Tab [fieldset]</legend>
+
+        <textarea v-model="text" placeholder="Input field in fieldset 19.13"></textarea>
+      </fieldset>
+
+      <fieldset class="test" style="padding-bottom: 1.5em" disabled>
+        <legend>Tab / Shift + Tab [disabled fieldset]</legend>
+
+        <textarea v-model="text" placeholder="Input field in disabled fieldset 19.14"></textarea>
+      </fieldset>
+
+      <fieldset class="test" style="padding-bottom: 1.5em" disabled>
+        <legend>
+          Tab / Shift + Tab [disabled fieldset]
+          <input v-model="text" placeholder="Input field in legend in disabled fieldset 19.15.1" />
+        </legend>
+
+        <fieldset class="test" style="padding-bottom: 1.5em">
+          <legend>
+            Tab / Shift + Tab [fieldset in disabled fieldset]
+            <input v-model="text" placeholder="Input field in legend in fieldset in disabled fieldset 19.15.2" />
+          </legend>
+
+          <textarea v-model="text" placeholder="Input field in fieldset in disabled fieldset 19.15.3"></textarea>
+        </fieldset>
+      </fieldset>
+
+      <div class="test" tabindex="0">19.16</div>
     </div>
 
     <div class="test" tabindex="0">20</div>
@@ -401,7 +446,8 @@ const rtl = ref(false);
 
 <style lang="sass">
 html
-  scroll-padding: 40% 1em 1em 1em
+  padding-top: 4em
+  scroll-padding: 4em 1em 1em 1em
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
@@ -418,7 +464,7 @@ html
   opacity: .1
 
 .global-settings
-  position: sticky
+  position: fixed
   top: 8px
   left: 8px
   right: 8px
