@@ -6,29 +6,33 @@ export function visibleFocusCheckFn(el, scrolled = false) {
   const { left, top } = el.getBoundingClientRect();
   const elAtPos = document.elementFromPoint(left, top);
 
-  if (elAtPos === null && scrolled !== true && typeof el.scrollIntoView === 'function') {
-    const scrollPos = [];
-    let parent = el.parentElement;
-
-    while (parent !== null) {
-      scrollPos.push([parent, parent.scrollLeft, parent.scrollTop]);
-      parent = parent.parentElement;
-    }
-
-    el.scrollIntoView();
-
-    const visible = visibleFocusCheckFn(el, true);
-
-    for (let i = scrollPos.length - 1; i >= 0; i -= 1) {
-      const [scrollEl, scrollLeft, scrollTop] = scrollPos[i];
-      scrollEl.scrollLeft = scrollLeft;
-      scrollEl.scrollTop = scrollTop;
-    }
-
-    return visible;
+  if (el.contains(elAtPos) === true) {
+    return true;
   }
 
-  return elAtPos === null || el.contains(elAtPos) === true;
+  if (scrolled === true || typeof el.scrollIntoView !== 'function') {
+    return elAtPos === null;
+  }
+
+  const scrollPos = [];
+  let parent = el.parentElement;
+
+  while (parent !== null) {
+    scrollPos.push([parent, parent.scrollLeft, parent.scrollTop]);
+    parent = parent.parentElement;
+  }
+
+  el.scrollIntoView();
+
+  const visible = visibleFocusCheckFn(el, true);
+
+  for (let i = scrollPos.length - 1; i >= 0; i -= 1) {
+    const [scrollEl, scrollLeft, scrollTop] = scrollPos[i];
+    scrollEl.scrollLeft = scrollLeft;
+    scrollEl.scrollTop = scrollTop;
+  }
+
+  return visible;
 }
 
 export function focus(el, checkFn = defaultFocusCheckFn) {
