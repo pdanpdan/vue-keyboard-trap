@@ -5,6 +5,7 @@ const base = '/vue-keyboard-trap/';
 export default defineConfig({
   lang: 'en',
   base,
+  appearance: 'dark',
   title: 'Vue Keyboard Trap',
   description: 'Vue3 and Vue2 directive for keyboard navigation - roving movement and trapping inside container',
   themeConfig: {
