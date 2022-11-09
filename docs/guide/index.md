@@ -345,7 +345,7 @@ The directive checks the closest parent DOM Element of the active element that h
 
 If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse (according to document order of the focusable elements) but consistent to the way the elements are ordered on screen.
 
-## CSS (visual hints for users)
+## CSS - visual hints for users
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
