@@ -6,19 +6,8 @@ import { SearchPlugin } from 'vitepress-plugin-search';
 export default defineConfig({
   plugins: [
     SearchPlugin({
-      preset: 'match',
+      preset: 'score',
       tokenize: 'full',
-      cache: true,
-      context: true,
-      language: 'en',
-      stemmer: 'en',
-      filter: 'en',
-      matcher: 'en',
-      worker: true,
-      limit: 30,
-      suggest: true,
-      enrich: true,
-      bool: 'and',
     }),
   ],
   resolve: {
