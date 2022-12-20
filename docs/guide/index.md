@@ -25,13 +25,17 @@ Works both for Vue3 and Vue2.
 
 ## Install
 
-```bash
+::: code-group
+
+```bash [yarn]
 yarn add @pdanpdan/vue-keyboard-trap
 ```
-or
-```bash
+
+```bash [npm]
 npm install @pdanpdan/vue-keyboard-trap
 ```
+
+:::
 
 ## Playground
 
@@ -41,8 +45,11 @@ npm install @pdanpdan/vue-keyboard-trap
 
 ### Usage as ESM
 
-Use as plugin on Vue3
-```javascript{2,7-9}
+#### As plugin
+
+::: code-group
+
+```javascript{2,7-9} [Vue3]
 import { createApp } from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
 import App from './App.vue';
@@ -56,8 +63,7 @@ app.use(VueKeyboardTrapDirectivePlugin, { // [!code focus:3]
 app.mount('#app');
 ```
 
-or as plugin on Vue2
-```javascript{2,5-7}
+```javascript{2,5-7} [Vue2]
 import Vue from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
 import App from './App.vue';
@@ -71,8 +77,13 @@ new Vue({
 });
 ```
 
-or included in specific components (Vue3 script)
-```html{3,5-7,10-12}
+:::
+
+#### Include in specific components
+
+::: code-group
+
+```html{3,5-7,10-12} [Vue3 script]
 <script>
   import { defineComponent } from 'vue';
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
@@ -89,8 +100,7 @@ or included in specific components (Vue3 script)
 </script>
 ```
 
-or included in specific components (Vue3 script setup)
-```html{2,4-6}
+```html{2,4-6} [Vue3 script setup]
 <script setup>
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
 
@@ -100,8 +110,7 @@ or included in specific components (Vue3 script setup)
 </script>
 ```
 
-or included in specific components (Vue2)
-```html{2,4-6,9-11}
+```html{2,4-6,9-11} [Vue2]
 <script>
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
 
@@ -117,29 +126,35 @@ or included in specific components (Vue2)
 </script>
 ```
 
+:::
+
 The directive does not require any CSS styles to work, but for cosmetic purposes (as user hints) some example styles are provided in `dist/styles/index.sass`.
 
-in Javascript
-```javascript
+::: code-group
+
+```javascript [Javascript]
 import '@pdanpdan/vue-keyboard-trap/styles';
 ```
 
-or in SASS
-```sass
+```sass [SASS]
 @import '@pdanpdan/vue-keyboard-trap/styles'
 ```
 
-or (if the `/styles` export is not used by your bundler)
+:::
 
-in Javascript
-```javascript
+If the `/styles` export is not used by your bundler:
+
+::: code-group
+
+```javascript [Javascript]
 import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
 ```
 
-or in SASS
-```sass
+```sass [SASS]
 @import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass'
 ```
+
+:::
 
 ### Usage as UMD
 
@@ -147,8 +162,11 @@ Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap
 
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
 
-Use as plugin on Vue3
-```javascript{2,6-8}
+#### As plugin
+
+::: code-group
+
+```javascript{2,6-8} [Vue3]
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap; // [!code focus]
 
@@ -161,8 +179,7 @@ app.use(VueKeyboardTrapDirectivePlugin, { // [!code focus:3]
 app.mount('#app');
 ```
 
-or as plugin on Vue2
-```javascript{1,3-5}
+```javascript{1,3-5} [Vue2]
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap; // [!code focus]
 
 Vue.use(VueKeyboardTrapDirectivePlugin, { // [!code focus:3]
@@ -174,8 +191,12 @@ new Vue({
 });
 ```
 
-or as directive on Vue3
-```javascript{2,6-8,10}
+:::
+
+#### As directive
+
+::: code-group
+```javascript{2,6-8,10} [Vue3]
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap; // [!code focus]
 
@@ -190,8 +211,7 @@ app.directive(name, directive); // [!code focus]
 app.mount('#app');
 ```
 
-or as directive on Vue2
-```javascript{1,3-5,7}
+```javascript{1,3-5,7} [Vue2]
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap; // [!code focus]
 
 const { name, directive } = VueKeyboardTrapDirectiveFactory({ // [!code focus:3]
@@ -200,6 +220,8 @@ const { name, directive } = VueKeyboardTrapDirectiveFactory({ // [!code focus:3]
 
 Vue.directive(name, directive); // [!code focus]
 ```
+
+:::
 
 If you want you can access the SASS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass).
 
