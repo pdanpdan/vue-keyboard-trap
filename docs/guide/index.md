@@ -27,11 +27,11 @@ Works both for Vue3 and Vue2.
 
 ::: code-group
 
-```bash [yarn]
+```bash [yarn] :no-line-numbers
 yarn add @pdanpdan/vue-keyboard-trap
 ```
 
-```bash [npm]
+```bash [npm] :no-line-numbers
 npm install @pdanpdan/vue-keyboard-trap
 ```
 
@@ -132,11 +132,11 @@ The directive does not require any CSS styles to work, but for cosmetic purposes
 
 ::: code-group
 
-```javascript [Javascript]
+```javascript [Javascript] :no-line-numbers
 import '@pdanpdan/vue-keyboard-trap/styles';
 ```
 
-```sass [SASS]
+```sass [SASS] :no-line-numbers
 @import '@pdanpdan/vue-keyboard-trap/styles'
 ```
 
@@ -146,11 +146,11 @@ If the `/styles` export is not used by your bundler:
 
 ::: code-group
 
-```javascript [Javascript]
+```javascript [Javascript] :no-line-numbers
 import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
 ```
 
-```sass [SASS]
+```sass [SASS] :no-line-numbers
 @import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass'
 ```
 
@@ -400,25 +400,25 @@ In the default style the hint is positioned on the top-right corner of the trap 
 
 ### Install the dependencies
 
-```bash
+```bash :no-line-numbers
 yarn
 ```
 
 ### Start development mode (hot-code reloading, error reporting, etc.)
 
-```bash
+```bash :no-line-numbers
 yarn dev
 ```
 
 ### Lint the files
 
-```bash
+```bash :no-line-numbers
 yarn lint
 ```
 
 ### Build for production
 
-```bash
+```bash :no-line-numbers
 yarn build
 ```
 
