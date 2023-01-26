@@ -87,7 +87,7 @@ export default {
     border: 1px dashed var(--vp-c-text-3, rgba(60, 60, 60, 0.33))
 
   &:focus
-    background-color: var(--vp-c-bg-mute, #f1f1f1)
+    background-color: var(--vp-button-alt-bg, #f1f1f1)
 
 table.calendar
   margin: 32px 16px
@@ -117,5 +117,5 @@ table.calendar
         color: var(--vp-c-text-1)
 
       &:focus
-        background-color: var(--vp-c-bg-mute, #f1f1f1)
+        background-color: var(--vp-button-alt-bg, #f1f1f1)
 </style>

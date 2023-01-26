@@ -55,8 +55,8 @@ $interactiveCodeBorderRadius: 6px !default
     > button
       cursor: pointer
       color: var(--vp-c-text-2)
-      background-color: var(--vp-c-bg)
-      border: 1px solid var(--vp-c-divider-light)
+      background-color: var(--vp-button-alt-bg)
+      border: 1px solid var(--vp-button-alt-border)
       padding: .3em .6em
       min-height: 36px
       border-radius: .2em
@@ -65,9 +65,15 @@ $interactiveCodeBorderRadius: 6px !default
       font-weight: 500
 
       &:active,
-      &:focus-visible,
+      &:focus-visible
+        background-color: var(--vp-button-alt-active-bg)
+        border: 1px solid var(--vp-button-alt-active-border)
+      &:focus-visible
+        outline: auto
+        outline-offset: 1px
       &:hover
-        background-color: var(--vp-c-bg-mute)
+        background-color: var(--vp-button-alt-hover-bg)
+        border: 1px solid var(--vp-button-alt-hover-border)
 
   &__action
     &--icon
@@ -92,7 +98,7 @@ $interactiveCodeBorderRadius: 6px !default
         top: -1px
         bottom: -1px
         left: -5em
-        background-color: var(--vp-c-bg)
-        border: 1px solid var(--vp-c-divider-light)
-        padding: .3em .6em
+        background-color: var(--vp-button-alt-bg)
+        border: 1px solid var(--vp-button-alt-border)
+        padding: .35em .6em
         border-radius: .2em

@@ -65,5 +65,5 @@ button
     box-shadow: 0 0 2px 3px var(--vp-c-text-2, rgba(60, 60, 60, 0.7))
 
   &:focus
-    background-color: var(--vp-c-bg-mute, #f1f1f1)
+    background-color: var(--vp-button-alt-bg, #f1f1f1)
 </style>

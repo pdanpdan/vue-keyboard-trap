@@ -75,16 +75,16 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "eslint": "^8.31.0",
+    "eslint": "^8.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-vue": "^9.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-vue": "^9.9.0",
     "flexsearch": "^0.7.31",
     "markdown-it": "^13.0.1",
     "sass": "^1.57.1",
     "vite": "^4.0.4",
-    "vitepress": "^1.0.0-alpha.35",
-    "vitepress-plugin-search": "^1.0.4-alpha.17",
+    "vitepress": "^1.0.0-alpha.40",
+    "vitepress-plugin-search": "^1.0.4-alpha.18",
     "vue": "^3.2.45"
   },
   "engines": {
