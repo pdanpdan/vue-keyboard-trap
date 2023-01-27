@@ -223,7 +223,11 @@ export default function directiveFactory(options, markRawFn) {
 
           if (code === 'Tab') {
             if (rovingSkipSelector === false && ctx.modifiers.tabinside !== true) {
-              rovingExit = true;
+              rovingExit = el.parentElement.closest(config.datasetNameSelector);
+
+              if (rovingExit !== null) {
+                ev.__vKbdTrap = undefined;
+              }
 
               if (shiftKey === true) {
                 step = 1;
@@ -424,7 +428,7 @@ export default function directiveFactory(options, markRawFn) {
 
           if (focus(focusableList[focusableIndex]) === true) {
             if (rovingExit !== false) {
-              setActiveTrapEl(rovingExit === true ? null : rovingExit);
+              setActiveTrapEl(rovingExit);
             }
 
             return;
