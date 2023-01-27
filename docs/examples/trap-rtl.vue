@@ -3,7 +3,7 @@
   <div>
     <button @click="toggleRtl">{{ rtl === true ? 'RTL - switch to LTR' : 'LTR - switch to RTL' }}</button>
 
-    <div class="test" v-kbd-trap :dir="rtl === true ? 'rtl' : 'ltr'">
+    <div class="test" :dir="rtl === true ? 'rtl' : 'ltr'">
       <div class="test row" dir="rtl" v-kbd-trap>
         <legend>RTL Always</legend>
 
