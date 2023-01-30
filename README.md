@@ -6,7 +6,7 @@
 ![jsdelivr hits](https://img.shields.io/jsdelivr/gh/hm/pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
 ![npm release](https://img.shields.io/npm/v/@pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
 ![npm downloads](https://img.shields.io/npm/dm/@pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
-[![Featured on Openbase](https://badges.openbase.com/js/featured/@pdanpdan/vue-keyboard-trap.svg?token=U3YQZMmWy6J/QT2oYy4qFYmtcOEWBZ1c4xZTbpYg+/U=)](https://openbase.com/js/@pdanpdan/vue-keyboard-trap?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
+[![Featured on Openbase](https://badges.openbase.com/js/featured/@pdanpdan/vue-keyboard-trap.svg?style=for-the-badge&token=U3YQZMmWy6J/QT2oYy4qFYmtcOEWBZ1c4xZTbpYg+/U=)](https://openbase.com/js/@pdanpdan/vue-keyboard-trap?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 
 ## Project description
 
