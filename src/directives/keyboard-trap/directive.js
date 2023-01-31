@@ -37,50 +37,50 @@ import {
 
 let activeTrapEl = null;
 
+function setActiveTrapEl(newEl, config) {
+  if (activeTrapEl !== newEl) {
+    if (newEl !== null) {
+      newEl.dataset[config.datasetNameActive] = '';
+      newEl.__vKbdTrapActiveClean = () => {
+        delete newEl.dataset[config.datasetNameActive];
+        newEl.__vKbdTrapActiveClean = undefined;
+      };
+    }
+
+    if (activeTrapEl !== null && typeof activeTrapEl.__vKbdTrapActiveClean === 'function') {
+      activeTrapEl.__vKbdTrapActiveClean();
+    }
+
+    activeTrapEl = newEl;
+  }
+}
+
+function getCtx(el) {
+  const ctx = (el || {}).__vKbdTrap;
+
+  return ctx === Object(ctx) ? ctx : null;
+}
+
+function setAttributes(el, disable, ctx, config) {
+  if (disable === true) {
+    delete el.dataset[config.datasetName];
+
+    if (el.tabIndex === config.trapTabIndex) {
+      el.removeAttribute('tabindex');
+    }
+  } else {
+    el.dataset[config.datasetName] = Object.keys(ctx.modifiers)
+      .filter((key) => ctx.modifiers[key] === true)
+      .join(' ');
+
+    if (el.tabIndex < 0 && el.getAttribute('tabindex') === null) {
+      el.tabIndex = config.trapTabIndex;
+    }
+  }
+}
+
 export default function directiveFactory(options, markRawFn) {
   const config = createConfig(options);
-
-  const setActiveTrapEl = (newEl) => {
-    if (activeTrapEl !== newEl) {
-      if (newEl !== null) {
-        newEl.dataset[config.datasetNameActive] = '';
-        newEl.__vKbdTrapActiveClean = () => {
-          delete newEl.dataset[config.datasetNameActive];
-          newEl.__vKbdTrapActiveClean = undefined;
-        };
-      }
-
-      if (activeTrapEl !== null && typeof activeTrapEl.__vKbdTrapActiveClean === 'function') {
-        activeTrapEl.__vKbdTrapActiveClean();
-      }
-
-      activeTrapEl = newEl;
-    }
-  };
-
-  const getCtx = (el) => {
-    const ctx = (el || {}).__vKbdTrap;
-
-    return ctx === Object(ctx) ? ctx : null;
-  };
-
-  const setAttributes = (el, disable, ctx) => {
-    if (disable === true) {
-      delete el.dataset[config.datasetName];
-
-      if (el.tabIndex === config.trapTabIndex) {
-        el.removeAttribute('tabindex');
-      }
-    } else {
-      el.dataset[config.datasetName] = Object.keys(ctx.modifiers)
-        .filter((key) => ctx.modifiers[key] === true)
-        .join(' ');
-
-      if (el.tabIndex < 0 && el.getAttribute('tabindex') === null) {
-        el.tabIndex = config.trapTabIndex;
-      }
-    }
-  };
 
   const beforeMount = (el, { value, modifiers }) => {
     const ctx = {
@@ -98,7 +98,7 @@ export default function directiveFactory(options, markRawFn) {
         el.addEventListener('pointerdown', ctx.overwiteFocusTarget, { passive: true });
 
         if (ctx.disable === false) {
-          setAttributes(el, ctx.disable, ctx);
+          setAttributes(el, ctx.disable, ctx, config);
         }
       },
 
@@ -108,7 +108,7 @@ export default function directiveFactory(options, markRawFn) {
         el.removeEventListener('focusin', ctx.activate);
         el.removeEventListener('focusout', ctx.deactivate);
         el.removeEventListener('pointerdown', ctx.overwiteFocusTarget);
-        setAttributes(el, true, ctx);
+        setAttributes(el, true, ctx, config);
       },
 
       activate(ev) {
@@ -127,7 +127,7 @@ export default function directiveFactory(options, markRawFn) {
             || oldFocusedElement.closest(config.datasetNameSelector) !== el
           )
         ) {
-          setActiveTrapEl(el);
+          setActiveTrapEl(el, config);
 
           ctx.relatedFocusTarget = oldFocusedElement;
 
@@ -161,7 +161,7 @@ export default function directiveFactory(options, markRawFn) {
         ) {
           ctx.focusTarget = ev.target;
 
-          setActiveTrapEl(null);
+          setActiveTrapEl(null, config);
         }
       },
 
@@ -180,7 +180,7 @@ export default function directiveFactory(options, markRawFn) {
             ctx.focusTarget = activeElement;
 
             if (ctx.modifiers.escexits === true) {
-              setActiveTrapEl(el.parentElement === null ? null : el.parentElement.closest(config.datasetNameSelector));
+              setActiveTrapEl(el.parentElement === null ? null : el.parentElement.closest(config.datasetNameSelector), config);
 
               const newCtx = getCtx(activeTrapEl);
 
@@ -195,9 +195,9 @@ export default function directiveFactory(options, markRawFn) {
               return;
             }
 
-            setActiveTrapEl(null);
+            setActiveTrapEl(null, config);
           } else {
-            setActiveTrapEl(el);
+            setActiveTrapEl(el, config);
           }
 
           return;
@@ -428,7 +428,7 @@ export default function directiveFactory(options, markRawFn) {
 
           if (focus(focusableList[focusableIndex]) === true) {
             if (rovingExit !== false) {
-              setActiveTrapEl(rovingExit);
+              setActiveTrapEl(rovingExit, config);
             }
 
             return;
@@ -490,11 +490,11 @@ export default function directiveFactory(options, markRawFn) {
 
       ctx.modifiers = modifiers;
 
-      setAttributes(el, disable, ctx);
+      setAttributes(el, disable, ctx, config);
 
       if (activeTrapEl === el) {
         if (disable === true) {
-          setActiveTrapEl(null);
+          setActiveTrapEl(null, config);
         } else {
           el.dataset[config.datasetNameActive] = '';
         }
@@ -510,7 +510,7 @@ export default function directiveFactory(options, markRawFn) {
     } else if (markRawFn !== undefined) {
       beforeMount(el, { value, modifiers });
     } else if (activeTrapEl === el) {
-      setActiveTrapEl(null);
+      setActiveTrapEl(null, config);
     }
   };
 
@@ -522,7 +522,7 @@ export default function directiveFactory(options, markRawFn) {
     }
 
     if (activeTrapEl === el) {
-      setActiveTrapEl(null);
+      setActiveTrapEl(null, config);
     }
   };
 
