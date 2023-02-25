@@ -52,15 +52,18 @@
   },
   "typings": "./dist/types/index.d.ts",
   "types": "./dist/types/index.d.ts",
-  "web-types": "dist/web-types/index.json",
+  "web-types": "./dist/web-types/index.json",
   "files": [
-    "dist",
-    "src"
+    "dist/",
+    "src/"
   ],
   "directories": {
     "doc": "docs"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "*.sass",
+    "*.css"
+  ],
   "scripts": {
     "dev": "vite --config ./vite.dev.config.js",
     "docs:dev": "vitepress dev docs",
