@@ -78,7 +78,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^9.9.0",
@@ -86,7 +86,7 @@
     "markdown-it": "^13.0.1",
     "sass": "^1.58.3",
     "vite": "^4.1.4",
-    "vitepress": "^1.0.0-alpha.47",
+    "vitepress": "^1.0.0-alpha.49",
     "vitepress-plugin-search": "^1.0.4-alpha.19",
     "vue": "^3.2.47"
   },
