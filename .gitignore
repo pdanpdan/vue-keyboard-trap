@@ -94,8 +94,8 @@ dist-ssr
 .vuepress/dist
 
 # vitepress build output
-.vitepress/dist
-.vitepress/cache
+docs/.vitepress/dist
+docs/.vitepress/cache
 
 # Serverless directories
 .serverless/
