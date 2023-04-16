@@ -14,6 +14,10 @@ h1, h2, h3, h4, h5, h6
     bottom: 0
     padding: inherit
 
+    &:before,
+    &:hover
+      text-decoration: none
+
   &:focus-within
     .header-anchor
       opacity: 1
@@ -32,38 +36,3 @@ main img
 @media (min-width: 768px)
   .VPFooter
     margin-top: -113px
-
-.DocSearch-Button
-  .DocSearch-Search-Icon
-    color: var(--vp-c-text-2)
-
-  .DocSearch-Button-Placeholder
-    color: var(--vp-c-text-2)
-
-  .DocSearch-Button-Keys
-    min-width: auto
-    color: var(--vp-c-text-3)
-
-  .DocSearch-Button-Key
-    border: 1px solid var(--vp-c-divider)
-    border-right: none
-
-  .DocSearch-Button-Key + .DocSearch-Button-Key
-    border-right: 1px solid var(--vp-c-divider)
-    border-left: none
-
-  @media (min-width: 768px)
-    border-radius: 8px
-    padding: 0 10px 0 12px
-    height: 40px
-    background-color: var(--vp-c-bg-alt)
-
-    &:hover
-      color: var(--vp-c-text-1)
-      background: var(--vp-c-bg-alt)
-
-      .DocSearch-Button-Placeholder
-        color: var(--vp-c-text-1)
-
-      .DocSearch-Button-Key
-        color: var(--vp-c-text-3)
