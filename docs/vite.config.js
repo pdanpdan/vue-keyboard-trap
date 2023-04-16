@@ -1,15 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-import { SearchPlugin } from 'vitepress-plugin-search';
-
 export default defineConfig({
-  plugins: [
-    SearchPlugin({
-      preset: 'score',
-      tokenize: 'full',
-    }),
-  ],
   resolve: {
     alias: {
       '@pdanpdan/vue-keyboard-trap/styles': resolve(__dirname, '../src/public/styles/index.sass'),

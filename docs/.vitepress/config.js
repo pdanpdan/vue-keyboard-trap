@@ -26,6 +26,9 @@ export default defineConfig({
       copyright: 'Copyright © 2022-present Dan Popescu',
     },
     outline: [2, 3],
+    search: {
+      provider: 'local',
+    },
   },
   markdown: {
     lineNumbers: true,
