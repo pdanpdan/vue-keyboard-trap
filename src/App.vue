@@ -14,6 +14,8 @@
 
     <label><input type="checkbox" v-model="active3" /> Activate set 14 ({{ covered3 === true ? 'covered' : 'uncovered' }})</label>
 
+    <label><input type="checkbox" v-model="activeDialog" /> Show dialog</label>
+
     <a href="https://github.com/pdanpdan/vue-keyboard-trap" target="blank" title="Code, Issues, Discussions for @pdanpdan/vue-keyboard-trap on GitHub">
       <span>GitHub</span>
     </a>
@@ -430,18 +432,39 @@
 
     <div class="test" tabindex="0">20</div>
   </div>
+
+  <dialog ref="dialog" v-kbd-trap="activeDialog">
+    <div style="padding-block-start: 32px">
+      <a href="#1" class="test">Link 1</a>
+      <a href="#2" class="test">Link 2</a>
+      <a href="#3" class="test">Link 3</a>
+    </div>
+    <button type="button" class="test" @click="activeDialog = false">Close</button>
+  </dialog>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const text = ref('text');
 const active1 = ref(false);
 const active2 = ref(false);
 const active3 = ref(false);
+const activeDialog = ref(false);
 const covered3 = ref(true);
 const skipCells = ref(false);
 const rtl = ref(false);
+const dialog = ref(null);
+
+watch(activeDialog, (v) => {
+  if (dialog.value !== null) {
+    if (v === true) {
+      dialog.value.showModal();
+    } else {
+      dialog.value.close();
+    }
+  }
+});
 </script>
 
 <style lang="sass">
@@ -471,10 +494,8 @@ html
   z-index: 2
   pointer-events: none
 
-  &:after
-    top: 100% !important
-    right: unset !important
-    left: 0
+  &[data-v-kbd-trap]:after
+    position: static
 
   > *
     pointer-events: all

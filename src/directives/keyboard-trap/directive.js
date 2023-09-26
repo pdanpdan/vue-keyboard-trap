@@ -505,6 +505,8 @@ export default function directiveFactory(options, markRawFn) {
 
         if (modifiers.autofocus === true) {
           ctx.autofocus();
+        } else if (disable === false && activeTrapEl !== el && el.contains(document.activeElement) === true) {
+          setActiveTrapEl(el, config);
         }
       }
     } else if (markRawFn !== undefined) {
