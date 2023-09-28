@@ -1,39 +1,39 @@
-@charset 'UTF-8'
+@charset "UTF-8"
 
 $ColorVKeyboardTrapEnabled: #c33 !default
 $ColorVKeyboardTrapDisabled: #999 !default
 $ColorVKeyboardTrapBackground: #eeee !default
 
-$TextVKeyboardTrapSeparator: '/' !default
-$TextVKeyboardTrapEnabled: 'Trap' !default
-$TextVKeyboardTrapEsc: 'Esc' !default
-$TextVKeyboardTrapEscRefocus: 'Esc\2949' !default
-$TextVKeyboardTrapEscExits: 'Esc\2923' !default
-$TextVKeyboardTrapTab: 'Tab' !default
-$TextVKeyboardTrapTabExits: 'Tab\21C5' !default
-$TextVKeyboardTrapGrid: '\229E' !default
-$TextVKeyboardTrapArrowsAll: '\2962\2963\2965\2964' !default
-$TextVKeyboardTrapArrowsHorizontal: '\2962\2964' !default
-$TextVKeyboardTrapArrowsVertical: '\2963\2965' !default
+$TextVKeyboardTrapSeparator: "/" !default
+$TextVKeyboardTrapEnabled: "Trap" !default
+$TextVKeyboardTrapEsc: "Esc" !default
+$TextVKeyboardTrapEscRefocus: "Esc\2949" !default
+$TextVKeyboardTrapEscExits: "Esc\2923" !default
+$TextVKeyboardTrapTab: "Tab" !default
+$TextVKeyboardTrapTabExits: "Tab\21C5" !default
+$TextVKeyboardTrapGrid: "\229E" !default
+$TextVKeyboardTrapArrowsAll: "\2962\2963\2965\2964" !default
+$TextVKeyboardTrapArrowsHorizontal: "\2962\2964" !default
+$TextVKeyboardTrapArrowsVertical: "\2963\2965" !default
 
 // :root
 //   --color-v-kbd-trap-enabled: #c33
 //   --color-v-kbd-trap-disabled: #999
 //   --color-v-kbd-trap-background: #eeee
-//   --text-v-kbd-trap-separator: '/'
-//   --text-v-kbd-trap-enabled: 'Trap'
-//   --text-v-kbd-trap-esc: 'Esc'
-//   --text-v-kbd-trap-esc-refocus: 'Esc\2949'
-//   --text-v-kbd-trap-esc-exits: 'Esc\2923'
-//   --text-v-kbd-trap-tab: 'Tab'
-//   --text-v-kbd-trap-tab-exits: 'Tab\21C5'
-//   --text-v-kbd-trap-grid: '\229E'
-//   --text-v-kbd-trap-arrows-all: '\2962\2963\2965\2964'
-//   --text-v-kbd-trap-arrows-horizontal: '\2962\2964'
-//   --text-v-kbd-trap-arrows-vertical: '\2963\2965'
+//   --text-v-kbd-trap-separator: "/"
+//   --text-v-kbd-trap-enabled: "Trap"
+//   --text-v-kbd-trap-esc: "Esc"
+//   --text-v-kbd-trap-esc-refocus: "Esc\2949"
+//   --text-v-kbd-trap-esc-exits: "Esc\2923"
+//   --text-v-kbd-trap-tab: "Tab"
+//   --text-v-kbd-trap-tab-exits: "Tab\21C5"
+//   --text-v-kbd-trap-grid: "\229E"
+//   --text-v-kbd-trap-arrows-all: "\2962\2963\2965\2964"
+//   --text-v-kbd-trap-arrows-horizontal: "\2962\2964"
+//   --text-v-kbd-trap-arrows-vertical: "\2963\2965"
 
 [data-v-kbd-trap]:after
-  content: var(--v-kbd-trap, '') var(--v-kbd-trap-esc, '') var(--v-kbd-trap-tab, '') var(--v-kbd-trap-roving, '')
+  content: var(--v-kbd-trap, "") var(--v-kbd-trap-esc, "") var(--v-kbd-trap-tab, "") var(--v-kbd-trap-roving, "")
   pointer-events: none
   position: absolute
   top: 2px
@@ -46,35 +46,36 @@ $TextVKeyboardTrapArrowsVertical: '\2963\2965' !default
   border-radius: 2px
   z-index: 1
 [data-v-kbd-trap]
-  --v-kbd-trap: var(--text-v-kbd-trap-enabled, '#{$TextVKeyboardTrapEnabled}')
-  --v-kbd-trap-esc: ''
-  --v-kbd-trap-tab: ''
-  --v-kbd-trap-roving: ''
+  --v-kbd-trap: var(--text-v-kbd-trap-enabled, "#{$TextVKeyboardTrapEnabled}")
+  --v-kbd-trap-esc: ""
+  --v-kbd-trap-tab: ""
+  --v-kbd-trap-roving: ""
 [data-v-kbd-trap]:focus-within
-  --v-kbd-trap: var(--text-v-kbd-trap-enabled, '#{$TextVKeyboardTrapEnabled}') var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}')
-  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, '#{$TextVKeyboardTrapEsc}')
+  --v-kbd-trap: var(--text-v-kbd-trap-enabled, "#{$TextVKeyboardTrapEnabled}") var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}")
+  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "#{$TextVKeyboardTrapEsc}")
 [data-v-kbd-trap-active]
-  --v-kbd-trap: '' !important
-  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, '#{$TextVKeyboardTrapEsc}')
-  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-tab, '#{$TextVKeyboardTrapTab}')
-  --v-kbd-trap-roving: ''
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"]
-  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-tab-exits, '#{$TextVKeyboardTrapTabExits}')
-  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-arrows-all, '#{$TextVKeyboardTrapArrowsAll}')
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="tabinside"]
-  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-tab, '#{$TextVKeyboardTrapTab}')
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="vertical"]
-  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-arrows-vertical, '#{$TextVKeyboardTrapArrowsVertical}')
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="horizontal"]
-  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-arrows-horizontal, '#{$TextVKeyboardTrapArrowsHorizontal}')
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][data-v-kbd-trap~="grid"],
-[data-v-kbd-trap-active][data-v-kbd-trap~="roving"][role="grid"]
-  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, '#{$TextVKeyboardTrapSeparator}') var(--text-v-kbd-trap-grid, '#{$TextVKeyboardTrapGrid}')
-[data-v-kbd-trap-active][data-v-kbd-trap~="escrefocus"]
-  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-refocus, '#{$TextVKeyboardTrapEscRefocus}')
-[data-v-kbd-trap-active][data-v-kbd-trap~="escexits"]
-  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-exits, '#{$TextVKeyboardTrapEscExits}')
-[data-v-kbd-trap][tabindex="-9999"]
+  --v-kbd-trap: "" !important
+  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "#{$TextVKeyboardTrapEsc}")
+  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-tab, "#{$TextVKeyboardTrapTab}")
+  --v-kbd-trap-roving: ""
+[data-v-kbd-trap-active][data-v-kbd-trap~=roving]
+  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-tab-exits, "#{$TextVKeyboardTrapTabExits}")
+  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-arrows-all, "#{$TextVKeyboardTrapArrowsAll}")
+[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=tabinside]
+  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-tab, "#{$TextVKeyboardTrapTab}")
+[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=vertical]
+  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-arrows-vertical, "#{$TextVKeyboardTrapArrowsVertical}")
+[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=horizontal]
+  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-arrows-horizontal, "#{$TextVKeyboardTrapArrowsHorizontal}")
+[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=grid],
+[data-v-kbd-trap-active][data-v-kbd-trap~=roving][role=grid]
+  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}") var(--text-v-kbd-trap-grid, "#{$TextVKeyboardTrapGrid}")
+[data-v-kbd-trap-active][data-v-kbd-trap~=escrefocus]
+  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-refocus, "#{$TextVKeyboardTrapEscRefocus}")
+[data-v-kbd-trap-active][data-v-kbd-trap~=escexits]
+  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-exits, "#{$TextVKeyboardTrapEscExits}")
+[data-v-kbd-trap][tabindex="-9999"],
+dialog[data-v-kbd-trap]
   outline: none
 [data-v-kbd-trap][data-v-kbd-trap-active]:after
   color: var(--color-v-kbd-trap-enabled, #{$ColorVKeyboardTrapEnabled})

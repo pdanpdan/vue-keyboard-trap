@@ -73,7 +73,7 @@ function setAttributes(el, disable, ctx, config) {
       .filter((key) => ctx.modifiers[key] === true)
       .join(' ');
 
-    if (el.tabIndex < 0 && el.getAttribute('tabindex') === null) {
+    if (el.tabIndex < 0 && el.getAttribute('tabindex') === null && el.matches('dialog') === false) {
       el.tabIndex = config.trapTabIndex;
     }
   }
@@ -451,7 +451,7 @@ export default function directiveFactory(options, markRawFn) {
           && ctx.focusTarget
           && ctx.focusTarget.closest(config.datasetNameSelector) === el
         ) {
-          if (ctx.focusTarget.tabIndex === config.trapTabIndex) {
+          if (ctx.focusTarget.tabIndex === config.trapTabIndex || ctx.focusTarget.matches('dialog') === true) {
             return (ctx.modifiers.autofocus === true && focus(el.querySelector(config.autofocusSelector)) === true)
               || focus(el.querySelector(config.focusableSelector)) === true
               || focus(ctx.focusTarget) === true;

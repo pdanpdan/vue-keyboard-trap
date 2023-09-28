@@ -64,7 +64,8 @@
   --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-exits, "Esc⤣");
 }
 
-[data-v-kbd-trap][tabindex="-9999"] {
+[data-v-kbd-trap][tabindex="-9999"],
+dialog[data-v-kbd-trap] {
   outline: none;
 }
 
