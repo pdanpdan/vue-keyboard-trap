@@ -25,7 +25,7 @@
     <div class="test" tabindex="0">0</div>
 
     <div class="test" v-kbd-trap.roving>
-      <legend>v-kbd-trap.roving</legend>
+      <div class="description">v-kbd-trap.roving</div>
 
       <div class="test" tabindex="0">1</div>
 
@@ -34,7 +34,7 @@
       <input v-model="text" placeholder="Input field" />
 
       <div class="test" tabindex="-1" v-kbd-trap.roving.escrefocus>
-        <legend>v-kbd-trap.roving.escrefocus</legend>
+        <div class="description">v-kbd-trap.roving.escrefocus</div>
 
         <div class="test" tabindex="0">3.1</div>
 
@@ -48,7 +48,7 @@
       <div class="test" tabindex="0">4</div>
 
       <div v-if="active1" class="test" v-kbd-trap.autofocus.escexits>
-        <legend>v-kbd-trap.autofocus.escexits</legend>
+        <div class="description">v-kbd-trap.autofocus.escexits</div>
 
         <div class="test" tabindex="0">5.1</div>
 
@@ -62,7 +62,7 @@
       <div class="test" tabindex="0">6</div>
 
       <div class="test" tabindex="0" v-kbd-trap.autofocus="active2">
-        <legend>v-kbd-trap.autofocus {{ active2 }}</legend>
+        <div class="description">v-kbd-trap.autofocus {{ active2 }}</div>
 
         <div class="test" tabindex="0">6.1</div>
 
@@ -72,7 +72,7 @@
       </div>
 
       <div class="test row" tabindex="-1" v-kbd-trap.roving.horizontal.tabinside.escrefocus>
-        <legend>v-kbd-trap.roving.horizontal.tabinside.escrefocus</legend>
+        <div class="description">v-kbd-trap.roving.horizontal.tabinside.escrefocus</div>
 
         <div class="test col" tabindex="0">7.1</div>
 
@@ -82,7 +82,7 @@
       </div>
 
       <div class="test" tabindex="-1" v-kbd-trap.roving.vertical.tabinside.escrefocus>
-        <legend>v-kbd-trap.roving.vertical.tabinside.escrefocus</legend>
+        <div class="description">v-kbd-trap.roving.vertical.tabinside.escrefocus</div>
 
         <div class="test" tabindex="0">8.1</div>
 
@@ -93,7 +93,7 @@
     </div>
 
     <div class="test" v-kbd-trap.roving.grid>
-      <legend>v-kbd-trap.roving.grid</legend>
+      <div class="description">v-kbd-trap.roving.grid</div>
 
       <div class="row" v-for="i in 6" :key="i">
         <div
@@ -110,7 +110,7 @@
     </div>
 
     <div class="test" v-kbd-trap.roving.grid>
-      <legend>v-kbd-trap.roving.grid</legend>
+      <div class="description">v-kbd-trap.roving.grid</div>
 
       <div class="row" v-for="i in 5" :key="i">
         <div
@@ -127,7 +127,7 @@
     </div>
 
     <div class="test">
-      <legend>v-kbd-trap.roving - Role grid test (roles: grid, row, gridcell)</legend>
+      <div class="description">v-kbd-trap.roving - Role grid test (roles: grid, row, gridcell)</div>
 
       <table
         class="calendar"
@@ -178,7 +178,7 @@
     <div class="test" tabindex="0">11</div>
 
     <div class="test row" dir="rtl" v-kbd-trap.roving.horizontal>
-      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+      <div class="description">RTL Always - v-kbd-trap.roving.horizontal</div>
 
       <div class="test col" tabindex="0">12.1</div>
 
@@ -188,7 +188,7 @@
     </div>
 
     <div class="test row" dir="rtl" v-kbd-trap.roving.horizontal>
-      <legend>RTL Always - v-kbd-trap.roving.horizontal</legend>
+      <div class="description">RTL Always - v-kbd-trap.roving.horizontal</div>
 
       <div class="test col" tabindex="0">12bis.1</div>
 
@@ -198,7 +198,7 @@
     </div>
 
     <div class="test row" dir="ltr" v-kbd-trap.roving.horizontal>
-      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+      <div class="description">LTR Always - v-kbd-trap.roving.horizontal</div>
 
       <div class="test col" tabindex="0">13.1</div>
 
@@ -208,7 +208,7 @@
     </div>
 
     <div class="test row" dir="ltr" v-kbd-trap.roving.horizontal>
-      <legend>LTR Always - v-kbd-trap.roving.horizontal</legend>
+      <div class="description">LTR Always - v-kbd-trap.roving.horizontal</div>
 
       <div class="test col" tabindex="0">13bis.1</div>
 
@@ -218,12 +218,12 @@
     </div>
 
     <div class="test">
-      <legend>Autofocus covered test</legend>
+      <div class="description">Autofocus covered test</div>
 
       <div style="margin-bottom: 16px; height: 150px; overflow: auto;">
         <div class="test-covered">
           <div class="test" style="margin-top: 200px" v-kbd-trap.autofocus="active3">
-            <legend>v-kbd-trap.autofocus {{ active3 }}</legend>
+            <div class="description">v-kbd-trap.autofocus {{ active3 }}</div>
 
             <div class="test" tabindex="0">14.1</div>
 
@@ -240,7 +240,7 @@
     <div class="test" tabindex="0">15</div>
 
     <div class="test" v-kbd-trap>
-      <legend>v-kbd-trap (Use DOM order)</legend>
+      <div class="description">v-kbd-trap (Use DOM order)</div>
 
       <div class="test col" tabindex="0">16.1 (tabindex 0)</div>
 
@@ -258,7 +258,7 @@
     </div>
 
     <div class="test" v-kbd-trap.indexorder>
-      <legend>v-kbd-trap.indexorder (Force tabindex order)</legend>
+      <div class="description">v-kbd-trap.indexorder (Force tabindex order)</div>
 
       <div class="test col" tabindex="0">16.1bis (tabindex 0)</div>
 
@@ -276,7 +276,7 @@
     </div>
 
     <div class="test" v-kbd-trap.roving>
-      <legend>v-kbd-trap.roving (Use DOM order)</legend>
+      <div class="description">v-kbd-trap.roving (Use DOM order)</div>
 
       <div class="test col" tabindex="0">17.1 (tabindex 0)</div>
 
@@ -294,7 +294,7 @@
     </div>
 
     <div class="test" v-kbd-trap.roving.indexorder>
-      <legend>v-kbd-trap.roving.indexorder (Force tabindex order)</legend>
+      <div class="description">v-kbd-trap.roving.indexorder (Force tabindex order)</div>
 
       <div class="test col" tabindex="0">17.1bis (tabindex 0)</div>
 
@@ -314,7 +314,7 @@
     <div class="test" tabindex="0">18</div>
 
     <div class="test" v-kbd-trap.roving.vertical>
-      <legend>v-kbd-trap.roving - form elements</legend>
+      <div class="description">v-kbd-trap.roving - form elements</div>
 
       <div class="test" tabindex="0">19.1</div>
 
@@ -367,20 +367,20 @@
         />
       </div>
 
-      <div class="test" style="padding-bottom: 1.5em">
-        <legend>Tab / Shift + Tab</legend>
+      <div class="test" style="padding-block: 1.5em">
+        <div class="description">Tab / Shift + Tab</div>
 
         <input v-model="text" placeholder="Input field 19.9" />
       </div>
 
-      <div class="test" style="padding-bottom: 1.5em">
-        <legend>Tab / Shift + Tab</legend>
+      <div class="test" style="padding-block: 1.5em">
+        <div class="description">Tab / Shift + Tab</div>
 
         <textarea v-model="text" placeholder="Input field 19.10"></textarea>
       </div>
 
-      <div class="test" style="padding-bottom: 1.5em">
-        <legend>Tab / Shift + Tab</legend>
+      <div class="test" style="padding-block: 1.5em">
+        <div class="description">Tab / Shift + Tab</div>
 
         <select placeholder="Select 19.11">
           <option>Option 1</option>
@@ -389,8 +389,8 @@
         </select>
       </div>
 
-      <div class="test" style="padding-bottom: 1.5em">
-        <legend>Tab / Shift + Tab</legend>
+      <div class="test" style="padding-block: 1.5em">
+        <div class="description">Tab / Shift + Tab</div>
 
         <select multiple placeholder="Select multiple 19.12">
           <option>Option 1</option>
@@ -399,29 +399,31 @@
         </select>
       </div>
 
-      <fieldset class="test" style="padding-bottom: 1.5em">
-        <legend>Tab / Shift + Tab [fieldset]</legend>
+      <fieldset class="test" style="padding-block: 1.5em">
+        <div class="description">Tab / Shift + Tab [fieldset]</div>
 
         <textarea v-model="text" placeholder="Input field in fieldset 19.13"></textarea>
       </fieldset>
 
-      <fieldset class="test" style="padding-bottom: 1.5em" disabled>
-        <legend>Tab / Shift + Tab [disabled fieldset]</legend>
+      <fieldset class="test" style="padding-block: 1.5em" disabled>
+        <div class="description">Tab / Shift + Tab [disabled fieldset]</div>
 
         <textarea v-model="text" placeholder="Input field in disabled fieldset 19.14"></textarea>
       </fieldset>
 
-      <fieldset class="test" style="padding-bottom: 1.5em" disabled>
+      <fieldset class="test" style="padding-block: 1.5em" disabled>
         <legend>
-          Tab / Shift + Tab [disabled fieldset]
           <input v-model="text" placeholder="Input field in legend in disabled fieldset 19.15.1" />
         </legend>
 
-        <fieldset class="test" style="padding-bottom: 1.5em">
+        <div class="description">Tab / Shift + Tab [disabled fieldset]</div>
+
+        <fieldset class="test" style="padding-block: 1.5em">
           <legend>
-            Tab / Shift + Tab [fieldset in disabled fieldset]
             <input v-model="text" placeholder="Input field in legend in fieldset in disabled fieldset 19.15.2" />
           </legend>
+
+          <div class="description">Tab / Shift + Tab [fieldset in disabled fieldset]</div>
 
           <textarea v-model="text" placeholder="Input field in fieldset in disabled fieldset 19.15.3"></textarea>
         </fieldset>
@@ -433,7 +435,12 @@
     <div class="test" tabindex="0">20</div>
   </div>
 
-  <dialog ref="dialog" v-kbd-trap="activeDialog">
+  <dialog
+    ref="dialog"
+    v-kbd-trap="activeDialog"
+    @close="activeDialog = false"
+    @keydown.esc.capture.prevent
+  >
     <div style="padding-block-start: 32px">
       <a href="#1" class="test">Link 1</a>
       <a href="#2" class="test">Link 2</a>
@@ -528,10 +535,10 @@ html
       content: '\1f517'
       padding: 4px
 
-legend
+.description
   position: absolute
-  inset-inline-start: 1px
-  inset-block-end: 1px
+  inset-inline-start: 16px
+  inset-block-start: 1px
   font-weight: bold
   font-variant: small-caps
   color: #36f
@@ -586,6 +593,9 @@ table.calendar
     box-shadow: 0 0 2px 3px #f99
 
   &:focus
+    background-color: #ee66
+
+  &:focus-visible
     background-color: #6e66
 
 .test-covered
