@@ -113,10 +113,11 @@ table.calendar
       color: var(--vp-c-text-4, rgba(60, 60, 60, 0.18))
       background-color: var(--vp-c-text-inverse-1, rgba(255, 255, 255, 0.87))
 
-      &[tabindex]:not([tabindex^="-"])
-        color: var(--vp-c-text-1)
+      &[tabindex]:where(:not([tabindex^="-"]))
+        color: #999
 
       &:focus
+        color: var(--vp-c-text-1)
         background-color: var(--vp-button-alt-bg, #f1f1f1)
 </style>
 `;export{e as default};
