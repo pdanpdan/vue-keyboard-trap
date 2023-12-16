@@ -78,20 +78,20 @@
     "vue": "^3.0.0 || ^2.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.5.0",
-    "eslint": "^8.54.0",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-vue": "^9.18.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-vue": "^9.19.2",
     "flexsearch": "^0.7.31",
-    "markdown-it": "^13.0.2",
+    "markdown-it": "^14.0.0",
     "sass": "^1.69.5",
-    "vite": "^5.0.2",
-    "vitepress": "1.0.0-rc.29",
-    "vue": "^3.3.8"
+    "vite": "^5.0.10",
+    "vitepress": "1.0.0-rc.32",
+    "vue": "^3.3.12"
   },
   "engines": {
-    "node": ">= 12.22.0 || >= 14.19.0 || >= 16.14.0",
+    "node": ">= 12.22.0 || >= 14.19.0 || >= 16.14.0 || >= 18.0.0 || >= 20.0.0",
     "yarn": ">= 1.22.0"
   }
 }
