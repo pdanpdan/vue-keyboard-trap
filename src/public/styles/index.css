@@ -7,12 +7,12 @@
   --v-kbd-trap-roving: "";
 }
 
-[data-v-kbd-trap]:has(:focus-visible) {
+[data-v-kbd-trap]:where(:has(:focus-visible)) {
   --v-kbd-trap: var(--text-v-kbd-trap-enabled, "Trap") var(--text-v-kbd-trap-separator, "/");
   --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "Esc");
 }
 
-[data-v-kbd-trap]:has(:focus-visible):after {
+[data-v-kbd-trap]:where(:has(:focus-visible)):after {
   content: var(--v-kbd-trap, "") var(--v-kbd-trap-esc, "") var(--v-kbd-trap-tab, "") var(--v-kbd-trap-roving, "");
   pointer-events: none;
   position: absolute;

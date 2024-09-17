@@ -38,7 +38,7 @@ $TextVKeyboardTrapArrowsVertical: "\2963\2965" !default
   --v-kbd-trap-tab: ""
   --v-kbd-trap-roving: ""
 
-  &:has(:focus-visible)
+  &:where(:has(:focus-visible))
     --v-kbd-trap: var(--text-v-kbd-trap-enabled, "#{$TextVKeyboardTrapEnabled}") var(--text-v-kbd-trap-separator, "#{$TextVKeyboardTrapSeparator}")
     --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "#{$TextVKeyboardTrapEsc}")
 
