@@ -433,6 +433,39 @@
     </div>
 
     <div class="test" tabindex="0">20</div>
+
+    <div class="test" v-kbd-trap.roving.vertical>
+      <div
+        class="test"
+        v-for="i in 2"
+        :key="i"
+        tabindex="0"
+      >
+        21.{{ i }}
+      </div>
+
+      <div class="test row" v-kbd-trap.roving.horizontal>
+        <div
+          class="test col"
+          v-for="i in 3"
+          :key="i"
+          tabindex="0"
+        >
+          21.3.{{ i }}
+        </div>
+      </div>
+
+      <div
+        class="test"
+        v-for="i in 2"
+        :key="i"
+        tabindex="0"
+      >
+        21.{{ i + 3 }}
+      </div>
+    </div>
+
+    <div class="test" tabindex="0">22</div>
   </div>
 
   <dialog

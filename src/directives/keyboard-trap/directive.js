@@ -449,8 +449,20 @@ export default function directiveFactory(options, markRawFn) {
           ctx.disable === false
           && activeTrapEl === el
           && ctx.focusTarget
-          && ctx.focusTarget.closest(config.datasetNameSelector) === el
         ) {
+          let trapEl = ctx.focusTarget.closest(config.datasetNameSelector);
+
+          while (trapEl && trapEl !== el) {
+            const newCtx = getCtx(trapEl);
+
+            if (newCtx !== null && newCtx.disable === false && newCtx.focusTarget) {
+              setActiveTrapEl(trapEl, config);
+              return newCtx.refocus(onlyIfTrapEl !== undefined ? newCtx.modifiers.roving !== true : undefined);
+            }
+
+            trapEl = trapEl.parentElement && trapEl.parentElement.closest(config.datasetNameSelector);
+          }
+
           if (ctx.focusTarget.tabIndex === config.trapTabIndex || ctx.focusTarget.matches('dialog') === true || ctx.focusTarget.matches('[popover]') === true) {
             return (ctx.modifiers.autofocus === true && focus(el.querySelector(config.autofocusSelector)) === true)
               || focus(el.querySelector(config.focusableSelector)) === true
