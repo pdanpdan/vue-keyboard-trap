@@ -541,6 +541,9 @@ export default function directiveFactory(options, markRawFn) {
     }
 
     if (activeTrapEl === el) {
+      if (ctx.relatedFocusTarget) {
+        focus(ctx.relatedFocusTarget);
+      }
       setActiveTrapEl(null, config);
     }
   };
