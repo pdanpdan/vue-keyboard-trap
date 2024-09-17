@@ -179,23 +179,28 @@ export default function directiveFactory(options, markRawFn) {
           if (activeTrapEl === el) {
             ctx.focusTarget = activeElement;
 
-            if (ctx.modifiers.escexits === true) {
-              setActiveTrapEl(el.parentElement === null ? null : el.parentElement.closest(config.datasetNameSelector), config);
+            if (shiftKey === true) {
+              ev.preventDefault();
+            } else {
+              if (ctx.modifiers.escexits === true) {
+                setActiveTrapEl(el.parentElement === null ? null : el.parentElement.closest(config.datasetNameSelector), config);
 
-              const newCtx = getCtx(activeTrapEl);
+                const newCtx = getCtx(activeTrapEl);
 
-              if (newCtx !== null) {
-                newCtx.refocus();
+                if (newCtx !== null) {
+                  newCtx.refocus();
+                }
+
+                return;
               }
 
-              return;
+              if (ctx.modifiers.escrefocus === true && focus(ctx.relatedFocusTarget) === true) {
+                return;
+              }
             }
 
-            if (ctx.modifiers.escrefocus === true && focus(ctx.relatedFocusTarget) === true) {
-              return;
-            }
-
-            setActiveTrapEl(null, config);
+            const trapEl = el.parentElement && el.parentElement.closest(config.datasetNameSelector);
+            setActiveTrapEl(trapEl || null, config);
           } else {
             setActiveTrapEl(el, config);
           }

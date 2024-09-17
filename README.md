@@ -302,6 +302,7 @@ The modifiers are reactive so if you use render functions you can dynamically ch
   - disables / enables the current tab group
   - if `.escexits` modifier is used then refocus the last active focusable element in a parent trap group
   - if `.escrefocus` modifier is used then refocus the last focusable element that was active before the current trap group got focus
+  - if `.escexits` or `.escrefocus` are used then press `SHIFT + ESC` to disable / enable the current tab group
 - `HOME` / `END` when `.roving` modifier is used
   - move to first / last focusable element in the current trap group
 - `ARROW_KEYS` when `.roving` modifier is used (`.roving.horizontal.vertical` is the same as `.roving`)

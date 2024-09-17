@@ -110,6 +110,8 @@ The `gridcell`s will be considered inline-start aligned in every row.
 
 When pressing `Esc` key disable the active trap and refocus the element that was in focus before activating the trap.
 
+Press `Shift + Esc` to disable / enable the current tab group.
+
 <interactive-code example="examples/trap-escrefocus.vue" title="Refocus previous focused element on Esc" desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.\nWhen it is disabled with Esc key the element that was in focus before activating the trap is refocused.">
 
   <<< @/examples/trap-escrefocus.vue{3,8,21,41-42,45-47}
@@ -119,6 +121,8 @@ When pressing `Esc` key disable the active trap and refocus the element that was
 ### `.escexits`
 
 When pressing `Esc` key disable the active trap and move focus in the parent trap (if it exists).
+
+Press `Shift + Esc` to disable / enable the current tab group.
 
 Has priority over `.escrefocus`.
 
