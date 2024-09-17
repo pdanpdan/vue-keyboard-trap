@@ -92,7 +92,7 @@ importInteractiveCodeComponent[interactiveCodeSrc]().then((obj) => {
 });
 
 const source = ref(null);
-const importInteractiveCodeSource = import.meta.glob('../../../**/*.vue', { as: 'raw' });
+const importInteractiveCodeSource = import.meta.glob('../../../**/*.vue', { query: '?raw', import: 'default' });
 importInteractiveCodeSource[interactiveCodeSrc]().then((text) => {
   source.value = text;
 });

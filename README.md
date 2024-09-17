@@ -22,6 +22,10 @@ Works both for Vue3 and Vue2.
 ## Install
 
 ```bash
+pnpm add @pdanpdan/vue-keyboard-trap
+```
+or
+```bash
 yarn add @pdanpdan/vue-keyboard-trap
 ```
 or
@@ -375,25 +379,25 @@ In the default style the hint is positioned on the top-right corner of the trap 
 ### Install the dependencies
 
 ```bash
-yarn
+pnpm i
 ```
 
 ### Start development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 ### Lint the files
 
 ```bash
-yarn lint
+pnpm lint
 ```
 
 ### Build for production
 
 ```bash
-yarn build
+pnpm build
 ```
 
 ## Source code, issues, bug reports, feature requests

@@ -27,6 +27,10 @@ Works both for Vue3 and Vue2.
 
 ::: code-group
 
+```bash [pnpm] :no-line-numbers
+pnpm add @pdanpdan/vue-keyboard-trap
+```
+
 ```bash [yarn] :no-line-numbers
 yarn add @pdanpdan/vue-keyboard-trap
 ```
@@ -401,25 +405,25 @@ In the default style the hint is positioned on the top-right corner of the trap 
 ### Install the dependencies
 
 ```bash :no-line-numbers
-yarn
+pnpm i
 ```
 
 ### Start development mode (hot-code reloading, error reporting, etc.)
 
 ```bash :no-line-numbers
-yarn dev
+pnpm dev
 ```
 
 ### Lint the files
 
 ```bash :no-line-numbers
-yarn lint
+pnpm lint
 ```
 
 ### Build for production
 
 ```bash :no-line-numbers
-yarn build
+pnpm build
 ```
 
 ## Source code, issues, bug reports, feature requests
