@@ -1,6 +1,18 @@
 @charset "UTF-8";
 
-[data-v-kbd-trap]:after {
+[data-v-kbd-trap] {
+  --v-kbd-trap: var(--text-v-kbd-trap-enabled, "Trap");
+  --v-kbd-trap-esc: "";
+  --v-kbd-trap-tab: "";
+  --v-kbd-trap-roving: "";
+}
+
+[data-v-kbd-trap]:has(:focus-visible) {
+  --v-kbd-trap: var(--text-v-kbd-trap-enabled, "Trap") var(--text-v-kbd-trap-separator, "/");
+  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "Esc");
+}
+
+[data-v-kbd-trap]:has(:focus-visible):after {
   content: var(--v-kbd-trap, "") var(--v-kbd-trap-esc, "") var(--v-kbd-trap-tab, "") var(--v-kbd-trap-roving, "");
   pointer-events: none;
   position: absolute;
@@ -9,66 +21,76 @@
   font: italic small-caps bold 14px monospace;
   line-height: 1em;
   padding: 4px;
-  color: var(--color-v-kbd-trap-disabled, #999);
-  background-color: var(--color-v-kbd-trap-background, #eeee);
+  background-color: var(--color-v-kbd-trap-background, rgba(238, 238, 238, 0.9333333333));
   border-radius: 2px;
   z-index: 1;
 }
 
-[data-v-kbd-trap] {
-  --v-kbd-trap: var(--text-v-kbd-trap-enabled, "Trap");
-  --v-kbd-trap-esc: "";
-  --v-kbd-trap-tab: "";
-  --v-kbd-trap-roving: "";
+[data-v-kbd-trap]:where([tabindex="-9999"], dialog, [popover]) {
+  outline: none;
 }
 
-[data-v-kbd-trap]:focus-within {
-  --v-kbd-trap: var(--text-v-kbd-trap-enabled, "Trap") var(--text-v-kbd-trap-separator, "/");
-  --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "Esc");
+[data-v-kbd-trap]:after {
+  color: var(--color-v-kbd-trap-disabled, #999);
 }
 
-[data-v-kbd-trap-active] {
-  --v-kbd-trap: "" !important;
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):after {
+  color: var(--color-v-kbd-trap-enabled, #c33);
+}
+
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]) {
+  --v-kbd-trap: "";
   --v-kbd-trap-esc: var(--text-v-kbd-trap-esc, "Esc");
   --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-tab, "Tab");
   --v-kbd-trap-roving: "";
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=roving] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=roving]) {
   --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-tab-exits, "Tab⇅");
   --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-arrows-all, "⥢⥣⥥⥤");
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=tabinside] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=roving]):where([data-v-kbd-trap~=tabinside]) {
   --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-tab, "Tab");
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=vertical] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=roving]):where([data-v-kbd-trap~=vertical]) {
   --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-arrows-vertical, "⥣⥥");
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=horizontal] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=roving]):where([data-v-kbd-trap~=horizontal]) {
   --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-arrows-horizontal, "⥢⥤");
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=grid],
-[data-v-kbd-trap-active][data-v-kbd-trap~=roving][role=grid] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=roving]):where([data-v-kbd-trap~=grid], [role=grid]) {
   --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-grid, "⊞");
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=escrefocus] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=roving]):has(input:not([disabled]):not([type=button]):not([type=checkbox]):not([type=file]):not([type=image]):not([type=radio]):not([type=reset]):not([type=submit]):focus-visible, select:not([disabled]):focus-visible, select:not([disabled]) *:focus-visible, textarea:not([disabled]):focus-visible, [contenteditable]:not([contenteditable=false]):focus-visible, [contenteditable]:not([contenteditable=false]) *:focus-visible) {
+  --v-kbd-trap-tab: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-tab, "Tab");
+  --v-kbd-trap-roving: "";
+}
+
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=escrefocus]) {
   --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-refocus, "Esc⥉");
 }
 
-[data-v-kbd-trap-active][data-v-kbd-trap~=escexits] {
+[data-v-kbd-trap]:where([data-v-kbd-trap-active]):where([data-v-kbd-trap~=escexits]) {
   --v-kbd-trap-esc: var(--text-v-kbd-trap-esc-exits, "Esc⤣");
 }
 
-[data-v-kbd-trap][tabindex="-9999"],
-dialog[data-v-kbd-trap] {
-  outline: none;
+[data-v-kbd-trap]:where([data-v-kbd-trap~=roving][data-v-kbd-trap~=horizontal]):has([data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=vertical]) {
+  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-arrows-horizontal, "⥢⥤");
 }
 
-[data-v-kbd-trap][data-v-kbd-trap-active]:after {
+[data-v-kbd-trap]:where([data-v-kbd-trap~=roving][data-v-kbd-trap~=horizontal]):has([data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=vertical]):after {
+  color: var(--color-v-kbd-trap-enabled, #c33);
+}
+
+[data-v-kbd-trap]:where([data-v-kbd-trap~=roving][data-v-kbd-trap~=vertical]):has([data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=horizontal]) {
+  --v-kbd-trap-roving: var(--text-v-kbd-trap-separator, "/") var(--text-v-kbd-trap-arrows-vertical, "⥣⥥");
+}
+
+[data-v-kbd-trap]:where([data-v-kbd-trap~=roving][data-v-kbd-trap~=vertical]):has([data-v-kbd-trap-active][data-v-kbd-trap~=roving][data-v-kbd-trap~=horizontal]):after {
   color: var(--color-v-kbd-trap-enabled, #c33);
 }

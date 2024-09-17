@@ -5,7 +5,7 @@
 ![github release](https://img.shields.io/github/v/tag/pdanpdan/vue-keyboard-trap?sort=semver&style=for-the-badge) &nbsp;
 ![jsdelivr hits](https://img.shields.io/jsdelivr/gh/hm/pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
 ![npm release](https://img.shields.io/npm/v/@pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
-![npm downloads](https://img.shields.io/npm/dm/@pdanpdan/vue-keyboard-trap?style=for-the-badge) &nbsp;
+![npm downloads](https://img.shields.io/npm/dm/@pdanpdan/vue-keyboard-trap?style=for-the-badge)
 
 ## Project description
 
@@ -201,7 +201,7 @@ const { name, directive } = VueKeyboardTrapDirectiveFactory({
 Vue.directive(name, directive);
 ```
 
-If you want you can access the SASS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass).
+If you want you can access the CSS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css).
 
 ### Directive configuration options
 
@@ -349,7 +349,9 @@ If the direction is RTL the `ARROW_LEFT` and `ARROW_RIGHT` keys move in reverse 
 
 The directive does not require any styles, but it might help the users to have visual hints for navigation.
 
-A default style is provided in `dist/styles/index.sass` (can be imported as `import '@pdapdan/vue-keyboard-trap/styles'`, as `import '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass)).
+A default style is provided as SASS in `dist/styles/index.sass` (can be imported as `import '@pdapdan/vue-keyboard-trap/styles'`, as `import '@pdapdan/vue-keyboard-trap/dist/styles/index.sass'` (if the bundler does not use the `/styles` export) or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.sass)).
+
+The default style is also provided as CSS in `dist/styles/index.css` (can be imported as `import '@pdapdan/vue-keyboard-trap/dist/styles/index.css'` or included from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css)).
 
 There are some CSS variables that can be used to customize the aspect of the hints:
 
