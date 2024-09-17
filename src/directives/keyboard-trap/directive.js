@@ -161,6 +161,9 @@ export default function directiveFactory(options, markRawFn) {
         ) {
           ctx.focusTarget = ev.target;
 
+          if (newFocusedElement === null && ctx.relatedFocusTarget) {
+            focus(ctx.relatedFocusTarget);
+          }
           setActiveTrapEl(null, config);
         }
       },
