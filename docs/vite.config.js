@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -14,6 +15,12 @@ export default defineConfig({
     //     charset: false,
     //   },
     // },
+    preprocessorOptions: {
+      sass: {
+        api: 'modern',
+        importers: [new NodePackageImporter()],
+      },
+    },
     postcss: {
       plugins: [
         {

@@ -1,3 +1,4 @@
+import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
@@ -5,6 +6,15 @@ export default defineConfig({
   plugins: [vue()],
 
   publicDir: './src/public/',
+
+  css: {
+    preprocessorOptions: {
+      sass: {
+        api: 'modern',
+        importers: [new NodePackageImporter()],
+      },
+    },
+  },
 
   build: {
     target: 'esnext',
