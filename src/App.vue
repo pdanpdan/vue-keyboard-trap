@@ -47,8 +47,8 @@
 
       <div class="test" tabindex="0">4</div>
 
-      <div v-if="active1" class="test" v-kbd-trap.autofocus.escexits>
-        <div class="description">v-kbd-trap.autofocus.escexits</div>
+      <div v-if="active1" ref="elRef" class="test">
+        <div class="description">v-kbd-trap.{{ Object.keys(modifiers).filter((k) => modifiers[k]).join('.') }} - useKeyboardTrap</div>
 
         <div class="test" tabindex="0">5.1</div>
 
@@ -485,7 +485,9 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useKeyboardTrapFactory } from './exports.js';
 
+const elRef = ref(null);
 const text = ref('text');
 const active1 = ref(false);
 const active2 = ref(false);
@@ -495,6 +497,11 @@ const covered3 = ref(true);
 const skipCells = ref(false);
 const rtl = ref(false);
 const dialog = ref(null);
+
+const useKeyboardTrap = useKeyboardTrapFactory();
+
+const modifiers = ref({ autofocus: true, escexits: true, roving: false });
+useKeyboardTrap(elRef, modifiers);
 
 watch(activeDialog, (v) => {
   if (dialog.value !== null) {

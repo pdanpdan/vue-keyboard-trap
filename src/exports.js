@@ -1,4 +1,5 @@
 import {
+  useKeyboardTrapFactory,
   VueKeyboardTrapDirectivePlugin,
   VueKeyboardTrapDirectiveFactory,
 } from './directives/keyboard-trap/index';
@@ -6,6 +7,7 @@ import {
 export default VueKeyboardTrapDirectivePlugin;
 
 export {
+  useKeyboardTrapFactory,
   VueKeyboardTrapDirectivePlugin,
   VueKeyboardTrapDirectiveFactory,
 };

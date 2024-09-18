@@ -1,18 +1,17 @@
-import * as Vue from 'vue';
+import directiveFactory, { composableFactory } from './directive';
 
-import directiveFactory from './directive';
-
-const { markRaw, version } = Vue;
-const vue3MarkRaw = version.indexOf('2.') === 0 ? undefined : markRaw;
-
-export const VueKeyboardTrapDirectivePlugin = {
+const VueKeyboardTrapDirectivePlugin = {
   install(app, options) {
-    const { name, directive } = directiveFactory(options, vue3MarkRaw);
+    const { name, directive } = directiveFactory(options);
 
     app.directive(name, directive);
   },
 };
 
-export const VueKeyboardTrapDirectiveFactory = (options) => directiveFactory(options, vue3MarkRaw);
+export {
+  VueKeyboardTrapDirectivePlugin,
+  directiveFactory as VueKeyboardTrapDirectiveFactory,
+  composableFactory as useKeyboardTrapFactory,
+};
 
 export default VueKeyboardTrapDirectivePlugin;

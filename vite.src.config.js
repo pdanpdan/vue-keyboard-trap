@@ -26,11 +26,19 @@ export default defineConfig({
       name: 'VueKeyboardTrap',
       fileName: (format) => `index.${ format }.js`,
     },
+    optimizeDeps: {
+      exclude: ['vue-demi'],
+    },
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        '@vue/composition-api',
+        'vue',
+        'vue-demi',
+      ],
       output: {
         globals: {
           vue: 'Vue',
+          'vue-demi': 'VueDemi',
         },
         exports: 'named',
         sourcemapExcludeSources: true,

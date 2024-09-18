@@ -9,9 +9,9 @@
 
 ## Project description
 
-Vue directive for keyboard navigation - roving movement and trapping inside container.
+Vue directive and composable for keyboard navigation - roving movement and trapping inside container.
 
-Works both for Vue3 and Vue2.
+Works both for Vue3 and Vue2, as a directive (`v-kbd-trap`) or as a composable (`useKeyboardTrap`).
 
 [Demo codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
@@ -41,7 +41,40 @@ npm install @pdanpdan/vue-keyboard-trap
 
 ### Usage as ESM
 
-Use as plugin on Vue3
+#### As composable (both Vue3 and Vue2)
+
+```html
+<script setup>
+  import { ref } from 'vue';
+  import { useKeyboardTrapFactory } from '@pdanpdan/vue-keyboard-trap';
+
+  // you can do this in another file and import the configured `useKeyboardTrap`
+  const useKeyboardTrap = useKeyboardTrapFactory({
+    // ...options if required
+  });
+
+  const elRef = ref(null);
+  useKeyboardTrap(
+    // element (reactive)
+    elRef,
+    // modifiers (optional, reactive, default all modifiers are false)
+    {
+      roving: true,
+    },
+    // active (optional, reactive, default true)
+    true
+  );
+</script>
+
+<template>
+  <div ref="elRef">
+    ...
+  </div>
+</template>
+```
+
+#### As plugin on Vue3 - directive
+
 ```javascript
 import { createApp } from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
@@ -56,7 +89,8 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#app');
 ```
 
-or as plugin on Vue2
+#### As plugin on Vue2 - directive
+
 ```javascript
 import Vue from 'vue';
 import { VueKeyboardTrapDirectivePlugin } from '@pdanpdan/vue-keyboard-trap';
@@ -71,7 +105,20 @@ new Vue({
 });
 ```
 
-or included in specific components (Vue3 script)
+#### Included in specific components (Vue3 script setup) - directive
+
+```html
+<script setup>
+  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+
+  const vKbdTrap = VueKeyboardTrapDirectiveFactory({
+    // ...options if required
+  }).directive;
+</script>
+```
+
+#### Included in specific components (Vue3 script) - directive
+
 ```html
 <script>
   import { defineComponent } from 'vue';
@@ -89,18 +136,8 @@ or included in specific components (Vue3 script)
 </script>
 ```
 
-or included in specific components (Vue3 script setup)
-```html
-<script setup>
-  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
+#### Included in specific components (Vue2) - directive
 
-  const vKbdTrap = VueKeyboardTrapDirectiveFactory({
-    // ...options if required
-  }).directive;
-</script>
-```
-
-or included in specific components (Vue2)
 ```html
 <script>
   import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap';
@@ -116,6 +153,8 @@ or included in specific components (Vue2)
   };
 </script>
 ```
+
+#### User hint styles (cosmetic)
 
 The directive does not require any CSS styles to work, but for cosmetic purposes (as user hints) some example styles are provided in `dist/styles/index.sass`.
 
@@ -147,7 +186,40 @@ Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap
 
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
 
-Use as plugin on Vue3
+In order to work it requires that `VueDemi` is already loaded on the page. You can do it like this:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-demi/lib/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js"></script>
+
+```
+
+#### As composable (both Vue3 and Vue2)
+
+```javascript
+const { ref } = Vue;
+
+const { useKeyboardTrapFactory } = VueKeyboardTrap;
+const useKeyboardTrap = useKeyboardTrapFactory({
+  // ...options if required
+});
+
+const elRef = ref(null);
+useKeyboardTrap(
+  // element (reactive)
+  elRef,
+  // modifiers (optional, reactive, default all modifiers are false)
+  {
+    roving: true,
+  },
+  // active (optional, reactive, default true)
+  true
+);
+```
+
+#### As plugin on Vue3 - directive
+
 ```javascript
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
@@ -161,7 +233,8 @@ app.use(VueKeyboardTrapDirectivePlugin, {
 app.mount('#app');
 ```
 
-or as plugin on Vue2
+#### As plugin on Vue2 - directive
+
 ```javascript
 const { VueKeyboardTrapDirectivePlugin } = VueKeyboardTrap;
 
@@ -174,7 +247,8 @@ new Vue({
 });
 ```
 
-or as directive on Vue3
+#### As directive on Vue3 - directive
+
 ```javascript
 const { createApp } = Vue;
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
@@ -190,7 +264,8 @@ app.directive(name, directive);
 app.mount('#app');
 ```
 
-or as directive on Vue2
+#### As directive on Vue2 - directive
+
 ```javascript
 const { VueKeyboardTrapDirectiveFactory } = VueKeyboardTrap;
 
@@ -200,6 +275,8 @@ const { name, directive } = VueKeyboardTrapDirectiveFactory({
 
 Vue.directive(name, directive);
 ```
+
+#### User hint styles (cosmetic)
 
 If you want you can access the CSS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css).
 

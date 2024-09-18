@@ -13,9 +13,9 @@ title: Guide
 
 ## Project description
 
-Vue directive for keyboard navigation - roving movement and trapping inside container.
+Vue directive and composable for keyboard navigation - roving movement and trapping inside container.
 
-Works both for Vue3 and Vue2.
+Works both for Vue3 and Vue2, as a directive (`v-kbd-trap`) or as a composable (`useKeyboardTrap`).
 
 ## Install
 
@@ -42,6 +42,42 @@ npm install @pdanpdan/vue-keyboard-trap
 ## Usage
 
 ### Usage as ESM
+
+#### As composable (both Vue3 and Vue2)
+
+::: code-group
+
+```html{3,5-8,11-20,24} [Vue3 and Vue2]
+<script setup>
+  import { ref } from 'vue';
+  import { useKeyboardTrapFactory } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
+
+  // you can do this in another file and import the configured `useKeyboardTrap`
+  const useKeyboardTrap = useKeyboardTrapFactory({ // [!code focus]
+    // ...options if required
+  }); // [!code focus]
+
+  const elRef = ref(null);
+  useKeyboardTrap( // [!code focus]
+    // element (reactive)
+    elRef, // [!code focus]
+    // modifiers (optional, reactive, default all modifiers are false)
+    {
+      roving: true,
+    },
+    // active (optional, reactive, default true)
+    true
+  ); // [!code focus]
+</script>
+
+<template>
+  <div ref="elRef"> // [!code focus]
+    ...
+  </div>
+</template>
+```
+
+:::
 
 #### As plugin
 
@@ -81,6 +117,16 @@ new Vue({
 
 ::: code-group
 
+```html{2,4-6} [Vue3 script setup]
+<script setup>
+  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
+
+  const vKbdTrap = VueKeyboardTrapDirectiveFactory({ // [!code focus:3]
+    // ...options if required
+  }).directive;
+</script>
+```
+
 ```html{3,5-7,10-12} [Vue3 script]
 <script>
   import { defineComponent } from 'vue';
@@ -95,16 +141,6 @@ new Vue({
       KbdTrap,
     },
   });
-</script>
-```
-
-```html{2,4-6} [Vue3 script setup]
-<script setup>
-  import { VueKeyboardTrapDirectiveFactory } from '@pdanpdan/vue-keyboard-trap'; // [!code focus]
-
-  const vKbdTrap = VueKeyboardTrapDirectiveFactory({ // [!code focus:3]
-    // ...options if required
-  }).directive;
 </script>
 ```
 
@@ -125,6 +161,8 @@ new Vue({
 ```
 
 :::
+
+#### User hint styles (cosmetic)
 
 The directive does not require any CSS styles to work, but for cosmetic purposes (as user hints) some example styles are provided in `dist/styles/index.sass`.
 
@@ -159,6 +197,41 @@ import '@pdanpdan/vue-keyboard-trap/dist/styles/index.sass';
 Load the javascript from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js).
 
 It will expose a global object `VueKeyboardTrap` with `VueKeyboardTrapDirectivePlugin` and `VueKeyboardTrapDirectiveFactory` keys.
+
+In order to work it requires that `VueDemi` is already loaded on the page. You can do it like this:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-demi/lib/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/index.umd.js"></script>
+
+```
+
+#### As composable
+
+::: code-group
+```javascript{3-6,9-18} [Vue3 and Vue2]
+const { ref } = Vue;
+
+const { useKeyboardTrapFactory } = VueKeyboardTrap; // [!code focus:3]
+const useKeyboardTrap = useKeyboardTrapFactory({ // [!code focus:3]
+  // ...options if required
+}); // [!code focus]
+
+const elRef = ref(null);
+useKeyboardTrap( // [!code focus:3]
+  // element (reactive)
+  elRef, // [!code focus]
+  // modifiers (optional, reactive, default all modifiers are false)
+  {
+    roving: true,
+  },
+  // active (optional, reactive, default true)
+  true
+); // [!code focus]
+```
+
+:::
 
 #### As plugin
 
@@ -220,6 +293,8 @@ Vue.directive(name, directive); // [!code focus]
 ```
 
 :::
+
+#### User hint styles (cosmetic)
 
 If you want you can access the CSS cosmetic style (user hints) from [https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css](https://cdn.jsdelivr.net/gh/pdanpdan/vue-keyboard-trap/dist/styles/index.css).
 

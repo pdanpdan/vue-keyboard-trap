@@ -6,7 +6,7 @@ title: Examples
 
 [Demo codepen](https://codepen.io/pdanpdan/pen/MWrzLdM)
 
-## Basic usage
+## Basic usage as directive
 
 <interactive-code example="examples/trap-simple.vue" title="Default behaviour" desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.">
 
@@ -17,6 +17,14 @@ title: Examples
 <interactive-code example="examples/trap-rtl.vue" title="Default behaviour (RTL / LTR)" desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.">
 
   <<< @/examples/trap-rtl.vue{6-7,15,23,38-39,42-44}
+
+</interactive-code>
+
+## Basic usage as composable
+
+<interactive-code example="examples/use-as-composable.vue" title="Dynamic behaviour" desc="The focus stays inside trap while navigating with Tab / Shift + Tab.\nTrap can be enabled/disabled with Esc key.">
+
+  <<< @/examples/use-as-composable.vue{7,19-20,24,35}
 
 </interactive-code>
 
