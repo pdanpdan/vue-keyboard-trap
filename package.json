@@ -20,6 +20,7 @@
     "vue",
     "vue2",
     "vue3",
+    "composable",
     "directive",
     "keyboard",
     "navigation",
@@ -32,6 +33,7 @@
     "cycle",
     "tab",
     "tabindex",
+    "use",
     "wai-aria"
   ],
   "license": "MIT",
