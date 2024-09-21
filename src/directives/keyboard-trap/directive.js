@@ -100,7 +100,7 @@ function createCtx(config, el, value, modifiers) {
       el.addEventListener('keydown', ctx.trap);
       el.addEventListener('focusin', ctx.activate);
       el.addEventListener('focusout', ctx.deactivate);
-      el.addEventListener('pointerdown', ctx.overwiteFocusTarget, { passive: true });
+      el.addEventListener('pointerdown', ctx.overwriteFocusTarget, { passive: true });
 
       if (ctx.disable === false) {
         setAttributes(el, ctx.disable, ctx, config);
@@ -112,7 +112,7 @@ function createCtx(config, el, value, modifiers) {
       el.removeEventListener('keydown', ctx.trap);
       el.removeEventListener('focusin', ctx.activate);
       el.removeEventListener('focusout', ctx.deactivate);
-      el.removeEventListener('pointerdown', ctx.overwiteFocusTarget);
+      el.removeEventListener('pointerdown', ctx.overwriteFocusTarget);
       setAttributes(el, true, ctx, config);
     },
 
@@ -449,7 +449,7 @@ function createCtx(config, el, value, modifiers) {
       }
     },
 
-    overwiteFocusTarget(ev) {
+    overwriteFocusTarget(ev) {
       if (ctx.disable === false && ev.__vKbdTrap !== true) {
         ev.__vKbdTrap = true;
 
