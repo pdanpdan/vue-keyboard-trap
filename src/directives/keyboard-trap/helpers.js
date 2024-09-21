@@ -3,15 +3,49 @@ function defaultFocusCheckFn() {
 }
 
 export function visibleFocusCheckFn(el, scrolled = false) {
-  const { left, top } = el.getBoundingClientRect();
-  const elAtPos = document.elementFromPoint(left, top);
-
-  if (el.contains(elAtPos) === true) {
+  if (el.closest('dialog') != null) {
     return true;
   }
 
+  const {
+    left,
+    right,
+    top,
+    bottom,
+  } = el.getBoundingClientRect();
+
+  if (left === right && top === bottom) {
+    return true;
+  }
+
+  const posList = [
+    [left, top],
+    [left, (top + bottom) / 2],
+    [left, bottom],
+    [(left + right) / 2, top],
+    [(left + right) / 2, (top + bottom) / 2],
+    [(left + right) / 2, bottom],
+    [right, top],
+    [right, (top + bottom) / 2],
+    [right, bottom],
+  ];
+
+  let elAtPosFound = false;
+
+  for (let i = 0; i < 9; i += 1) {
+    const elAtPos = document.elementFromPoint(...posList[i]);
+
+    if (el.contains(elAtPos) === true) {
+      return true;
+    }
+
+    if (elAtPos != null) {
+      elAtPosFound = true;
+    }
+  }
+
   if (scrolled === true || typeof el.scrollIntoView !== 'function') {
-    return elAtPos === null;
+    return !elAtPosFound;
   }
 
   const scrollPos = [];
