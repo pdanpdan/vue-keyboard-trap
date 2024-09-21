@@ -401,7 +401,7 @@ function createCtx(config, el, value, modifiers) {
           );
         }
 
-        if (focusableMap !== undefined) {
+        if (focusableMap != null && rovingExit == null) {
           focusableList = focusableList.filter((o) => focusableMap.get(o) !== undefined);
           focusableList.sort((el1, el2) => focusableMap.get(el1) - focusableMap.get(el2));
         }
@@ -411,7 +411,7 @@ function createCtx(config, el, value, modifiers) {
         const { focusableSelector } = config;
         focusableList = Array.from(el.querySelectorAll(focusableSelector));
 
-        if (modifiers.indexorder === true) {
+        if (modifiers.indexorder === true && rovingExit == null) {
           const tabindexOrder = new WeakMap(
             focusableList.map((o) => ([o, Math.max(o.tabIndex || 0, 0)])),
           );
