@@ -4,7 +4,11 @@ const reJs = /(?:^|[\n\r]+)<script[^>]*?(?:\s+lang="([^"]+)")?[^>]*?>[\r\n](.*?)
 const reImport = /(^|[\n\r]+)import(?:\s+(.*?)\s+from)?\s+(['"])(.+?)\3(;)?(?:\s*\/\/\s*asGlobal=(['"])(.+?)\6)?/isg;
 const reExternal = /(?:^|[\n\r]+)\s*\/\/\s*external(js|css)=(['"])(.+?)\2/isg;
 
-const vueUmdSrc = 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js';
+// reverse order, will be unshifted
+const vueUmdSrcs = [
+  'https://cdn.jsdelivr.net/npm/vue-demi/lib/index.iife.js',
+  'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js',
+];
 
 function extractMatch(text, re) {
   const match = re.exec(text);
@@ -67,9 +71,11 @@ export default function parseCodeForPen({
     ? externalJs
     : (typeof externalJs === 'string' && externalJs.length > 0 ? [externalJs] : []);
 
-  if (jsExternal.indexOf(vueUmdSrc) === -1) {
-    jsExternal.unshift(vueUmdSrc);
-  }
+  vueUmdSrcs.forEach((vueUmdSrc) => {
+    if (jsExternal.indexOf(vueUmdSrc) === -1) {
+      jsExternal.unshift(vueUmdSrc);
+    }
+  });
 
   parsedJs.code = parsedJs.code.replace(reExternal, (_match, type, _quote, src) => {
     if (type.toLowerCase() === 'js') {
