@@ -17,7 +17,7 @@ export function visibleFocusCheckFn(el, scrolled = false) {
   const scrollPos = [];
   let parent = el.parentElement;
 
-  while (parent !== null) {
+  while (parent != null) {
     scrollPos.push([parent, parent.scrollLeft, parent.scrollTop]);
     parent = parent.parentElement;
   }
@@ -36,7 +36,7 @@ export function visibleFocusCheckFn(el, scrolled = false) {
 }
 
 export function focus(el, checkFn = defaultFocusCheckFn) {
-  if (el === null || typeof el.focus !== 'function' || checkFn(el) !== true) {
+  if (el == null || typeof el.focus !== 'function' || checkFn(el) !== true) {
     return false;
   }
 
@@ -50,7 +50,7 @@ const reNumber = /(\d+)/;
 export function extractNumber(val) {
   const match = reNumber.exec(val);
 
-  return match === null ? '' : match[1];
+  return match == null ? '' : match[1];
 }
 
 export function dirIsRtl(activeElement, currentTrapEl) {

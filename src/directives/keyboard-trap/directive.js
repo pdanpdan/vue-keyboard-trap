@@ -47,7 +47,7 @@ let activeTrapEl = null;
 
 function setActiveTrapEl(newEl, config) {
   if (activeTrapEl !== newEl) {
-    if (newEl !== null) {
+    if (newEl != null) {
       newEl.dataset[config.datasetNameActive] = '';
       newEl.__vKbdTrapActiveClean = () => {
         delete newEl.dataset[config.datasetNameActive];
@@ -55,7 +55,7 @@ function setActiveTrapEl(newEl, config) {
       };
     }
 
-    if (activeTrapEl !== null && typeof activeTrapEl.__vKbdTrapActiveClean === 'function') {
+    if (activeTrapEl != null && typeof activeTrapEl.__vKbdTrapActiveClean === 'function') {
       activeTrapEl.__vKbdTrapActiveClean();
     }
 
@@ -81,7 +81,7 @@ function setAttributes(el, disable, ctx, config) {
       .filter((key) => ctx.modifiers[key] === true)
       .join(' ');
 
-    if (el.tabIndex < 0 && el.getAttribute('tabindex') === null && el.matches('dialog') === false && el.matches('[popover]') === false) {
+    if (el.tabIndex < 0 && el.getAttribute('tabindex') == null && el.matches('dialog') === false && el.matches('[popover]') === false) {
       el.tabIndex = config.trapTabIndex;
     }
   }
@@ -128,7 +128,7 @@ function createCtx(config, el, value, modifiers) {
       if (
         activeTrapEl !== el
         && (
-          oldFocusedElement === null
+          oldFocusedElement == null
           || oldFocusedElement.closest(config.datasetNameSelector) !== el
         )
       ) {
@@ -160,13 +160,13 @@ function createCtx(config, el, value, modifiers) {
       if (
         activeTrapEl === el
         && (
-          newFocusedElement === null
+          newFocusedElement == null
           || newFocusedElement.closest(config.datasetNameSelector) !== el
         )
       ) {
         ctx.focusTarget = ev.target;
 
-        if (newFocusedElement === null && ctx.relatedFocusTarget) {
+        if (newFocusedElement == null && ctx.relatedFocusTarget) {
           focus(ctx.relatedFocusTarget);
         }
         setActiveTrapEl(null, config);
@@ -191,11 +191,11 @@ function createCtx(config, el, value, modifiers) {
             ev.preventDefault();
           } else {
             if (ctx.modifiers.escexits === true) {
-              setActiveTrapEl(el.parentElement === null ? null : el.parentElement.closest(config.datasetNameSelector), config);
+              setActiveTrapEl(el.parentElement == null ? null : el.parentElement.closest(config.datasetNameSelector), config);
 
               const newCtx = getCtx(activeTrapEl);
 
-              if (newCtx !== null) {
+              if (newCtx != null) {
                 newCtx.refocus();
               }
 
@@ -238,7 +238,7 @@ function createCtx(config, el, value, modifiers) {
           if (rovingSkipSelector === false && ctx.modifiers.tabinside !== true) {
             rovingExit = el.parentElement.closest(config.datasetNameSelector);
 
-            if (rovingExit !== null) {
+            if (rovingExit != null) {
               ev.__vKbdTrap = undefined;
             }
 
@@ -259,7 +259,7 @@ function createCtx(config, el, value, modifiers) {
           step = -1;
           indexSelector = () => 0;
         } else if (
-          el.parentElement !== null
+          el.parentElement != null
           && (
             (
               ctx.modifiers.vertical === true
@@ -278,7 +278,7 @@ function createCtx(config, el, value, modifiers) {
               : config.datasetNameSelectorRovingVertical,
           );
 
-          if (parentTrap !== null) {
+          if (parentTrap != null) {
             rovingExit = parentTrap;
 
             ev.__vKbdTrap = undefined;
