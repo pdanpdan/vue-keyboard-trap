@@ -1,6 +1,6 @@
 :root
   // --vp-home-hero-name-color: #42b883
-  --vp-c-brand: #42b883
+  --vp-c-brand-1: #42b883
 
 html
   scroll-padding: 4em
@@ -13,15 +13,16 @@ h1, h2, h3, h4, h5, h6
   .header-anchor
     pointer-events: all
     position: absolute
-    left: 0
-    right: 0
-    top: 0
-    bottom: 0
+    inset: 0
     padding: inherit
 
     &:before,
     &:hover
       text-decoration: none
+
+    &:before
+      position: absolute
+      inset: 0
 
   &:focus-within
     .header-anchor
