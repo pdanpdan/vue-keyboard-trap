@@ -126,6 +126,15 @@ function createCtx(config, el, value, modifiers) {
       const oldFocusedElement = ev.relatedTarget;
 
       if (
+        oldFocusedElement != null
+        && oldFocusedElement !== document.body
+        && oldFocusedElement.closest(config.datasetNameSelector) !== el
+        && oldFocusedElement.tabIndex !== config.trapTabIndex
+      ) {
+        ctx.relatedFocusTarget = oldFocusedElement;
+      }
+
+      if (
         activeTrapEl !== el
         && (
           oldFocusedElement == null
@@ -134,10 +143,8 @@ function createCtx(config, el, value, modifiers) {
       ) {
         setActiveTrapEl(el, config);
 
-        ctx.relatedFocusTarget = oldFocusedElement;
-
         if (
-          oldFocusedElement === null
+          oldFocusedElement == null
           || oldFocusedElement.dataset[config.datasetNamePreventRefocus] === undefined
           || el.contains(oldFocusedElement) === false
         ) {
