@@ -492,6 +492,8 @@ function createCtx(config, el, value, modifiers) {
     },
 
     autofocus() {
+      setActiveTrapEl(el, config);
+
       requestAnimationFrame(() => {
         if (ctx.disable === false && focus(el.querySelector(config.autofocusSelector), visibleFocusCheckFn) === false) {
           focus(el.querySelector(config.focusableSelector), visibleFocusCheckFn);
