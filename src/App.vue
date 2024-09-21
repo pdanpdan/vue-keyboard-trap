@@ -470,16 +470,20 @@
 
   <dialog
     ref="dialog"
-    v-kbd-trap="activeDialog"
     @close="activeDialog = false"
     @keydown.esc.capture.prevent
   >
-    <div style="padding-block-start: 32px">
-      <a href="#1" class="test">Link 1</a>
-      <a href="#2" class="test">Link 2</a>
-      <a href="#3" class="test">Link 3</a>
+    <div v-kbd-trap.autofocus="activeDialog">
+      <div style="padding-block-start: 32px">
+        <a href="#1" class="test">Link 1</a>
+        <a href="#2" class="test">Link 2</a>
+        <a href="#3" class="test">Link 3</a>
+      </div>
+
+      <input type="text" data-autofocus placeholder="Autofocused" />
+
+      <button type="button" class="test" @click="activeDialog = false">Close</button>
     </div>
-    <button type="button" class="test" @click="activeDialog = false">Close</button>
   </dialog>
 </template>
 
