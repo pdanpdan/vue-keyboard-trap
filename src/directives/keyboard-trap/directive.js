@@ -141,9 +141,7 @@ function createCtx(config, el, value, modifiers) {
           || oldFocusedElement.dataset[config.datasetNamePreventRefocus] === undefined
           || el.contains(oldFocusedElement) === false
         ) {
-          requestAnimationFrame(() => {
-            ctx.refocus(ctx.modifiers.roving !== true);
-          });
+          ctx.refocus(ctx.modifiers.roving !== true);
         }
       }
     },
@@ -494,11 +492,9 @@ function createCtx(config, el, value, modifiers) {
     autofocus() {
       setActiveTrapEl(el, config);
 
-      requestAnimationFrame(() => {
-        if (ctx.disable === false && focus(el.querySelector(config.autofocusSelector), visibleFocusCheckFn) === false) {
-          focus(el.querySelector(config.focusableSelector), visibleFocusCheckFn);
-        }
-      });
+      if (ctx.disable === false && focus(el.querySelector(config.autofocusSelector), visibleFocusCheckFn) === false) {
+        focus(el.querySelector(config.focusableSelector), visibleFocusCheckFn);
+      }
     },
   };
 
