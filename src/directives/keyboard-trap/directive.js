@@ -557,7 +557,7 @@ function unbindFn(config, el) {
 export default function directiveFactory(options) {
   const config = createConfig(options);
 
-  const beforeMount = (el, { value, modifiers }) => bindFn(config, el, value, modifiers);
+  const mounted = (el, { value, modifiers }) => bindFn(config, el, value, modifiers);
 
   const updated = (el, { value, modifiers }) => {
     const ctx = getCtx(el);
@@ -565,7 +565,7 @@ export default function directiveFactory(options) {
     if (ctx !== null) {
       updateFn(config, ctx, el, value, modifiers);
     } else if (isVue3) {
-      beforeMount(el, { value, modifiers });
+      mounted(el, { value, modifiers });
     } else if (activeTrapEl === el) {
       setActiveTrapEl(null, config);
     }
@@ -578,7 +578,7 @@ export default function directiveFactory(options) {
       name: config.name,
 
       directive: {
-        beforeMount,
+        mounted,
         updated,
         unmounted,
         getSSRProps() { },
@@ -588,7 +588,7 @@ export default function directiveFactory(options) {
       name: config.name,
 
       directive: {
-        bind: beforeMount,
+        bind: mounted,
         update: updated,
         unbind: unmounted,
       },
