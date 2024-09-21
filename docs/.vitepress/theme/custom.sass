@@ -1,6 +1,11 @@
+@use 'sass:color'
+
 :root
   // --vp-home-hero-name-color: #42b883
   --vp-c-brand-1: #42b883
+  --vp-c-brand-2: #{ color.scale(#42b883, $lightness: -10%) }
+  --vp-button-brand-bg: #{ color.scale(#42b883, $lightness: -10%) }
+  --vp-button-brand-hover-bg: #42b883
 
 html
   scroll-padding: 4em
