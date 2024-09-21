@@ -69,14 +69,17 @@ export function visibleFocusCheckFn(el, scrolled = false) {
   return visible;
 }
 
+let focusTargetEl;
 export function focus(el, checkFn = defaultFocusCheckFn) {
   if (el == null || typeof el.focus !== 'function' || checkFn(el) !== true) {
     return false;
   }
 
+  focusTargetEl = el;
   el.focus();
 
-  return el === document.activeElement;
+  return [focusTargetEl, el].includes(document.activeElement)
+    || (document.activeElement != null && [focusTargetEl, el].includes(document.activeElement.__focusTargetPlaceholder));
 }
 
 const reNumber = /(\d+)/;
